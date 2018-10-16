@@ -1,20 +1,23 @@
 # coding=utf-8
-import cPickle
+import pickle
 import os
 
 
 class BuildingTypes(object):
 
-    def __init__(self, readDOE_file_path):
+    def __init__(self, readDOE_file_path=None):
         """Contains all of the accepted building typologies and contruction years"""
 
         # load  all of the building characteristcs from the pickle file.
+        if readDOE_file_path is None:
+            curr_dir = os.path.abspath(os.path.dirname(__file__))
+            readDOE_file_path = os.path.join(curr_dir, 'resources/readDOE.pkl')
         if not os.path.exists(readDOE_file_path):
             raise Exception("readDOE.pkl file: '{}' does not exist.".format(
                 readDOE_file_path))
         readDOE_file = open(readDOE_file_path, 'rb')  # open pickle file in binary form
-        self.refDOE = cPickle.load(readDOE_file)
-        self.refBEM = cPickle.load(readDOE_file)
+        self.refDOE = pickle.load(readDOE_file)
+        self.refBEM = pickle.load(readDOE_file)
         readDOE_file.close()
 
         # dictionary to go from building programs to numbers understood by the UWG
