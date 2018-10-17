@@ -12,6 +12,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ladybug-tools/dragonfly",
     packages=setuptools.find_packages(),
+    include_package_data=True,
     dependency_links=[
         "https://github.com/ladybug-tools/uwg/archive/master.zip"
     ],
