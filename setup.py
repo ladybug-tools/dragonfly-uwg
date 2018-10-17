@@ -12,7 +12,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ladybug-tools/dragonfly",
     dependency_links=[
-        "https://github.com/ladybug-tools/uwg/archive/master.zip"
+        "https://github.com/ladybug-tools/uwg/tarball/master#egg=uwg-5.0.0"
     ],
     classifiers=[
         "Programming Language :: Python :: 2.7",
