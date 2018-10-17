@@ -14,7 +14,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     dependency_links=[
         "https://github.com/ladybug-tools/uwg/archive/master.zip"
-    ]
+    ],
     classifiers=[
         "Programming Language :: Python :: 2.7",
         "Operating System :: OS Independent",
