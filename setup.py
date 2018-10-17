@@ -11,9 +11,6 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ladybug-tools/dragonfly",
-    dependency_links=[
-        "https://github.com/ladybug-tools/uwg/tarball/master#egg=uwg-5.0.0"
-    ],
     classifiers=[
         "Programming Language :: Python :: 2.7",
         "Operating System :: OS Independent",
