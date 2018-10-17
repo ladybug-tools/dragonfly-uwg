@@ -1,13 +1,12 @@
 # coding=utf-8
 from dfobject import DfObject
-from utilities import in_range
+from utilities import Utilities
 import dragonfly
 try:
     import plus
 except ImportError as e:
     if dragonfly.isplus:
         raise ImportError(e)
-
 
 class Vegetation(DfObject):
     """Represents vegetation (either grass or trees) within an urban area.
@@ -82,7 +81,7 @@ class Vegetation(DfObject):
         """
         assert hasattr(terrain, 'isTerrain'), \
             'terrain must be Df terrain. Got {}'.format(type(terrain))
-        coverage = in_range((self._area/terrain.area), 0, 1, 'vegetation_coverage')
+        coverage = Utilities.in_range((self._area/terrain.area), 0, 1, 'vegetation_coverage')
 
         return coverage
 
