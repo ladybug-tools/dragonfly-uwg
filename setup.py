@@ -11,6 +11,10 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ladybug-tools/dragonfly",
+    packages=setuptools.find_packages(),
+    dependency_links=[
+        "https://github.com/ladybug-tools/uwg/archive/master.zip"
+    ]
     classifiers=[
         "Programming Language :: Python :: 2.7",
         "Operating System :: OS Independent",
