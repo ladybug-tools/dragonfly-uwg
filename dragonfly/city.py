@@ -128,9 +128,9 @@ class City(DfObject):
             totalFacadeArea += bType.facade_area
             floorAreas.append(bType.floor_area)
             fullTypeNames.append(bType.bldg_program + ',' + bType.bldg_age)
-        avgBldgHeight = weightedHeightSum/totalFootprintArea
-        bldgCoverage = totalFootprintArea/terrainArea
-        facadeToSite = totalFacadeArea/terrainArea
+        avgBldgHeight = float(weightedHeightSum)/totalFootprintArea
+        bldgCoverage = float(totalFootprintArea)/terrainArea
+        facadeToSite = float(totalFacadeArea)/terrainArea
 
         # build the dictionary of typology ratios
         totalWeight = sum(floorAreas)
