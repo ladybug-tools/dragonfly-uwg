@@ -25,6 +25,7 @@ class Terrain(DfObject):
     def __init__(self, area, characteristic_length=None):
         """Initialize a dragonfly terrain surface"""
         self.area = area
+        self.characteristic_length = characteristic_length
 
     @classmethod
     def from_geometry(cls, terrainSrfs):
@@ -53,12 +54,23 @@ class Terrain(DfObject):
             'area must be a number got {}'.format(type(a))
         assert (a >= 0), "area must be greater than 0"
         self._area = a
-        self._characteristic_length = math.sqrt(self._area)
 
     @property
     def characteristic_length(self):
         """Return the characteristic length."""
         return self._characteristic_length
+
+    @characteristic_length.setter
+    def characteristic_length(self, cl):
+        if cl is None:
+            self._characteristic_length = math.sqrt(self._area)
+        else:
+            assert isinstance(cl, (float, int)),\
+                'characteristic length must be a number got {}'.format(type(cl))
+            assert (cl >= 0), 'characteristic length must be greater than 0'
+            self._characteristic_length = cl
+
+
 
     @property
     def isTerrain(self):

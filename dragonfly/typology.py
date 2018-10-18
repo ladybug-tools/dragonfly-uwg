@@ -1,13 +1,16 @@
 # coding=utf-8
 from dfobject import DfObject
-from bldgtypes import BldgTypes
-from utilities import in_range
+from bldgtypes import BuildingTypes
+from utilities import Utilities
 import dragonfly
 try:
     import plus
 except ImportError as e:
     if dragonfly.isplus:
         raise ImportError(e)
+
+bldg_types = BuildingTypes()
+utilities = Utilities()
 
 
 class Typology(DfObject):
@@ -227,6 +230,65 @@ class Typology(DfObject):
                                    bldg_program, bldg_age, floor_to_floor,
                                    fract_heat_to_canyon, glz_ratio)
 
+    @classmethod
+    def create_merged_typology(cls, typology_one, typology_two):
+        """Creates a merged typology between two typologies of the same building type.
+
+        Args:
+            typology_one: The first Dragonfly building typology.
+            typology_two: The second Dragonfly building typology.
+
+        Returs:
+            merged_typology: A Dragonfly typology representing the
+                merged previous typologies.
+        """
+        # checks
+        assert (hasattr(typology_one, 'isTypology')), \
+            'typology_one must be a Dragonfly typology. got {}'.format(
+                type(typology_one))
+        assert (hasattr(typology_two, 'isTypology')), \
+            'typology_two must be a Dragonfly typology. got {}'.format(
+                type(typology_two))
+        assert (typology_one.bldg_program == typology_two.bldg_program), \
+            "bldg_program of one: {} does not match that of two: {}".format(
+                typology_one.bldg_program, typology_two.bldg_program)
+        assert (typology_one.bldg_age == typology_two.bldg_age), \
+            "bldg_age of this one: {} does not match that of two: {}".format(
+                typology_one.bldg_age, typology_two.bldg_age)
+
+        # attributes that get totalled
+        new_footprint_area = typology_one.footprint_area + typology_two.footprint_area
+        new_facade_area = typology_one.facade_area + typology_two.facade_area
+        new_floor_area = typology_one.floor_area + typology_two.floor_area
+
+        # atributes that get weighted averaged.
+        new_average_height = (typology_one.average_height *
+                              typology_one.footprint_area +
+                              typology_two.average_height *
+                              typology_two.footprint_area) / new_footprint_area
+        new_floor_to_floor = (typology_one.floor_to_floor *
+                              typology_one.floor_area +
+                              typology_two.floor_to_floor *
+                              typology_two.floor_area)/new_floor_area
+        new_fract_heat_to_canyon = (typology_one.fract_heat_to_canyon *
+                                    typology_one.floor_area +
+                                    typology_two.fract_heat_to_canyon *
+                                    typology_two.floor_area) / new_floor_area
+        new_glz_ratio = (typology_one.glz_ratio * typology_one.facade_area +
+                         typology_two.glz_ratio * typology_two.facade_area
+                         ) / new_facade_area
+        new_wall_albedo = (typology_one.wall_albedo * typology_one.facade_area +
+                           typology_two.wall_albedo * typology_two.facade_area
+                           ) / new_facade_area
+
+        newtypology = cls(new_average_height, new_footprint_area,
+                          new_facade_area, typology_one.bldg_program,
+                          typology_one.bldg_age, new_floor_to_floor,
+                          new_fract_heat_to_canyon, new_glz_ratio, new_floor_area)
+        newtypology.wall_albedo = new_wall_albedo
+
+        return newtypology
+
     @property
     def average_height(self):
         """Get or set the average height of the buildings in meters."""
@@ -300,7 +362,8 @@ class Typology(DfObject):
             assert isinstance(a, (float, int)), \
                 'floor_area must be a number got {}'.format(type(a))
             assert (a >= self._footprint_area), \
-                "floor_area cannot be smaller than the footprint_area"
+                "floor_area {} cannot be smaller than the footprint_area {}".format(
+                str(a), str(self._footprint_area))
             self._floor_area = a
         else:
             self._floor_area = self._footprint_area * self.number_of_stories
@@ -314,7 +377,7 @@ class Typology(DfObject):
 
     @bldg_program.setter
     def bldg_program(self, prog):
-        self._bldg_program = BldgTypes.check_program(prog)
+        self._bldg_program = bldg_types.check_program(prog)
 
     @property
     def bldg_age(self):
@@ -323,7 +386,7 @@ class Typology(DfObject):
 
     @bldg_age.setter
     def bldg_age(self, age):
-        self._bldg_age = BldgTypes.check_age(age)
+        self._bldg_age = bldg_types.check_age(age)
 
     @property
     def fract_heat_to_canyon(self):
@@ -335,7 +398,7 @@ class Typology(DfObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'fract_heat_to_canyon must be a number got {}'.format(type(x))
-            self._fract_heat_to_canyon = in_range(x, 0, 1, 'fract_heat_to_canyon')
+            self._fract_heat_to_canyon = utilities.in_range(x, 0, 1, 'fract_heat_to_canyon')
         else:
             self._fract_heat_to_canyon = 0.5
 
@@ -349,11 +412,11 @@ class Typology(DfObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'glz_ratio must be a number got {}'.format(type(x))
-            self._glz_ratio = in_range(x, 0, 1, 'glz_ratio')
+            self._glz_ratio = utilities.in_range(x, 0, 1, 'glz_ratio')
         else:
             self._glz_ratio = \
-                float(BldgTypes.refBEM[BldgTypes.bldgtype[self.bldg_program]]
-                      [BldgTypes.builtera[self.bldg_age]][0].building.glazingRatio)
+                float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
+                      [bldg_types.builtera[self.bldg_age]][0].building.glazingRatio)
 
     @property
     def shgc(self):
@@ -366,13 +429,13 @@ class Typology(DfObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'shgc must be a number got {}'.format(type(x))
-            self._shgc = in_range(x, 0, 1, 'shgc')
+            self._shgc = utilities.in_range(x, 0, 1, 'shgc')
 
     def get_default_shgc(self, climate_zone):
         """Returns the default solar heat gain coefficient given the climate_zone."""
-        zoneIndex = BldgTypes.check_cimate_zone(climate_zone)
-        return float(BldgTypes.refBEM[BldgTypes.bldgtype[self.bldg_program]]
-                     [BldgTypes.builtera[self.bldg_age]][zoneIndex].building.shgc)
+        zoneIndex = bldg_types.check_cimate_zone(climate_zone)
+        return float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
+                     [bldg_types.builtera[self.bldg_age]][zoneIndex].building.shgc)
 
     @property
     def wall_albedo(self):
@@ -384,11 +447,11 @@ class Typology(DfObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'wall_albedo must be a number got {}'.format(type(x))
-            self._wall_albedo = in_range(x, 0, 1, 'wall_albedo')
+            self._wall_albedo = utilities.in_range(x, 0, 1, 'wall_albedo')
         else:
             self._wall_albedo = \
-                float(BldgTypes.refBEM[BldgTypes.bldgtype[self.bldg_program]]
-                      [BldgTypes.builtera[self.bldg_age]][0].wall.albedo)
+                float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
+                      [bldg_types.builtera[self.bldg_age]][0].wall.albedo)
 
     @property
     def roof_albedo(self):
@@ -400,11 +463,11 @@ class Typology(DfObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'roof_albedo must be a number got {}'.format(type(x))
-            self._roof_albedo = in_range(x, 0, 1, 'roof_albedo')
+            self._roof_albedo = utilities.in_range(x, 0, 1, 'roof_albedo')
         else:
             self._roof_albedo = \
-                float(BldgTypes.refBEM[BldgTypes.bldgtype[self.bldg_program]]
-                      [BldgTypes.builtera[self.bldg_age]][0].roof.albedo)
+                float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
+                      [bldg_types.builtera[self.bldg_age]][0].roof.albedo)
 
     @property
     def roof_veg_fraction(self):
@@ -416,7 +479,7 @@ class Typology(DfObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'roof_veg_fraction must be a number got {}'.format(type(x))
-            self._roof_veg_fraction = in_range(x, 0, 1, 'roof_veg_fraction')
+            self._roof_veg_fraction = utilities.in_range(x, 0, 1, 'roof_veg_fraction')
         else:
             self._roof_veg_fraction = 0.
 
@@ -432,65 +495,6 @@ class Typology(DfObject):
     def isTypology(self):
         """Return True for Typology."""
         return True
-
-    @classmethod
-    def create_merged_typology(cls, typology_one, typology_two):
-        """Creates a merged typology between two typologies of the same building type.
-
-        Args:
-            typology_one: The first Dragonfly building typology.
-            typology_two: The second Dragonfly building typology.
-
-        Returs:
-            merged_typology: A Dragonfly typology representing the
-                merged previous typologies.
-        """
-        # checks
-        assert (hasattr(typology_one, 'isTypology')), \
-            'typology_one must be a Dragonfly typology. got {}'.format(
-                type(typology_one))
-        assert (hasattr(typology_two, 'isTypology')), \
-            'typology_two must be a Dragonfly typology. got {}'.format(
-                type(typology_two))
-        assert (typology_one.bldg_program == typology_two.bldg_program), \
-            "bldg_program of one: {} does not match that of two: {}".format(
-                typology_one.bldg_program, typology_two.bldg_program)
-        assert (typology_one.bldg_age == typology_two.bldg_age), \
-            "bldg_age of this one: {} does not match that of two: {}".format(
-                typology_one.bldg_age, typology_two.bldg_age)
-
-        # attributes that get totalled
-        new_footprint_area = typology_one.footprint_area + typology_two.footprint_area
-        new_facade_area = typology_one.facade_area + typology_two.facade_area
-        new_floor_area = typology_one.floor_area + typology_two.floor_area
-
-        # atributes that get weighted averaged.
-        new_average_height = (typology_one.average_height *
-                              typology_one.footprint_area +
-                              typology_two.average_height *
-                              typology_two.footprint_area) / new_footprint_area
-        new_floor_to_floor = (typology_one.floor_to_floor *
-                              typology_one.floor_area +
-                              typology_two.floor_to_floor *
-                              typology_two.floor_area)/new_floor_area
-        new_fract_heat_to_canyon = (typology_one.fract_heat_to_canyon *
-                                    typology_one.floor_area +
-                                    typology_two.fract_heat_to_canyon *
-                                    typology_two.floor_area) / new_floor_area
-        new_glz_ratio = (typology_one.glz_ratio * typology_one.facade_area +
-                         typology_two.glz_ratio * typology_two.facade_area
-                         ) / new_facade_area
-        new_wall_albedo = (typology_one.wall_albedo * typology_one.facade_area +
-                           typology_two.wall_albedo * typology_two.facade_area
-                           ) / new_facade_area
-
-        newtypology = cls(new_average_height, new_footprint_area,
-                          new_facade_area, typology_one.bldg_program,
-                          typology_one.bldg_age, new_floor_to_floor,
-                          new_fract_heat_to_canyon, new_glz_ratio, new_floor_area)
-        newtypology.wall_albedo = new_wall_albedo
-
-        return newtypology
 
     def ToString(self):
         """Overwrite .NET ToString method."""

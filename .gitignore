@@ -1,0 +1,10 @@
+# virtual environment
+venv
+
+# compiled code
+*.pyc
+
+# builds
+build/
+dist/
+dragonfly.egg-info
