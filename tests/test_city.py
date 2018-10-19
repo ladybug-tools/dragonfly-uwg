@@ -44,7 +44,7 @@ def test_from_typologies(from_typology):
                                 traffic_parameters=from_typology['traffic_parameters'])
 
     assert city.average_bldg_height == 35
-    assert city.site_coverage_ratio == 35*2 / 300
+    assert city.site_coverage_ratio == 45*2 / 300
     assert city.facade_to_site_ratio == 33*2 / 300
     assert city.bldg_type_ratios =={'Hospital,1980sPresent': 0.5,
                                     'SmallOffice,NewConstruction': 0.5}
