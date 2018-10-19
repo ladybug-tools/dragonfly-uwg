@@ -1,3 +1,5 @@
+from __future__ import division
+
 from dragonfly.dfobject import DfObject
 from dragonfly.utilities import Utilities
 from dragonfly.typology import Typology
@@ -128,13 +130,13 @@ class City(DfObject):
             totalFacadeArea += bType.facade_area
             floorAreas.append(bType.floor_area)
             fullTypeNames.append(bType.bldg_program + ',' + bType.bldg_age)
-        avgBldgHeight = float(weightedHeightSum)/totalFootprintArea
-        bldgCoverage = float(totalFootprintArea)/terrainArea
-        facadeToSite = float(totalFacadeArea)/terrainArea
+        avgBldgHeight = weightedHeightSum/totalFootprintArea
+        bldgCoverage = totalFootprintArea/terrainArea
+        facadeToSite = totalFacadeArea/terrainArea
 
         # build the dictionary of typology ratios
         totalWeight = sum(floorAreas)
-        typologyRatios = [float(x)/totalWeight for x in floorAreas]
+        typologyRatios = [x/totalWeight for x in floorAreas]
         bldgTypeDict = {}
         for i, key in enumerate(fullTypeNames):
             bldgTypeDict[key] = typologyRatios[i]

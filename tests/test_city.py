@@ -1,3 +1,5 @@
+from __future__ import division
+
 from dragonfly.city import City
 from dragonfly.typology import Typology
 from dragonfly.terrain import Terrain
