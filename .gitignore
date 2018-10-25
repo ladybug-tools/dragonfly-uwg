@@ -7,4 +7,4 @@ venv
 # builds
 build/
 dist/
-dragonfly.egg-info
+*.egg-info

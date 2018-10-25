@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="dragonfly",
-    version="0.2.0",
+    name="antoine_dragonfly",
+    version="0.3.0",
     author="ladybug-tools",
     description="Dragonfly is a utility API to work with UWG",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ladybug-tools/dragonfly",
-    packages=setuptools.find_packages(),
+    packages=['dragonfly'],
     include_package_data=True,
     dependency_links=[
         "https://github.com/ladybug-tools/uwg/archive/master.zip"
