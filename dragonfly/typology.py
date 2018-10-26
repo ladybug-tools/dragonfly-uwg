@@ -1,9 +1,9 @@
 # coding=utf-8
 from __future__ import division
 
-from dfobject import DfObject
-from bldgtypes import BuildingTypes
-from utilities import Utilities
+from .dfobject import DfObject
+from .bldgtypes import BuildingTypes
+from .utilities import Utilities
 import dragonfly
 try:
     import plus

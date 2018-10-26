@@ -1,10 +1,10 @@
 from __future__ import division
 
-from dragonfly.dfobject import DfObject
-from dragonfly.utilities import Utilities
-from dragonfly.typology import Typology
-from dragonfly.dfparameter import VegetationPar, PavementPar
-from dragonfly.bldgtypes import BuildingTypes
+from .dfobject import DfObject
+from .utilities import Utilities
+from .typology import Typology
+from .dfparameter import VegetationPar, PavementPar
+from .bldgtypes import BuildingTypes
 
 import math
 
