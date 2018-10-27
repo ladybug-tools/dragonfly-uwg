@@ -3,6 +3,9 @@ language: python
 python:
   - "3.6"
 
+env:
+  - TRAVIS=true
+
 install:
   - pip install https://github.com/ladybug-tools/uwg/archive/master.zip
   - pip install pytest
