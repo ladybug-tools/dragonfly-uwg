@@ -3,9 +3,18 @@ language: python
 python:
   - "2.7"
 
+env:
+  - TRAVIS=true
+
 install:
   - pip install https://github.com/ladybug-tools/uwg/archive/master.zip
   - pip install pytest
 
 script:
   - python -m pytest
+
+after_success:
+- git config --global user.name "semantic-release (via TravisCI)"
+- git config --global user.email "semantic-release@travis"
+- pip install python-semantic-release
+- semantic-release publish
