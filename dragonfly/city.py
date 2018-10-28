@@ -1,3 +1,5 @@
+from __future__ import division
+
 from dragonfly.dfobject import DfObject
 from dragonfly.utilities import Utilities
 from dragonfly.typology import Typology
@@ -134,7 +136,7 @@ class City(DfObject):
 
         # build the dictionary of typology ratios
         totalWeight = sum(floorAreas)
-        typologyRatios = [float(x)/totalWeight for x in floorAreas]
+        typologyRatios = [x/totalWeight for x in floorAreas]
         bldgTypeDict = {}
         for i, key in enumerate(fullTypeNames):
             bldgTypeDict[key] = typologyRatios[i]
