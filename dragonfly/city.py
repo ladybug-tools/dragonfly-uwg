@@ -316,7 +316,7 @@ class City(DfObject):
 
     @property
     def fract_heat_to_canyon(self):
-        """Return the fraction of the building's heat that is rejected to the urban canyon."""
+        """The fraction of the building's heat that is rejected to the urban canyon."""
         weighted_sum = 0
         totalFlrArea = 0
         for bldgType in self.building_typologies:
@@ -330,7 +330,7 @@ class City(DfObject):
         weighted_sum = 0
         totalFacadeArea = 0
         for bldgType in self.building_typologies:
-            weighted_sum += bldgType.glz_ratio*bldgType.facade_area
+            weighted_sum += bldgType.glz_ratio * bldgType.facade_area
             totalFacadeArea += bldgType.facade_area
         return weighted_sum / totalFacadeArea
 

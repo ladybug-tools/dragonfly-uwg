@@ -62,13 +62,13 @@ class Typology(DfObject):
         floor_area: A number that represents the floor area of the buiding in
             square meteres. The default is auto-calculated using the
             footprint_area, average_height, and floor_to_floor.
-        number_of_stories: An integer that represents the average number of
-            stories for the building typology.
     """
 
     def __init__(self, average_height, footprint_area, facade_area,
                  bldg_program, bldg_age, floor_to_floor=None,
-                 fract_heat_to_canyon=None, glz_ratio=None, floor_area=None):
+                 fract_heat_to_canyon=None, glz_ratio=None,
+                 floor_area=None, shgc=None, wall_albedo=None,
+                 roof_albedo=None, roof_veg_fraction=None):
         """Initialize a dragonfly building typology"""
         # attribute to tract whether we need to update the geometry of the parent city.
         self._has_parent_city = False
@@ -88,10 +88,10 @@ class Typology(DfObject):
         # optional parameters with default values set by program.
         self.fract_heat_to_canyon = fract_heat_to_canyon
         self.glz_ratio = glz_ratio
-        self.shgc = None
-        self.wall_albedo = None
-        self.roof_albedo = None
-        self.roof_veg_fraction = None
+        self.shgc = shgc
+        self.wall_albedo = wall_albedo
+        self.roof_albedo = roof_albedo
+        self.roof_veg_fraction = roof_veg_fraction
 
     @classmethod
     def from_geometry(cls, bldg_breps, bldg_program, bldg_age, floor_to_floor=None,
@@ -260,6 +260,9 @@ class Typology(DfObject):
         new_footprint_area = typology_one.footprint_area + typology_two.footprint_area
         new_facade_area = typology_one.facade_area + typology_two.facade_area
         new_floor_area = typology_one.floor_area + typology_two.floor_area
+        # for window properties
+        _typology_one_glz_area = typology_one.facade_area * typology_one.glz_ratio
+        _typology_two_glz_area = typology_two.facade_area * typology_two.glz_ratio
 
         # atributes that get weighted averaged.
         new_average_height = (typology_one.average_height *
@@ -280,14 +283,25 @@ class Typology(DfObject):
         new_wall_albedo = (typology_one.wall_albedo * typology_one.facade_area +
                            typology_two.wall_albedo * typology_two.facade_area
                            ) / new_facade_area
+        new_shgc = (typology_one.shgc * _typology_one_glz_area +
+                    typology_two.shgc*_typology_two_glz_area
+                    ) / (_typology_one_glz_area + _typology_two_glz_area)
+        new_roof_albedo = (typology_one.roof_albedo * typology_one.footprint_area +
+                           typology_two.roof_albedo * typology_two.footprint_area
+                           ) / new_footprint_area
+        new_roof_veg_fraction = (typology_one.roof_veg_fraction *
+                                 typology_one.footprint_area +
+                                 typology_two.roof_veg_fraction *
+                                 typology_two.footprint_area) / new_footprint_area
 
-        newtypology = cls(new_average_height, new_footprint_area,
-                          new_facade_area, typology_one.bldg_program,
-                          typology_one.bldg_age, new_floor_to_floor,
-                          new_fract_heat_to_canyon, new_glz_ratio, new_floor_area)
-        newtypology.wall_albedo = new_wall_albedo
+        new_typology = cls(new_average_height, new_footprint_area,
+                           new_facade_area, typology_one.bldg_program,
+                           typology_one.bldg_age, new_floor_to_floor,
+                           new_fract_heat_to_canyon, new_glz_ratio,
+                           new_floor_area, new_shgc, new_wall_albedo,
+                           new_roof_albedo, new_roof_veg_fraction)
 
-        return newtypology
+        return new_typology
 
     @property
     def average_height(self):
@@ -348,7 +362,7 @@ class Typology(DfObject):
 
     @property
     def number_of_stories(self):
-        """Return the average number of stories in the buildings."""
+        """An integer representing the average number of stories of the buildings."""
         return int(round(self.average_height / self.floor_to_floor))
 
     @property
@@ -398,7 +412,8 @@ class Typology(DfObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'fract_heat_to_canyon must be a number got {}'.format(type(x))
-            self._fract_heat_to_canyon = utilities.in_range(x, 0, 1, 'fract_heat_to_canyon')
+            self._fract_heat_to_canyon = utilities.in_range(
+                x, 0, 1, 'fract_heat_to_canyon')
         else:
             self._fract_heat_to_canyon = 0.5
 

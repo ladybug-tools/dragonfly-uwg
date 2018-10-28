@@ -16,10 +16,16 @@ class Terrain(DfObject):
     Properties:
         area: The area of the urban terrain surface in square meters
             (projected into the XY plane).
-        characteristic_length:  A number representing the radius of a
-            circle that encompasses the whole neighborhood in meters.
-            If no value is input here, it will be auto-calculated
-            assuming that the area above is square.
+        characteristic_length:  A number representing the linear dimension
+            of the side of a square that encompasses the neighborhood in meters.
+
+            The default is set to 500 m, which was found to be the recomendation
+            for a typical mid-density urban area.
+            Street, Michael A. (2013). Comparison of simplified models of urban
+            climate for improved prediction of building energy use in cities.
+            Thesis (S.M. in Building Technology)--Massachusetts Institute of
+            Technology, Dept. of Architecture,
+            http://hdl.handle.net/1721.1/82284
     """
 
     def __init__(self, area, characteristic_length=None):
