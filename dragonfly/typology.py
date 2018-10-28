@@ -489,7 +489,7 @@ class Typology(DfObject):
     @property
     def roof_veg_fraction(self):
         """Get or set the roof vegetation fraction of the buildings in the typology."""
-        return self._roof_albedo
+        return self._roof_veg_fraction
 
     @roof_veg_fraction.setter
     def roof_veg_fraction(self, x):
