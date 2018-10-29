@@ -4,7 +4,7 @@ from dragonfly.district import District
 from dragonfly.typology import Typology
 from dragonfly.terrain import Terrain
 import pytest
-from tests.fixtures.city import correct, default, from_typology
+from tests.fixtures.district import correct, default, from_typology
 
 
 def test_initialise(correct):
