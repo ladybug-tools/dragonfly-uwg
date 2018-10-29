@@ -1,7 +1,7 @@
 # coding=utf-8
 from __future__ import division
 
-from dfobject import DfObject
+from dfobject import DFObject
 from bldgtypes import BuildingTypes
 from utilities import Utilities
 import dragonfly
@@ -15,7 +15,7 @@ bldg_types = BuildingTypes()
 utilities = Utilities()
 
 
-class Typology(DfObject):
+class Typology(DFObject):
     """Represents a group of buildings of the same typology in an urban area.
 
     Properties:
@@ -72,9 +72,9 @@ class Typology(DfObject):
                  floor_area=None, shgc=None, wall_albedo=None,
                  roof_albedo=None, roof_veg_fraction=None):
         """Initialize a dragonfly building typology"""
-        # attribute to tract whether we need to update the geometry of the parent city.
-        self._has_parent_city = False
-        self._parent_city = None
+        # attribute to tract whether we need to update the geometry of the parent district.
+        self._has_parent_district = False
+        self._parent_district = None
 
         # critical geometry parameters that all typologies must have.
         self.average_height = average_height
@@ -316,8 +316,8 @@ class Typology(DfObject):
             'average_height must be a number got {}'.format(type(h))
         assert (h >= 0), "average_height must be greater than 0"
         self._average_height = h
-        if self.has_parent_city is True:
-            self.parent_city.update_geo_from_typologies()
+        if self.has_parent_district is True:
+            self.parent_district.update_geo_from_typologies()
 
     @property
     def footprint_area(self):
@@ -330,8 +330,8 @@ class Typology(DfObject):
             'footprint_area must be a number got {}'.format(type(a))
         assert (a >= 0), "footprint_area must be greater than 0"
         self._footprint_area = a
-        if self.has_parent_city is True:
-            self.parent_city.update_geo_from_typologies()
+        if self.has_parent_district is True:
+            self.parent_district.update_geo_from_typologies()
 
     @property
     def facade_area(self):
@@ -344,8 +344,8 @@ class Typology(DfObject):
             'facade_area must be a number got {}'.format(type(a))
         assert (a >= 0), "facade_area must be greater than 0"
         self._facade_area = a
-        if self.has_parent_city is True:
-            self.parent_city.update_geo_from_typologies()
+        if self.has_parent_district is True:
+            self.parent_district.update_geo_from_typologies()
 
     @property
     def floor_to_floor(self):
@@ -383,8 +383,8 @@ class Typology(DfObject):
             self._floor_area = a
         else:
             self._floor_area = self._footprint_area * self.number_of_stories
-        if self.has_parent_city is True:
-            self.parent_city.update_geo_from_typologies()
+        if self.has_parent_district is True:
+            self.parent_district.update_geo_from_typologies()
 
     @property
     def bldg_program(self):
@@ -501,12 +501,12 @@ class Typology(DfObject):
             self._roof_veg_fraction = 0.
 
     @property
-    def has_parent_city(self):
-        return self._has_parent_city
+    def has_parent_district(self):
+        return self._has_parent_district
 
     @property
-    def parent_city(self):
-        return self._parent_city
+    def parent_district(self):
+        return self._parent_district
 
     @property
     def isTypology(self):

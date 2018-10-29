@@ -1,4 +1,4 @@
-from dragonfly.dfparameter import BoundaryLayerPar
+from dragonfly.uwgpar.regionpar import BoundaryLayerPar
 import pytest
 from tests.fixtures.boundary_layer_parameters import default, correct
 

@@ -1,10 +1,19 @@
 # coding=utf-8
 
 
-class DfObject(object):
+class DFObject(object):
     """Base class for Dragonfly typology, city, terrain, and vegetation."""
 
     @property
-    def isDfObject(self):
+    def isDFObject(self):
+        """Return True."""
+        return True
+
+
+class DFParameter(object):
+    """Base class for Dragonfly BuildingPar, TrafficPar, VegetationPar, etc."""
+
+    @property
+    def isDFParameter(self):
         """Return True."""
         return True

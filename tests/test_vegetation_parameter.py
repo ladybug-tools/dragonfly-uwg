@@ -1,4 +1,4 @@
-from dragonfly.dfparameter import VegetationPar
+from dragonfly.uwgpar.districtpar import VegetationPar
 import pytest
 from tests.fixtures.vegetation_parameter import default, correct
 

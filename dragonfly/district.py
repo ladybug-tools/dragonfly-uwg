@@ -1,29 +1,29 @@
 from __future__ import division
 
-from dragonfly.dfobject import DfObject
-from dragonfly.utilities import Utilities
-from dragonfly.typology import Typology
-from dragonfly.dfparameter import VegetationPar, PavementPar
-from dragonfly.bldgtypes import BuildingTypes
+from dfobject import DFObject
+from utilities import Utilities
+from typology import Typology
+from uwgpar.districtpar import VegetationPar, PavementPar
+from bldgtypes import BuildingTypes
 
 import math
 
 
-class City(DfObject):
+class District(DFObject):
     """Represents a an entire uban area inclluding buildings, pavement, vegetation, and traffic.
 
     Properties:
-        average_bldg_height: The average height of the buildings of the city in meters.
-        site_coverage_ratio: A number between 0 and 1 that represents the fraction of the city terrain
-            the building footprints occupy.  It describes how close the buildings are to one another in the city.
+        average_bldg_height: The average height of the buildings of the district in meters.
+        site_coverage_ratio: A number between 0 and 1 that represents the fraction of the district terrain
+            the building footprints occupy.  It describes how close the buildings are to one another in the district.
         facade_to_site_ratio: A number that represents the ratio of vertical urban surface area [walls] to
-            the total terrain area of the city.  This value can be greater than 1.
+            the total terrain area of the district.  This value can be greater than 1.
         bldg_type_ratios: A dictoinary with keys that represent the DoE template building programs and building ages
             separated by a comma (eg. MidRiseApartment,1980sPresent).  Under each key of the dictionary, there should
             be a single decimal number indicative of the fraction of the urban area's floor area taken by the typology.
             The sum of all fractions in the dictionary should equal 1. Here is an example dictionary:
         climate_zone: A text string representing the ASHRAE climate zone. (eg. 5A). This is used to set
-            default constructions for the buildings in the city.
+            default constructions for the buildings in the district.
         traffic_parameters: A dragonfly TrafficPar object that defines the traffic within an urban area.
         tree_coverage_ratio: An number from 0 to 1 that defines the fraction of the entire urban area
             (including both pavement and roofs) that is covered by trees.  The default is set to 0.
@@ -42,7 +42,7 @@ class City(DfObject):
                 bldg_type_ratios, climate_zone, traffic_parameters, tree_coverage_ratio=None,
                 grass_coverage_ratio=None, vegetation_parameters=None,
                 pavement_parameters=None, characteristic_length=500, readDOE_file_path=None):
-        """Initialize a dragonfly city"""
+        """Initialize a dragonfly district"""
         # get dependencies
         self.genChecks = Utilities()
 
@@ -67,7 +67,7 @@ class City(DfObject):
         self._building_typologies = None
         self._are_typologies_loaded = False
 
-        # dragonfly parameter objects that define conditions within the city and are set-able.
+        # dragonfly parameter objects that define conditions within the district and are set-able.
         self.climate_zone = climate_zone
         self.traffic_parameters = traffic_parameters
         self.vegetation_parameters = vegetation_parameters
@@ -81,12 +81,12 @@ class City(DfObject):
     def from_typologies(cls, typologies, terrain, climate_zone, traffic_parameters, tree_coverage_ratio=None,
                         grass_coverage_ratio=None, vegetation_parameters=None, pavement_parameters=None,
                         readDOE_file_path=None):
-        """Initialize a city from a list of building typologies
+        """Initialize a district from a list of building typologies
         Args:
             typologies: A list of dragonfly Typology objects.
             terrain: A dragonfly Terrain object.
             climate_zone: A text string representing the ASHRAE climate zone. (eg. 5A). This is used to set
-                default constructions for the buildings in the city.
+                default constructions for the buildings in the district.
             traffic_parameters: A dragonfly TrafficPar object that defines the traffic within an urban area.
             tree_coverage_ratio: An number from 0 to 1 that defines the fraction of the entire urban area
                 (including both pavement and roofs) that is covered by trees.  The default is set to 0.
@@ -96,7 +96,7 @@ class City(DfObject):
             pavement_parameters: A dragonfly PavementPar object that defines the makeup of pavement within the urban area.
 
         Returns:
-            city: The dragonfly city object
+            district: The dragonfly district object
         """
         # merge any typologies that are of the same DoE template.
         bldgTypes = {}
@@ -118,7 +118,7 @@ class City(DfObject):
         assert hasattr(terrain, 'isTerrain'), 'terrain is not a dragonfly terrain object. Got {}'.format(type(terrain))
         terrainArea = terrain.area
 
-        # compute the critical geometry variables for the city
+        # compute the critical geometry variables for the district
         totalFootprintArea = 0
         weightedHeightSum = 0
         totalFacadeArea = 0
@@ -141,26 +141,26 @@ class City(DfObject):
         for i, key in enumerate(fullTypeNames):
             bldgTypeDict[key] = typologyRatios[i]
 
-        # create the city object.
-        dfCity = cls(avgBldgHeight, bldgCoverage, facadeToSite, bldgTypeDict, climate_zone,
+        # create the district object.
+        dfDistrict = cls(avgBldgHeight, bldgCoverage, facadeToSite, bldgTypeDict, climate_zone,
                      traffic_parameters, tree_coverage_ratio, grass_coverage_ratio, vegetation_parameters,
                      pavement_parameters, terrain.characteristic_length,
                      readDOE_file_path=readDOE_file_path)
 
-        # link the typologies to the city object
+        # link the typologies to the district object
         for bTyp in mergedTypes:
-            bTyp._has_parent_city = True
-            bTyp._parent_city = dfCity
+            bTyp._has_parent_district = True
+            bTyp._parent_district = dfDistrict
             if bTyp.shgc == None:
-                bTyp.shgc = bTyp.get_default_shgc(dfCity.climate_zone)
-        dfCity._building_typologies = mergedTypes
-        dfCity._are_typologies_loaded = True
+                bTyp.shgc = bTyp.get_default_shgc(dfDistrict.climate_zone)
+        dfDistrict._building_typologies = mergedTypes
+        dfDistrict._are_typologies_loaded = True
 
-        return dfCity
+        return dfDistrict
 
     @property
     def average_bldg_height(self):
-        """Return the average height of the buildings in the city."""
+        """Return the average height of the buildings in the district."""
         return self._average_bldg_height
 
     @property
@@ -175,12 +175,12 @@ class City(DfObject):
 
     @property
     def characteristic_length(self):
-        """Return the caracteristic length of the city."""
+        """Return the caracteristic length of the district."""
         return self._characteristic_length
 
     @property
     def bldg_types(self):
-        """Return a list of the building types in the city."""
+        """Return a list of the building types in the district."""
         return self._bldg_type_ratios.keys()
 
     @property
@@ -188,7 +188,7 @@ class City(DfObject):
         """Get or set the building types and corresponding ratios as a dictionary.
 
         Note that setting the typology ratios here completely overwrites the
-        building_typologies currently associated with this city object.
+        building_typologies currently associated with this district object.
         """
         return self._bldg_type_ratios
 
@@ -221,13 +221,13 @@ class City(DfObject):
             self._building_typologies = []
             for bType in self.bldg_type_ratios.keys():
                 bldg_program, bldg_age = bType.split(',')
-                cityFract = self.bldg_type_ratios[bType]
+                districtFract = self.bldg_type_ratios[bType]
                 site_area = math.pow(self.characteristic_length, 2) * math.pi
-                footprint_area = site_area * self.site_coverage_ratio * cityFract
-                facade_area = site_area * self.facade_to_site_ratio * cityFract
+                footprint_area = site_area * self.site_coverage_ratio * districtFract
+                facade_area = site_area * self.facade_to_site_ratio * districtFract
                 newType = Typology(self.average_bldg_height, footprint_area, facade_area, bldg_program, bldg_age)
-                newType._parent_city = self
-                newType._has_parent_city = True
+                newType._parent_district = self
+                newType._has_parent_district = True
                 newType.shgc = newType.get_default_shgc(self.climate_zone)
                 self._building_typologies.append(newType)
             self._are_typologies_loaded = True
@@ -246,7 +246,7 @@ class City(DfObject):
 
     @property
     def traffic_parameters(self):
-        """Get or set the traffic parameter object that describes the city's traffic."""
+        """Get or set the traffic parameter object that describes the district's traffic."""
         return self._traffic_parameters
 
     @traffic_parameters.setter
@@ -256,7 +256,7 @@ class City(DfObject):
 
     @property
     def vegetation_parameters(self):
-        """Get or set the vegetation parameter object that describes the city's vegetation."""
+        """Get or set the vegetation parameter object that describes the district's vegetation."""
         return self._vegetation_parameters
 
     @vegetation_parameters.setter
@@ -269,7 +269,7 @@ class City(DfObject):
 
     @property
     def pavement_parameters(self):
-        """Get or set the pavement parameter object that describes the city's pavement."""
+        """Get or set the pavement parameter object that describes the district's pavement."""
         return self._pavement_parameters
 
     @pavement_parameters.setter
@@ -282,7 +282,7 @@ class City(DfObject):
 
     @property
     def tree_coverage_ratio(self):
-        """Get or set the ratio of the entire site area of the city covered in trees."""
+        """Get or set the ratio of the entire site area of the district covered in trees."""
         return self._tree_coverage_ratio
 
     @tree_coverage_ratio.setter
@@ -295,7 +295,7 @@ class City(DfObject):
 
     @property
     def grass_coverage_ratio(self):
-        """Get or set the ratio of the entire site area of the city covered in grass."""
+        """Get or set the ratio of the entire site area of the district covered in grass."""
         return self._grass_coverage_ratio
 
     @grass_coverage_ratio.setter
@@ -328,7 +328,7 @@ class City(DfObject):
 
     @property
     def glz_ratio(self):
-        """Return the average glazing ratio of the buildings in the city."""
+        """Return the average glazing ratio of the buildings in the district."""
         weighted_sum = 0
         totalFacadeArea = 0
         for bldgType in self.building_typologies:
@@ -350,7 +350,7 @@ class City(DfObject):
 
     @property
     def wall_albedo(self):
-        """Return the average wall albedo of the buildings in the city."""
+        """Return the average wall albedo of the buildings in the district."""
         weighted_sum = 0
         totalFacadeArea = 0
         for bldgType in self.building_typologies:
@@ -360,7 +360,7 @@ class City(DfObject):
 
     @property
     def roof_albedo(self):
-        """Return the average roof albedo of the buildings in the city."""
+        """Return the average roof albedo of the buildings in the district."""
         weighted_sum = 0
         total_roof_area = 0
         for bldg_type in self.building_typologies:
@@ -370,7 +370,7 @@ class City(DfObject):
 
     @property
     def roof_veg_fraction(self):
-        """Return the average roof vegetated fraction of the buildings in the city."""
+        """Return the average roof vegetated fraction of the buildings in the district."""
         weighted_sum = 0
         total_roof_area = 0
         for bldg_type in self.building_typologies:
@@ -384,8 +384,8 @@ class City(DfObject):
         return self._are_typologies_loaded
 
     @property
-    def isCity(self):
-        """Return True for City."""
+    def isDistrict(self):
+        """Return True for District."""
         return True
 
     def get_uwg_matrix(self):
@@ -400,7 +400,7 @@ class City(DfObject):
         return bTypeMtx
 
     def update_geo_from_typologies(self):
-        """Updates the city-wide geometry parameters whenever an individual building typology's have changed."""
+        """Updates the district-wide geometry parameters whenever an individual building typology's have changed."""
         site_area = math.pow(self.characteristic_length,2) * math.pi
         totalFootprintArea = 0
         weightedHeightSum = 0
@@ -428,11 +428,11 @@ class City(DfObject):
         return self.__repr__()
 
     def __repr__(self):
-        """Represnt Dragonfly city."""
+        """Represnt Dragonfly district."""
         typologyList = ''
         for x in self.bldg_types:
             typologyList = typologyList + '\n     ' + str(round(self.bldg_type_ratios[x], 2)) + ' - ' + x
-        return 'City: ' + \
+        return 'District: ' + \
                '\n  Average Bldg Height: ' + str(int(self._average_bldg_height)) + " m" + \
                '\n  Site Coverage Ratio: ' + str(round(self._site_coverage_ratio, 2)) + \
                '\n  Facade-to-Site Ratio: ' + str(round(self._facade_to_site_ratio, 2)) + \

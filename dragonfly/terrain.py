@@ -1,5 +1,5 @@
 # coding=utf-8
-from dfobject import DfObject
+from dfobject import DFObject
 import dragonfly
 try:
     import plus
@@ -10,7 +10,7 @@ except ImportError as e:
 import math
 
 
-class Terrain(DfObject):
+class Terrain(DFObject):
     """Represents the terrain on which an urban area sits.
 
     Properties:

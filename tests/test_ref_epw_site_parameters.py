@@ -1,4 +1,4 @@
-from dragonfly.dfparameter import RefEPWSitePar
+from dragonfly.uwgpar.regionpar import RefEPWSitePar
 import pytest
 from tests.fixtures.ref_epw_site_parameter import correct, default
 
