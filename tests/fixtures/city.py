@@ -1,6 +1,6 @@
 import pytest
 from dragonfly.typology import Typology
-from dragonfly.dfparameter import VegetationPar, PavementPar, TrafficPar
+from dragonfly.uwgpar.districtpar import VegetationPar, PavementPar, TrafficPar
 from dragonfly.terrain import Terrain
 
 
