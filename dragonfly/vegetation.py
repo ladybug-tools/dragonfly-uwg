@@ -2,7 +2,7 @@
 from __future__ import division
 
 from dfobject import DFObject
-from utilities import Utilities
+from utilities import in_range
 import dragonfly
 try:
     import plus
@@ -84,7 +84,7 @@ class Vegetation(DFObject):
         """
         assert hasattr(terrain, 'isTerrain'), \
             'terrain must be Df terrain. Got {}'.format(type(terrain))
-        coverage = Utilities.in_range(
+        coverage = in_range(
             (self._area/terrain.area), 0, 1, 'vegetation_coverage')
 
         return coverage
@@ -95,6 +95,8 @@ class Vegetation(DFObject):
 
     def __repr__(self):
         """Represnt Dragonfly vegetation."""
-        vegType = 'Trees' if self._is_trees else 'Grass'
-        return 'Vegetation: ' + vegType + \
-               '\n  Area: ' + str(int(self._area)) + " m2"
+        veg_type = 'Trees' if self._is_trees else 'Grass'
+        return 'Vegetation: {}' \
+               '\n  Area: {} m2'.format(
+                   veg_type, int(self._area)
+               )
