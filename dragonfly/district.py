@@ -455,6 +455,7 @@ class District(DFObject):
             b_type_mtx[program_i][age_i] = fraction
         return b_type_mtx
 
+    @staticmethod
     def _calculate_geo_from_typologies(site_area, building_typologies):
         """Calculate district geometry parameters from site area and typologies"""
         total_footprint_area = 0
