@@ -2,10 +2,10 @@
 from __future__ import division
 from copy import deepcopy
 
-from dfobject import DFObject
-from bldgtypes import BuildingTypes
-from uwg.typologypar import TypologyPar, TypologyDefaults
-from utilities import in_range
+from .dfobject import DFObject
+from .bldgtypes import BuildingTypes
+from .uwg.typologypar import TypologyPar, TypologyDefaults
+from .utilities import in_range
 
 import dragonfly
 try:

@@ -1,8 +1,8 @@
 # coding=utf-8
 from __future__ import division
 
-from dfobject import DFObject
-from utilities import in_range
+from .dfobject import DFObject
+from .utilities import in_range
 import dragonfly
 try:
     import plus

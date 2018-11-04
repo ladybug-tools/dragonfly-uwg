@@ -1,5 +1,5 @@
 # coding=utf-8
-from dfobject import DFObject
+from .dfobject import DFObject
 import dragonfly
 try:
     import plus
