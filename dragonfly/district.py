@@ -1,11 +1,11 @@
 from __future__ import division
 
-from dfobject import DFObject
-from bldgtypes import BuildingTypes
-from typology import Typology
-from uwg.districtpar import TrafficPar, VegetationPar, PavementPar
-from uwg.typologypar import TypologyDefaults
-from utilities import in_range
+from .dfobject import DFObject
+from .bldgtypes import BuildingTypes
+from .typology import Typology
+from .uwg.districtpar import TrafficPar, VegetationPar, PavementPar
+from .uwg.typologypar import TypologyDefaults
+from .utilities import in_range
 
 
 class District(DFObject):
