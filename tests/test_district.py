@@ -54,7 +54,8 @@ def test_from_typologies(from_typology):
     assert district.tree_coverage_ratio == from_typology['tree_coverage_ratio']
     assert district.grass_coverage_ratio == from_typology['grass_coverage_ratio']
     assert district.characteristic_length == 300
-    assert district.traffic_parameters == from_typology['traffic_parameters']
+    assert district.traffic_parameters.sensible_heat == \
+        from_typology['traffic_parameters'].sensible_heat
     assert district.vegetation_parameters == from_typology['vegetation_parameters']
     assert district.pavement_parameters == from_typology['pavement_parameters']
 
