@@ -156,8 +156,7 @@ class District(DFObject):
                 type(terrain))
 
         # compute the critical geometry variables for the district
-        params = cls._calculate_geo_from_typologies(
-            cls, terrain.area, merged_types)
+        params = cls._calculate_geo_from_typologies(terrain.area, merged_types)
         avg_bldg_height = params[0]
         bldg_coverage = params[1]
         facade_to_site = params[2]
@@ -456,14 +455,14 @@ class District(DFObject):
             b_type_mtx[program_i][age_i] = fraction
         return b_type_mtx
 
-    def _calculate_geo_from_typologies(self, site_area, building_typologies):
+    def _calculate_geo_from_typologies(site_area, building_typologies):
         """Calculate district geometry parameters from site area and typologies"""
         total_footprint_area = 0
         weighted_height_sum = 0
         total_facade_area = 0
         floor_areas = []
         full_type_names = []
-        for b_type in self.building_typologies:
+        for b_type in building_typologies:
             total_footprint_area += b_type.footprint_area
             weighted_height_sum += b_type.average_height * b_type.footprint_area
             total_facade_area += b_type.facade_area
