@@ -157,7 +157,7 @@ class District(DFObject):
 
         # compute the critical geometry variables for the district
         params = cls._calculate_geo_from_typologies(
-            terrain.area, merged_types)
+            cls, terrain.area, merged_types)
         avg_bldg_height = params[0]
         bldg_coverage = params[1]
         facade_to_site = params[2]
@@ -291,9 +291,9 @@ class District(DFObject):
                 ' object. Got {}'.format(type(p))
             self._traffic_parameters = p
         else:
-            if self.average_bldg_height <= 3:
+            if self.average_bldg_height <= 10:
                 p = 4
-            elif self.average_bldg_height <= 8:
+            elif self.average_bldg_height <= 25:
                 p = 8
             else:
                 p = 10

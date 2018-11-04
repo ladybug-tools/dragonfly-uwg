@@ -129,7 +129,7 @@ class TrafficPar(DFParameter):
 
     def _checkSchedule(self, schedule):
         if len(schedule) == 24:
-            return [self.in_range(x, 0, 1, 'schedule value') for x in schedule]
+            return [in_range(x, 0, 1, 'schedule value') for x in schedule]
         else:
             raise Exception(
                 "Current schedule has length " + str(len(schedule)) +
