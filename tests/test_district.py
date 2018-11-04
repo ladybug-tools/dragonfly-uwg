@@ -77,4 +77,3 @@ def test_defaults(default):
     assert district.grass_coverage_ratio == default['grass_coverage_ratio']
     assert district.traffic_parameters.sensible_heat == \
         default['traffic_parameters'].sensible_heat
-    assert district.characteristic_length == correct['characteristic_length']
