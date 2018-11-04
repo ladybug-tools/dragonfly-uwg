@@ -182,7 +182,7 @@ class District(DFObject):
             b_typ._parent_district = df_district
             if b_typ.uwg_parameters.shgc is None:
                 b_typ._uwg_parameters._shgc = TypologyDefaults.shgc_by_era_zone(
-                    b_typ.bldg_era, df_district.climate_zone)
+                    b_typ.bldg_era, df_district._climate_zone)
         df_district._building_typologies = merged_types
         df_district._are_typologies_loaded = True
 
@@ -267,7 +267,7 @@ class District(DFObject):
                 new_type._parent_district = self
                 new_type._has_parent_district = True
                 new_type._uwg_parameters._shgc = TypologyDefaults.shgc_by_era_zone(
-                    new_type.bldg_era, self.climate_zone)
+                    new_type.bldg_era, self._climate_zone)
                 self._building_typologies.append(new_type)
             self._are_typologies_loaded = True
             return self._building_typologies
@@ -395,7 +395,7 @@ class District(DFObject):
         for bldg_typ in self.building_typologies:
             if bldg_typ.uwg_parameters.shgc is None:
                 bldg_typ.uwg_parameters._shgc = TypologyDefaults.shgc_by_era_zone(
-                    bldg_typ.bldg_era, self.climate_zone)
+                    bldg_typ.bldg_era, self._climate_zone)
             weighted_sum += bldg_typ.uwg_parameters.shgc * \
                 bldg_typ.facade_area * bldg_typ.glz_ratio
             total_glass_area += (bldg_typ.facade_area * bldg_typ.glz_ratio)
