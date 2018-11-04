@@ -51,3 +51,15 @@ def test_default(default):
     assert default_parameters.weekday_schedule == default['weekday_schedule']
     assert default_parameters.saturday_schedule == default['saturday_schedule']
     assert default_parameters.sunday_schedule == default['sunday_schedule']
+
+
+def test_json(correct):
+    parameters = TrafficPar(correct['sensible_heat'],
+                            correct['weekday_schedule'],
+                            correct['saturday_schedule'],
+                            correct['sunday_schedule'])
+
+    param_json = parameters.to_json()
+
+    assert param_json == correct
+    assert TrafficPar.from_json(param_json).to_json() == correct

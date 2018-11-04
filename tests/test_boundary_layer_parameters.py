@@ -37,3 +37,16 @@ def test_default(default):
         default['circulation_coefficient']
     assert default_parameters.exchange_coefficient == \
         default['exchange_coefficient']
+
+
+def test_json(correct):
+    parameters = BoundaryLayerPar(correct['day_boundary_layer_height'],
+                                  correct['night_boundary_layer_height'],
+                                  correct['inversion_height'],
+                                  correct['circulation_coefficient'],
+                                  correct['exchange_coefficient'])
+
+    param_json = parameters.to_json()
+
+    assert param_json == correct
+    assert BoundaryLayerPar.from_json(param_json).to_json() == correct

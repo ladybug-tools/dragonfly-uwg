@@ -35,6 +35,36 @@ class TypologyPar(DFParameter):
         self.roof_albedo = roof_albedo
         self.roof_veg_fraction = roof_veg_fraction
 
+    @classmethod
+    def from_json(cls, data):
+        """Create a typology parameter object from a dictionary
+        Args:
+            data: {
+                fract_heat_to_canyon: float between 0 and 1
+                shgc: float
+                wall_albedo: float between 0 and 1
+                roof_albedo: float between 0 and 1
+                roof_veg_fraction: float between 0 and 1
+            }
+        """
+
+        required_keys = ()
+        nullable_keys = ("fract_heat_to_canyon", "shgc",
+                         "wall_albedo", "roof_albedo", "roof_veg_fraction")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(fract_heat_to_canyon=data["fract_heat_to_canyon"],
+                   shgc=data["shgc"],
+                   wall_albedo=data["wall_albedo"],
+                   roof_albedo=data["roof_albedo"],
+                   roof_veg_fraction=data["roof_veg_fraction"])
+
     @property
     def fract_heat_to_canyon(self):
         """Get or set the fraction of the bldg heat rejected to the urban canyon."""
@@ -107,6 +137,25 @@ class TypologyPar(DFParameter):
     def isTypologyPar(self):
         """Return True for isTypologyPar."""
         return True
+
+    def to_json(self):
+        """Create a typology parameter object from a dictionary
+        Returns:
+            {
+                fract_heat_to_canyon: float between 0 and 1
+                shgc: float
+                wall_albedo: float between 0 and 1
+                roof_albedo: float between 0 and 1
+                roof_veg_fraction: float between 0 and 1
+            }
+        """
+        return {
+            "fract_heat_to_canyon": self.fract_heat_to_canyon,
+            "shgc": self.shgc,
+            "wall_albedo": self.wall_albedo,
+            "roof_albedo": self.roof_albedo,
+            "roof_veg_fraction": self.roof_veg_fraction
+        }
 
     def ToString(self):
         """Overwrite .NET ToString method."""

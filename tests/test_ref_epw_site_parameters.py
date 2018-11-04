@@ -30,3 +30,15 @@ def test_default(default):
         default['temp_measure_height']
     assert default_parameters.wind_measure_height == \
         default['wind_measure_height']
+
+
+def test_json(correct):
+    parameters = RefEPWSitePar(correct['average_obstacle_height'],
+                               correct['vegetation_coverage'],
+                               correct['temp_measure_height'],
+                               correct['wind_measure_height'])
+
+    param_json = parameters.to_json()
+
+    assert param_json == correct
+    assert RefEPWSitePar.from_json(param_json).to_json() == correct
