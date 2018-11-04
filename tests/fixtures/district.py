@@ -19,7 +19,7 @@ def correct():
         'tree_coverage_ratio': 0.3,
         'grass_coverage_ratio': 0.1,
 
-        'traffic_parameters': TrafficPar(4),
+        'traffic_parameters': TrafficPar(4.0),
         'vegetation_parameters': VegetationPar(),
         'pavement_parameters': PavementPar(),
         'characteristic_length': 400
@@ -41,7 +41,7 @@ def default():
         'tree_coverage_ratio': 0.,
         'grass_coverage_ratio': 0.,
 
-        'traffic_parameters': TrafficPar(10),
+        'traffic_parameters': TrafficPar(10.0),
         'vegetation_parameters': VegetationPar(),
         'pavement_parameters': PavementPar(),
         'characteristic_length': 500

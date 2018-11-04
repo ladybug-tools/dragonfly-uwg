@@ -291,11 +291,11 @@ class District(DFObject):
             self._traffic_parameters = p
         else:
             if self.average_bldg_height <= 10:
-                p = 4
+                p = 4.0
             elif self.average_bldg_height <= 25:
-                p = 8
+                p = 8.0
             else:
-                p = 10
+                p = 10.0
             self._traffic_parameters = TrafficPar(p)
 
     @property

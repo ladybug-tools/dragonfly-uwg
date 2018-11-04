@@ -26,6 +26,6 @@ def default():
         'bldg_era': '1980sPresent',
         'floor_to_floor': 3.05,
         'glz_ratio': 0.1461,
-        'floor_area': 225,
-        'number_of_stories': 5
+        'floor_area': 45 * 11,
+        'number_of_stories': 11
     }
