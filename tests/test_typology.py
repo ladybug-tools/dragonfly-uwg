@@ -28,7 +28,7 @@ def test_defaults(default):
     assert typology.floor_to_floor == default['floor_to_floor']
     assert typology.floor_area == default['floor_area']
     assert typology.glz_ratio == default['glz_ratio']
-    assert typology.uwg_parameters == TypologyPar(0.5, None, 0.08, 0.2)
+    assert typology.uwg_parameters.fract_heat_to_canyon == 0.5
 
 def test_merge_typologies():
     # TODO: Need to write tests for merge_typologies class method

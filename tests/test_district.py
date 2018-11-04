@@ -54,8 +54,7 @@ def test_from_typologies(from_typology):
     assert district.tree_coverage_ratio == from_typology['tree_coverage_ratio']
     assert district.grass_coverage_ratio == from_typology['grass_coverage_ratio']
     assert district.characteristic_length == 300
-    assert district.traffic_parameters.sensible_heat == \
-        from_typology['traffic_parameters'].sensible_heat
+    assert district.traffic_parameters == from_typology['traffic_parameters']
     assert district.vegetation_parameters == from_typology['vegetation_parameters']
     assert district.pavement_parameters == from_typology['pavement_parameters']
 
@@ -76,7 +75,8 @@ def test_defaults(default):
     assert district.climate_zone == default['climate_zone']
     assert district.tree_coverage_ratio == default['tree_coverage_ratio']
     assert district.grass_coverage_ratio == default['grass_coverage_ratio']
-    assert district.traffic_parameters == default['traffic_parameters']
+    assert district.traffic_parameters.sensible_heat == \
+        default['traffic_parameters'].sensible_heat
     assert district.vegetation_parameters == default['vegetation_parameters']
     assert district.pavement_parameters == default['pavement_parameters']
     assert district.characteristic_length == correct['characteristic_length']
