@@ -1,18 +1,18 @@
 # coding=utf-8
 from __future__ import division
+from copy import deepcopy
 
 from dfobject import DFObject
 from bldgtypes import BuildingTypes
-from utilities import Utilities
+from uwg.typologypar import TypologyPar, TypologyDefaults
+from utilities import in_range
+
 import dragonfly
 try:
     import plus
 except ImportError as e:
     if dragonfly.isplus:
         raise ImportError(e)
-
-bldg_types = BuildingTypes()
-utilities = Utilities()
 
 
 class Typology(DFObject):
@@ -44,7 +44,7 @@ class Typology(DFObject):
                 StripMall
                 SuperMarket
                 Warehouse
-        bldg_age: A text string that sets the age of the buildings represented
+        bldg_era: A text string that sets the age of the buildings represented
             by this typology. This is used to determine what constructions
             make up the walls, roofs, and windows based on international
             building codes over the last several decades.  Choose from
@@ -54,25 +54,23 @@ class Typology(DFObject):
                 NewConstruction
         floor_to_floor: A number that represents the average distance between
             floors for the building typology.  The default is set to 3.05 meters.
-        fract_heat_to_canyon: A number from 0 to 1 that represents the fraction
-            the building's waste heat from air conditioning that gets rejected
-            into the urban canyon. The default is set to 0.5.
-        glz_ratio: An optional number from 0 to 1 that represents the fraction
-            of the walls of the building typology that are glazed. If no value
-            is input here, a default will be used that comes from the DoE building
-            template from the bldg_program and bldg_age.
         floor_area: A number that represents the floor area of the buiding in
             square meteres. The default is auto-calculated using the
             footprint_area, average_height, and floor_to_floor.
+        glz_ratio: An optional number from 0 to 1 that represents the fraction
+            of the walls of the building typology that are glazed. If no value
+            is input here, a default will be used that comes from the DoE building
+            template from the bldg_program and bldg_era.
+        uwg_parameters: Optional UWG TypologyPar to set the properties of a
+            building typology that specifically relate to the UWG
+            (ie. roof / wall albedo, fraction of bldg heat to canyon)
     """
 
     def __init__(self, average_height, footprint_area, facade_area,
-                 bldg_program, bldg_age, floor_to_floor=None,
-                 fract_heat_to_canyon=None, glz_ratio=None,
-                 floor_area=None, shgc=None, wall_albedo=None,
-                 roof_albedo=None, roof_veg_fraction=None):
+                 bldg_program, bldg_era, floor_to_floor=None, floor_area=None,
+                 glz_ratio=None, uwg_parameters=None):
         """Initialize a dragonfly building typology"""
-        # attribute to tract whether we need to update the geometry of the parent district.
+        # track whether the parent district geometry must be updated.
         self._has_parent_district = False
         self._parent_district = None
 
@@ -85,19 +83,15 @@ class Typology(DFObject):
 
         # critical program parameters that all typologies must have.
         self.bldg_program = bldg_program
-        self.bldg_age = bldg_age
+        self.bldg_era = bldg_era
 
-        # optional parameters with default values set by program.
-        self.fract_heat_to_canyon = fract_heat_to_canyon
+        # optional parameters with default values set by building program.
         self.glz_ratio = glz_ratio
-        self.shgc = shgc
-        self.wall_albedo = wall_albedo
-        self.roof_albedo = roof_albedo
-        self.roof_veg_fraction = roof_veg_fraction
+        self.uwg_parameters = uwg_parameters
 
     @classmethod
-    def from_geometry(cls, bldg_breps, bldg_program, bldg_age, floor_to_floor=None,
-                      fract_heat_to_canyon=None, glz_ratio=None):
+    def from_geometry(cls, bldg_breps, bldg_program, bldg_era,
+                      floor_to_floor=None, glz_ratio=None, uwg_parameters=None):
         """Initialize a building typology from closed building brep geometry
 
         Args:
@@ -105,17 +99,16 @@ class Typology(DFObject):
                 buildings of the typology.
             bldg_program: A text string representing one of the 16 DOE building
                 program types to be used as a template for this typology.
-            bldg_age: A text string that sets the age of the buildings represented
+            bldg_era: A text string that sets the age of the buildings represented
                 by this typology.
             floor_to_floor: A number that represents the average distance between
                 floors. Default is set to 3.05 meters.
             glz_ratio: An optional number from 0 to 1 that represents the fraction
                 of the walls of the building typology that are glazed. Default will
-                come from the DoE building template from the bldg_program and bldg_age.
-            fract_heat_to_canyon: An optional number from 0 to 1 that represents
-                the fraction the building's waste heat from air conditioning that
-                gets rejected into the urban canyon. The default is set to 0.5.
-
+                come from the DoE building template from the bldg_program and bldg_era.
+            uwg_parameters: Optional UWG TypologyPar to set the properties of a
+                building typology that specifically relate to the UWG
+                (ie. roof / wall albedo, fraction of bldg heat to canyon)
         Returns:
             typology: The dragonfly typology object
             footprint_breps: Breps representing the footprints of the buildings.
@@ -125,72 +118,71 @@ class Typology(DFObject):
         assert dragonfly.isplus, \
             '"from_geometry" method can only be used in [+] libraries.'
 
-        avgBldgHeight, footprintArea, floorArea, facadeArea, footprint_breps, \
+        avg_bldg_height, footprint_area, floor_area, facade_area, footprint_breps, \
             floor_breps, facade_breps = plus.calculateTypologyGeoParams(
                 bldg_breps, floor_to_floor)
 
-        typology = cls(avgBldgHeight, footprintArea, facadeArea,
-                       bldg_program, bldg_age, floor_to_floor,
-                       fract_heat_to_canyon, glz_ratio, floorArea)
+        typology = cls(avg_bldg_height, footprint_area, facade_area,
+                       bldg_program, bldg_era, floor_to_floor,
+                       floor_area, glz_ratio, uwg_parameters)
 
         return typology, footprint_breps, floor_breps, facade_breps
 
     @classmethod
-    def from_footprints(cls, bldg_footprint_breps, num_stories, bldg_program,
-                        bldg_age, floor_to_floor=None, fract_heat_to_canyon=None,
-                        glz_ratio=None):
+    def from_footprints(cls, bldg_footprint_breps, avg_num_stories,
+                        bldg_program, bldg_era, floor_to_floor=None,
+                        glz_ratio=None, uwg_parameters=None):
         """Initialize typology from building footprints and an average number of stories.
 
         Args:
             bldg_footprint_breps: A list of surface rhino breps representing
                 the building footprints of the typology.
-            num_stories: A float value (greater than or equal to 1) that represents
+            avg_num_stories: A float value (greater than or equal to 1) that represents
                 the average number of stories of the buildings in the typology.
             bldg_program: A text string representing one of the 16 DOE building
                 program types to be used as a template for this typology.
-            bldg_age: A text string that sets the age of the buildings represented
+            bldg_era: A text string that sets the age of the buildings represented
                 by this typology.
             floor_to_floor: A number that represents the average distance
                 between floors. Default is set to 3.05 meters.
             glz_ratio: An optional number from 0 to 1 that represents the
                 fraction of the walls of the building typology that are
                 glazed. Default will come from the DoE building template from
-                the bldg_program and bldg_age.
-            fract_heat_to_canyon: An optional number from 0 to 1 that represents
-                the fraction the building's waste heat from air conditioning
-                that gets rejected into the urban canyon. The default is set to 0.5.
+                the bldg_program and bldg_era.
+            uwg_parameters: Optional UWG TypologyPar to set the properties of a
+                building typology that specifically relate to the UWG
+                (ie. roof / wall albedo, fraction of bldg heat to canyon)
 
         Returns:
             typology: The dragonfly typology object
             perimeter_curves: The exterior-exposed curves of the footprints.
         """
-        assert num_stories >= 1, \
-            'num_stories must be greater than or equal to 1. Got {}'.format(
-                str(num_stories))
-
         assert dragonfly.isplus, \
             '"from_geometry" method can only be used in [+] libraries.'
+        assert avg_num_stories >= 1, \
+            'num_stories must be greater than or equal to 1. Got {}'.format(
+                str(avg_num_stories))
 
         footprint_area, perimeter_length, perimeter_curves = \
             plus.calculateFootprintGeoParams(bldg_footprint_breps)
 
         if floor_to_floor is not None:
-            avg_bldg_height = floor_to_floor * num_stories
+            avg_bldg_height = floor_to_floor * avg_num_stories
         else:
-            avg_bldg_height = 3.05 * num_stories
+            avg_bldg_height = 3.05 * avg_num_stories
         facade_area = perimeter_length * avg_bldg_height
-        floor_area = footprint_area * num_stories
+        floor_area = footprint_area * avg_num_stories
 
         typology = cls(avg_bldg_height, footprint_area, facade_area,
-                       bldg_program, bldg_age, floor_to_floor,
-                       fract_heat_to_canyon, glz_ratio, floor_area)
+                       bldg_program, bldg_era, floor_to_floor, floor_area,
+                       glz_ratio, uwg_parameters)
 
         return typology, perimeter_curves
 
     @classmethod
     def from_footprints_and_stories(cls, bldg_footprint_breps, num_stories,
-                                    bldg_program, bldg_age, floor_to_floor=None,
-                                    fract_heat_to_canyon=None, glz_ratio=None):
+                                    bldg_program, bldg_era, floor_to_floor=None,
+                                    glz_ratio=None, uwg_parameters=None):
         """Initialize typology from building footprints and list of building stories.
 
         Args:
@@ -201,17 +193,17 @@ class Typology(DFObject):
                 surfaces in the bldg_footprint_breps.
             bldg_program: A text string representing one of the 16 DOE building
                 program types to be used as a template for this typology.
-            bldg_age: A text string that sets the age of the buildings
+            bldg_era: A text string that sets the age of the buildings
                 represented by this typology.
             floor_to_floor: A number that represents the average distance
                 between floors. Default is set to 3.05 meters.
             glz_ratio: An optional number from 0 to 1 that represents the
                 fraction of the walls of the building typology that are glazed.
                 Default will come from the DoE building template from the
-                bldg_program and bldg_age.
-            fract_heat_to_canyon: An optional number from 0 to 1 that represents
-                the fraction the building's waste heat from air conditioning
-                that gets rejected into the urban canyon. The default is set to 0.5.
+                bldg_program and bldg_era.
+            uwg_parameters: Optional UWG TypologyPar to set the properties of a
+                building typology that specifically relate to the UWG
+                (ie. roof / wall albedo, fraction of bldg heat to canyon)
 
         Returns:
             typology: The dragonfly typology object
@@ -229,81 +221,61 @@ class Typology(DFObject):
         avg_num_stories = weighted_num_stories / total_ftp_area
 
         return cls.from_footprints(bldg_footprint_breps, avg_num_stories,
-                                   bldg_program, bldg_age, floor_to_floor,
-                                   fract_heat_to_canyon, glz_ratio)
+                                   bldg_program, bldg_era, floor_to_floor,
+                                   glz_ratio, uwg_parameters)
 
     @classmethod
-    def create_merged_typology(cls, typology_one, typology_two):
+    def create_merged_typology(cls, typ_one, typ_two):
         """Creates a merged typology between two typologies of the same building type.
 
         Args:
-            typology_one: The first Dragonfly building typology.
-            typology_two: The second Dragonfly building typology.
+            typ_one: The first Dragonfly building typology.
+            typ_two: The second Dragonfly building typology.
 
         Returs:
             merged_typology: A Dragonfly typology representing the
                 merged previous typologies.
         """
         # checks
-        assert (hasattr(typology_one, 'isTypology')), \
-            'typology_one must be a Dragonfly typology. got {}'.format(
-                type(typology_one))
-        assert (hasattr(typology_two, 'isTypology')), \
-            'typology_two must be a Dragonfly typology. got {}'.format(
-                type(typology_two))
-        assert (typology_one.bldg_program == typology_two.bldg_program), \
+        assert (hasattr(typ_one, 'isTypology')), \
+            'typ_one must be a Dragonfly typology. got {}'.format(
+                type(typ_one))
+        assert (hasattr(typ_two, 'isTypology')), \
+            'typ_two must be a Dragonfly typology. got {}'.format(
+                type(typ_two))
+        assert (typ_one.bldg_program == typ_two.bldg_program), \
             "bldg_program of one: {} does not match that of two: {}".format(
-                typology_one.bldg_program, typology_two.bldg_program)
-        assert (typology_one.bldg_age == typology_two.bldg_age), \
-            "bldg_age of this one: {} does not match that of two: {}".format(
-                typology_one.bldg_age, typology_two.bldg_age)
+                typ_one.bldg_program, typ_two.bldg_program)
+        assert (typ_one.bldg_era == typ_two.bldg_era), \
+            "bldg_era of this one: {} does not match that of two: {}".format(
+                typ_one.bldg_era, typ_two.bldg_era)
 
         # attributes that get totalled
-        new_footprint_area = typology_one.footprint_area + typology_two.footprint_area
-        new_facade_area = typology_one.facade_area + typology_two.facade_area
-        new_floor_area = typology_one.floor_area + typology_two.floor_area
-        # for window properties
-        _typology_one_glz_area = typology_one.facade_area * typology_one.glz_ratio
-        _typology_two_glz_area = typology_two.facade_area * typology_two.glz_ratio
+        new_footprint_area = typ_one.footprint_area + typ_two.footprint_area
+        new_facade_area = typ_one.facade_area + typ_two.facade_area
+        new_floor_area = typ_one.floor_area + typ_two.floor_area
 
-        # atributes that get weighted averaged.
-        new_average_height = (typology_one.average_height *
-                              typology_one.footprint_area +
-                              typology_two.average_height *
-                              typology_two.footprint_area) / new_footprint_area
-        new_floor_to_floor = (typology_one.floor_to_floor *
-                              typology_one.floor_area +
-                              typology_two.floor_to_floor *
-                              typology_two.floor_area)/new_floor_area
-        new_fract_heat_to_canyon = (typology_one.fract_heat_to_canyon *
-                                    typology_one.floor_area +
-                                    typology_two.fract_heat_to_canyon *
-                                    typology_two.floor_area) / new_floor_area
-        new_glz_ratio = (typology_one.glz_ratio * typology_one.facade_area +
-                         typology_two.glz_ratio * typology_two.facade_area
-                         ) / new_facade_area
-        new_wall_albedo = (typology_one.wall_albedo * typology_one.facade_area +
-                           typology_two.wall_albedo * typology_two.facade_area
-                           ) / new_facade_area
-        new_shgc = (typology_one.shgc * _typology_one_glz_area +
-                    typology_two.shgc*_typology_two_glz_area
-                    ) / (_typology_one_glz_area + _typology_two_glz_area)
-        new_roof_albedo = (typology_one.roof_albedo * typology_one.footprint_area +
-                           typology_two.roof_albedo * typology_two.footprint_area
-                           ) / new_footprint_area
-        new_roof_veg_fraction = (typology_one.roof_veg_fraction *
-                                 typology_one.footprint_area +
-                                 typology_two.roof_veg_fraction *
-                                 typology_two.footprint_area) / new_footprint_area
+        # geometry atributes that get weighted averaged.
+        new_average_height = (typ_one.average_height *
+                              typ_one.footprint_area +
+                              typ_two.average_height *
+                              typ_two.footprint_area) / new_footprint_area
+        new_floor_to_floor = (typ_one.floor_to_floor *
+                              typ_one.floor_area +
+                              typ_two.floor_to_floor *
+                              typ_two.floor_area)/new_floor_area
+        new_glz_ratio = (typ_one.glz_ratio * typ_one.facade_area +
+                         typ_two.glz_ratio * typ_two.facade_area) / new_facade_area
 
-        new_typology = cls(new_average_height, new_footprint_area,
-                           new_facade_area, typology_one.bldg_program,
-                           typology_one.bldg_age, new_floor_to_floor,
-                           new_fract_heat_to_canyon, new_glz_ratio,
-                           new_floor_area, new_shgc, new_wall_albedo,
-                           new_roof_albedo, new_roof_veg_fraction)
+        new_uwg_param = cls._create_merged_uwg_param(typ_one, typ_two,
+                                                     new_floor_area,
+                                                     new_facade_area,
+                                                     new_footprint_area)
 
-        return new_typology
+        # assemble the new typology object
+        return cls(new_average_height, new_footprint_area, new_facade_area,
+                   typ_one.bldg_program, typ_one.bldg_era, new_floor_to_floor,
+                   new_floor_area, new_glz_ratio, new_uwg_param)
 
     @property
     def average_height(self):
@@ -317,7 +289,7 @@ class Typology(DFObject):
         assert (h >= 0), "average_height must be greater than 0"
         self._average_height = h
         if self.has_parent_district is True:
-            self.parent_district.update_geo_from_typologies()
+            self.parent_district._update_geo_from_typologies()
 
     @property
     def footprint_area(self):
@@ -331,7 +303,7 @@ class Typology(DFObject):
         assert (a >= 0), "footprint_area must be greater than 0"
         self._footprint_area = a
         if self.has_parent_district is True:
-            self.parent_district.update_geo_from_typologies()
+            self.parent_district._update_geo_from_typologies()
 
     @property
     def facade_area(self):
@@ -345,7 +317,7 @@ class Typology(DFObject):
         assert (a >= 0), "facade_area must be greater than 0"
         self._facade_area = a
         if self.has_parent_district is True:
-            self.parent_district.update_geo_from_typologies()
+            self.parent_district._update_geo_from_typologies()
 
     @property
     def floor_to_floor(self):
@@ -384,7 +356,7 @@ class Typology(DFObject):
         else:
             self._floor_area = self._footprint_area * self.number_of_stories
         if self.has_parent_district is True:
-            self.parent_district.update_geo_from_typologies()
+            self.parent_district._update_geo_from_typologies()
 
     @property
     def bldg_program(self):
@@ -393,31 +365,16 @@ class Typology(DFObject):
 
     @bldg_program.setter
     def bldg_program(self, prog):
-        self._bldg_program = bldg_types.check_program(prog)
+        self._bldg_program = BuildingTypes.check_program(prog)
 
     @property
-    def bldg_age(self):
-        """Get or set the construction time of buildings in the typology."""
-        return self._bldg_age
+    def bldg_era(self):
+        """Get or set the construction era of buildings in the typology."""
+        return self._bldg_era
 
-    @bldg_age.setter
-    def bldg_age(self, age):
-        self._bldg_age = bldg_types.check_age(age)
-
-    @property
-    def fract_heat_to_canyon(self):
-        """Get or set the fraction of the bldg heat rejected to the urban canyon."""
-        return self._fract_heat_to_canyon
-
-    @fract_heat_to_canyon.setter
-    def fract_heat_to_canyon(self, x):
-        if x is not None:
-            assert isinstance(x, (float, int)), \
-                'fract_heat_to_canyon must be a number got {}'.format(type(x))
-            self._fract_heat_to_canyon = utilities.in_range(
-                x, 0, 1, 'fract_heat_to_canyon')
-        else:
-            self._fract_heat_to_canyon = 0.5
+    @bldg_era.setter
+    def bldg_era(self, age):
+        self._bldg_era = BuildingTypes.check_era(age)
 
     @property
     def glz_ratio(self):
@@ -429,76 +386,68 @@ class Typology(DFObject):
         if x is not None:
             assert isinstance(x, (float, int)), \
                 'glz_ratio must be a number got {}'.format(type(x))
-            self._glz_ratio = utilities.in_range(x, 0, 1, 'glz_ratio')
+            self._glz_ratio = in_range(x, 0, 1, 'glz_ratio')
         else:
-            self._glz_ratio = \
-                float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
-                      [bldg_types.builtera[self.bldg_age]][0].building.glazingRatio)
+            self._glz_ratio = BuildingTypes.default_glazing_ratio(self.bldg_program)
 
     @property
-    def shgc(self):
-        """Get or set the SHGC of the buildings in the typology."""
-        return self._shgc
+    def uwg_parameters(self):
+        """Get or set the uwg parameters (ie. wall/roof albedo, fract heat to canyon)."""
+        return self._uwg_parameters
 
-    @shgc.setter
-    def shgc(self, x):
-        self._shgc = None
-        if x is not None:
-            assert isinstance(x, (float, int)), \
-                'shgc must be a number got {}'.format(type(x))
-            self._shgc = utilities.in_range(x, 0, 1, 'shgc')
-
-    def get_default_shgc(self, climate_zone):
-        """Returns the default solar heat gain coefficient given the climate_zone."""
-        zoneIndex = bldg_types.check_cimate_zone(climate_zone)
-        return float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
-                     [bldg_types.builtera[self.bldg_age]][zoneIndex].building.shgc)
-
-    @property
-    def wall_albedo(self):
-        """Get or set the exterior wall albedo of the buildings in the typology."""
-        return self._wall_albedo
-
-    @wall_albedo.setter
-    def wall_albedo(self, x):
-        if x is not None:
-            assert isinstance(x, (float, int)), \
-                'wall_albedo must be a number got {}'.format(type(x))
-            self._wall_albedo = utilities.in_range(x, 0, 1, 'wall_albedo')
+    @uwg_parameters.setter
+    def uwg_parameters(self, uwg_par):
+        if uwg_par is not None:
+            assert hasattr(uwg_par, 'isTypologyPar'), \
+                'uwg_parameters is not a dragonfly TypologyPar object. Got {}'.format(
+                    type(uwg_par))
+            self._uwg_parameters = deepcopy(uwg_par)
         else:
-            self._wall_albedo = \
-                float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
-                      [bldg_types.builtera[self.bldg_age]][0].wall.albedo)
+            self._uwg_parameters = TypologyPar()
 
-    @property
-    def roof_albedo(self):
-        """Get or set the exterior roof albedo of the buildings in the typology."""
-        return self._roof_albedo
+        # Override null values with the defaults of this typology
+        if self._uwg_parameters._wall_albedo is None:
+            self._uwg_parameters._wall_albedo = TypologyDefaults.wall_albedo_by_type(
+                self._bldg_program)
+        if self._uwg_parameters._roof_albedo is None:
+            self._uwg_parameters._roof_albedo = TypologyDefaults.roof_albedo_by_era(
+                self.bldg_era)
+        if self._uwg_parameters._shgc is None and self.has_parent_district is True:
+            self._uwg_parameters._shgc = TypologyDefaults.shgc_by_era_zone(
+                self.bldg_era, self._parent_district.climate_zone)
 
-    @roof_albedo.setter
-    def roof_albedo(self, x):
-        if x is not None:
-            assert isinstance(x, (float, int)), \
-                'roof_albedo must be a number got {}'.format(type(x))
-            self._roof_albedo = utilities.in_range(x, 0, 1, 'roof_albedo')
+    def _create_merged_uwg_param(typ_one, typ_two, new_floor_area,
+                                 new_facade_area, new_footprint_area):
+        # for window properties
+        _typ_one_glz_area = typ_one.facade_area * typ_one.glz_ratio
+        _typ_two_glz_area = typ_two.facade_area * typ_two.glz_ratio
+
+        # uwg_parameters that get weighted averaged
+        new_fract_heat_to_canyon = (typ_one.uwg_parameters.fract_heat_to_canyon *
+                                    typ_one.floor_area +
+                                    typ_two.uwg_parameters.fract_heat_to_canyon *
+                                    typ_two.floor_area) / new_floor_area
+        new_wall_albedo = (typ_one.uwg_parameters.wall_albedo *
+                           typ_one.facade_area +
+                           typ_two.uwg_parameters.wall_albedo *
+                           typ_two.facade_area) / new_facade_area
+        new_roof_albedo = (typ_one.uwg_parameters.roof_albedo *
+                           typ_one.footprint_area +
+                           typ_two.uwg_parameters.roof_albedo *
+                           typ_two.footprint_area) / new_footprint_area
+        new_roof_veg_fraction = (typ_one.uwg_parameters.roof_veg_fraction *
+                                 typ_one.footprint_area +
+                                 typ_two.uwg_parameters.roof_veg_fraction *
+                                 typ_two.footprint_area) / new_footprint_area
+        if typ_one.uwg_parameters.shgc is not None \
+                and typ_one.uwg_parameters.shgc is not None:
+                    new_shgc = (typ_one.uwg_parameters.shgc * _typ_one_glz_area +
+                                typ_two.uwg_parameters.shgc * _typ_two_glz_area
+                                ) / (_typ_one_glz_area + _typ_two_glz_area)
         else:
-            self._roof_albedo = \
-                float(bldg_types.refBEM[bldg_types.bldgtype[self.bldg_program]]
-                      [bldg_types.builtera[self.bldg_age]][0].roof.albedo)
-
-    @property
-    def roof_veg_fraction(self):
-        """Get or set the roof vegetation fraction of the buildings in the typology."""
-        return self._roof_veg_fraction
-
-    @roof_veg_fraction.setter
-    def roof_veg_fraction(self, x):
-        if x is not None:
-            assert isinstance(x, (float, int)), \
-                'roof_veg_fraction must be a number got {}'.format(type(x))
-            self._roof_veg_fraction = utilities.in_range(x, 0, 1, 'roof_veg_fraction')
-        else:
-            self._roof_veg_fraction = 0.
+            new_shgc = None
+        return TypologyPar(new_fract_heat_to_canyon, new_shgc, new_wall_albedo,
+                           new_roof_albedo, new_roof_veg_fraction)
 
     @property
     def has_parent_district(self):
@@ -519,11 +468,16 @@ class Typology(DFObject):
 
     def __repr__(self):
         """Represnt Dragonfly typology."""
-        return 'Building Typology: ' + \
-               '\n  ' + self._bldg_program + ", " + self._bldg_age + \
-               '\n  Average Height: ' + str(int(self._average_height)) + " m" + \
-               '\n  Number of Stories: ' + str(self.number_of_stories) + \
-               '\n  Floor Area: {:,.0f}'.format(self.floor_area) + " m2" + \
-               '\n  Footprint Area: {:,.0f}'.format(self.footprint_area) + " m2" + \
-               '\n  Facade Area: {:,.0f}'.format(self.facade_area) + " m2" + \
-               '\n  Glazing Ratio: ' + str(int(self.glz_ratio*100)) + "%"
+        return 'Building Typology: ' \
+               '\n  {}, {}' \
+               '\n  Average Height: {} m' \
+               '\n  Number of Stories: {}' \
+               '\n  Floor Area: {:,.0f} m2' \
+               '\n  Footprint Area: {:,.0f} m2' \
+               '\n  Facade Area: {:,.0f} m2' \
+               '\n  Glazing Ratio: {} %'.format(
+                   self._bldg_program, self._bldg_era,
+                   int(self._average_height), self.number_of_stories,
+                   self.floor_area, self.footprint_area,
+                   self.facade_area, int(self.glz_ratio*100)
+               )

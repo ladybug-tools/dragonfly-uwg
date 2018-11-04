@@ -76,8 +76,6 @@ class Terrain(DFObject):
             assert (cl >= 0), 'characteristic length must be greater than 0'
             self._characteristic_length = cl
 
-
-
     @property
     def isTerrain(self):
         """Return True for Terrain."""
@@ -89,6 +87,4 @@ class Terrain(DFObject):
 
     def __repr__(self):
         """Represnt Dragonfly terrain."""
-        return 'Terrain: ' + \
-               '\n  Area: ' + str(int(self._area)) + " m2" + \
-               '\n  Radius: ' + str(int(self._characteristic_length)) + " m"
+        return 'Terrain:\n  Area: {} m2'.format(int(self._area))

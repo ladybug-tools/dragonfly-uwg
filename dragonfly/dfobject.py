@@ -2,7 +2,7 @@
 
 
 class DFObject(object):
-    """Base class for Dragonfly typology, city, terrain, and vegetation."""
+    """Base class for Dragonfly typology, district, terrain, and vegetation."""
 
     @property
     def isDFObject(self):
