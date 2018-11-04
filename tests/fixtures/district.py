@@ -54,14 +54,14 @@ def from_typology():
                          footprint_area=45,
                          facade_area=33.0,
                          bldg_program='Hospital',
-                         bldg_age='1980sPresent',
+                         bldg_era='1980sPresent',
                          floor_to_floor=3.0)
 
     typology2 = Typology(average_height=35.0,
                          footprint_area=45.0,
                          facade_area=33.0,
                          bldg_program='SmallOffice',
-                         bldg_age='NewConstruction',
+                         bldg_era='NewConstruction',
                          floor_to_floor=3.0)
 
     terrain = Terrain(90000.0)
