@@ -77,3 +77,28 @@ def test_defaults(default):
     assert district.grass_coverage_ratio == default['grass_coverage_ratio']
     assert district.traffic_parameters.sensible_heat == \
         default['traffic_parameters'].sensible_heat
+
+
+def test_json(correct):
+    district = District(
+        average_bldg_height=correct['average_bldg_height'],
+        site_coverage_ratio=correct['site_coverage_ratio'],
+        facade_to_site_ratio=correct['facade_to_site_ratio'],
+        bldg_type_ratios=correct['bldg_type_ratios'],
+        climate_zone=correct['climate_zone'],
+        tree_coverage_ratio=correct['tree_coverage_ratio'],
+        grass_coverage_ratio=correct['grass_coverage_ratio'],
+        traffic_parameters=correct['traffic_parameters'],
+        vegetation_parameters=correct['vegetation_parameters'],
+        pavement_parameters=correct['pavement_parameters'],
+        characteristic_length=correct['characteristic_length']
+    )
+
+    district_json = district.to_json()
+
+    correct['traffic_parameters'] = correct['traffic_parameters'].to_json()
+    correct['vegetation_parameters'] = correct['vegetation_parameters'].to_json()
+    correct['pavement_parameters'] = correct['pavement_parameters'].to_json()
+
+    assert district_json == correct
+    assert District.from_json(district_json).to_json() == correct

@@ -1,7 +1,8 @@
 from dragonfly.typology import Typology
 from dragonfly.uwg.typologypar import TypologyPar
+from tests.fixtures.typology import default, correct
+from tests.fixtures.typology_parameters import correct as uwg_params
 import pytest
-from tests.fixtures.typology import correct, default
 
 
 def test_initialise(correct):
@@ -30,6 +31,29 @@ def test_defaults(default):
     assert typology.glz_ratio == default['glz_ratio']
     assert typology.uwg_parameters.fract_heat_to_canyon == 0.5
 
+
 def test_merge_typologies():
     # TODO: Need to write tests for merge_typologies class method
     pass
+
+
+def test_json(correct, uwg_params):
+    uwg_par = TypologyPar(
+        uwg_params['fract_heat_to_canyon'],
+        uwg_params['shgc'],
+        uwg_params['wall_albedo'],
+        uwg_params['roof_albedo'],
+        uwg_params['roof_veg_fraction']
+    )
+
+    typology = Typology(correct['average_height'], correct['footprint_area'],
+                        correct['facade_area'], correct['bldg_program'],
+                        correct['bldg_era'], correct['floor_to_floor'],
+                        correct['floor_area'], correct['glz_ratio'],
+                        uwg_par)
+
+    typology_json = typology.to_json()
+    correct['uwg_parameters'] = uwg_par.to_json()
+
+    assert typology_json == correct
+    assert Typology.from_json(typology_json).to_json() == correct

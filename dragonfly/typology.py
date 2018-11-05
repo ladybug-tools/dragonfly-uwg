@@ -90,6 +90,48 @@ class Typology(DFObject):
         self.uwg_parameters = uwg_parameters
 
     @classmethod
+    def from_json(cls, data):
+        """Create a terrain object from a dictionary
+        Args:
+            data: {
+                average_height: float
+                footprint_area: float
+                facade_area: float
+                bldg_program: string
+                bldg_era: string
+                floor_to_floor: float
+                floor_area: float
+                glz_ratio: float between 0 and 1
+                uwg_parameters: uwg_parameters json
+            }
+        """
+
+        required_keys = ("average_height", "footprint_area", "facade_area",
+                         "bldg_program", "bldg_era")
+
+        nullable_keys = ("floor_to_floor", "floor_area", "glz_ratio",
+                         "uwg_parameters")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(
+            average_height=data['average_height'],
+            footprint_area=data['footprint_area'],
+            facade_area=data['facade_area'],
+            bldg_program=data['bldg_program'],
+            bldg_era=data['bldg_era'],
+            floor_to_floor=data['floor_to_floor'],
+            floor_area=data['floor_area'],
+            glz_ratio=data['glz_ratio'],
+            uwg_parameters=TypologyPar.from_json(data['uwg_parameters'])
+        )
+
+    @classmethod
     def from_geometry(cls, bldg_breps, bldg_program, bldg_era,
                       floor_to_floor=None, glz_ratio=None, uwg_parameters=None):
         """Initialize a building typology from closed building brep geometry
@@ -461,6 +503,33 @@ class Typology(DFObject):
     def isTypology(self):
         """Return True for Typology."""
         return True
+
+    def to_json(self):
+        """Create a terrain object from a dictionary
+        Args:
+            data: {
+                average_height: float
+                footprint_area: float
+                facade_area: float
+                bldg_program: string
+                bldg_era: string
+                floor_to_floor: float
+                floor_area: float
+                glz_ratio: float between 0 and 1
+                uwg_parameters: uwg_parameters json
+            }
+        """
+        return {
+            "average_height": self.average_height,
+            "footprint_area": self.footprint_area,
+            "facade_area": self.facade_area,
+            "bldg_program": self.bldg_program,
+            "bldg_era": self.bldg_era,
+            "floor_to_floor": self.floor_to_floor,
+            "floor_area": self.floor_area,
+            "glz_ratio": self.glz_ratio,
+            "uwg_parameters": self.uwg_parameters.to_json()
+        }
 
     def ToString(self):
         """Overwrite .NET ToString method."""

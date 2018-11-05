@@ -34,6 +34,29 @@ class Terrain(DFObject):
         self.characteristic_length = characteristic_length
 
     @classmethod
+    def from_json(cls, data):
+        """Create a terrain object from a dictionary
+        Args:
+            data: {
+            area: float between 0 and 1
+            characteristic_length: int between 0 and 11
+            }
+        """
+
+        required_keys = ("area")
+        nullable_keys = ("characteristic_length")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(area=data["area"],
+                   characteristic_length=data["characteristic_length"])
+
+    @classmethod
     def from_geometry(cls, terrainSrfs):
         """Initialize a dragonfly terrain surface from a list of terrain breps
         Args:
@@ -80,6 +103,20 @@ class Terrain(DFObject):
     def isTerrain(self):
         """Return True for Terrain."""
         return True
+
+    def to_json(self):
+        """Create a terrain object from a dictionary
+        Results:
+            {
+            area: float between 0 and 1
+            characteristic_length: int between 0 and 11
+            }
+        """
+
+        return {
+            "area": self.area,
+            "characteristic_length": self.characteristic_length
+        }
 
     def ToString(self):
         """Overwrite .NET ToString method."""
