@@ -36,8 +36,8 @@ class Vegetation(DFObject):
             }
         """
 
-        required_keys = ("area")
-        nullable_keys = ("is_trees")
+        required_keys = ("area",)
+        nullable_keys = ("is_trees",)
 
         for key in required_keys:
             assert key in data.keys(), "{} is a required value".format(key)

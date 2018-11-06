@@ -43,8 +43,8 @@ class Terrain(DFObject):
             }
         """
 
-        required_keys = ("area")
-        nullable_keys = ("characteristic_length")
+        required_keys = ("area",)
+        nullable_keys = ("characteristic_length",)
 
         for key in required_keys:
             assert key in data.keys(), "{} is a required value".format(key)

@@ -46,7 +46,7 @@ class TrafficPar(DFParameter):
             }
         """
 
-        required_keys = ("sensible_heat")
+        required_keys = ("sensible_heat",)
         nullable_keys = ("weekday_schedule", "saturday_schedule",
                          "sunday_schedule")
 
