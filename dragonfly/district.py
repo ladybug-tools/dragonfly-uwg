@@ -136,7 +136,7 @@ class District(DFObject):
                          )
 
         for key in required_keys:
-            assert(key in data.keys(), "{} is a required value".format(key))
+            assert key in data.keys(), "{} is a required value".format(key)
 
         for key in nullable_keys:
             if key not in data:
@@ -149,9 +149,12 @@ class District(DFObject):
                    climate_zone=data['climate_zone'],
                    tree_coverage_ratio=data['tree_coverage_ratio'],
                    grass_coverage_ratio=data['grass_coverage_ratio'],
-                   traffic_parameters=TrafficPar.from_json(data['traffic_parameters']),
-                   vegetation_parameters=VegetationPar.from_json(data['vegetation_parameters']),
-                   pavement_parameters=PavementPar.from_json(data['pavement_parameters']),
+                   traffic_parameters=TrafficPar.from_json(
+                       data['traffic_parameters']),
+                   vegetation_parameters=VegetationPar.from_json(
+                       data['vegetation_parameters']),
+                   pavement_parameters=PavementPar.from_json(
+                       data['pavement_parameters']),
                    characteristic_length=data['characteristic_length']
                    )
 

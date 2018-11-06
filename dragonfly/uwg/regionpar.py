@@ -51,7 +51,7 @@ class RefEPWSitePar(DFParameter):
                          "temp_measure_height", "wind_measure_height")
 
         for key in required_keys:
-            assert(key in data.keys(), "{} is a required value".format(key))
+            assert key in data.keys(), "{} is a required value".format(key)
 
         for key in nullable_keys:
             if key not in data:
@@ -212,10 +212,11 @@ class BoundaryLayerPar(DFParameter):
 
         required_keys = ()
         nullable_keys = ("day_boundary_layer_height", "night_boundary_layer_height",
-                         "inversion_height", "circulation_coefficient", "exchange_coefficient")
+                         "inversion_height", "circulation_coefficient",
+                         "exchange_coefficient")
 
         for key in required_keys:
-            assert(key in data.keys(), "{} is a required value".format(key))
+            assert key in data.keys(), "{} is a required value".format(key)
 
         for key in nullable_keys:
             if key not in data:

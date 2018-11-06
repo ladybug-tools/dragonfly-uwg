@@ -53,7 +53,7 @@ class TypologyPar(DFParameter):
                          "wall_albedo", "roof_albedo", "roof_veg_fraction")
 
         for key in required_keys:
-            assert(key in data.keys(), "{} is a required value".format(key))
+            assert key in data.keys(), "{} is a required value".format(key)
 
         for key in nullable_keys:
             if key not in data:

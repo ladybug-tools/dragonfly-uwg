@@ -51,7 +51,7 @@ class TrafficPar(DFParameter):
                          "sunday_schedule")
 
         for key in required_keys:
-            assert(key in data.keys(), "{} is a required value".format(key))
+            assert key in data.keys(), "{} is a required value".format(key)
 
         for key in nullable_keys:
             if key not in data:
@@ -261,8 +261,8 @@ class VegetationPar(DFParameter):
         Args:
             data: {
                 vegetation_albedo: float between 0 and 1
-                vegetation_start_month: int between 0 and 11
-                vegetation_end_month: int between 0 and 11
+                vegetation_start_month: int between 0 and 12
+                vegetation_end_month: int between 0 and 12
                 tree_latent_fraction: float between 0 and 1
                 grass_latent_fraction: float between 0 and 1
             }
@@ -274,7 +274,7 @@ class VegetationPar(DFParameter):
                          "grass_latent_fraction")
 
         for key in required_keys:
-            assert(key in data.keys(), "{} is a required value".format(key))
+            assert key in data.keys(), "{} is a required value".format(key)
 
         for key in nullable_keys:
             if key not in data:
@@ -456,7 +456,7 @@ class PavementPar(DFParameter):
                          "volumetric_heat_capacity")
 
         for key in required_keys:
-            assert(key in data.keys(), "{} is a required value".format(key))
+            assert key in data.keys(), "{} is a required value".format(key)
 
         for key in nullable_keys:
             if key not in data:
