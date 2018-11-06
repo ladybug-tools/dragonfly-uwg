@@ -38,8 +38,8 @@ class Terrain(DFObject):
         """Create a terrain object from a dictionary
         Args:
             data: {
-            area: float between 0 and 1
-            characteristic_length: int between 0 and 11
+                area: float
+                characteristic_length: float
             }
         """
 
@@ -105,11 +105,11 @@ class Terrain(DFObject):
         return True
 
     def to_json(self):
-        """Create a terrain object from a dictionary
+        """Create a terrain dictionary
         Results:
             {
-            area: float between 0 and 1
-            characteristic_length: int between 0 and 11
+                area: float
+                characteristic_length: float
             }
         """
 

@@ -39,10 +39,10 @@ class RefEPWSitePar(DFParameter):
         """Create a reference epw parameter object from a dictionary
         Args:
             data: {
-            average_obstacle_height: float
-            vegetation_coverage: float between 0 and 1
-            temp_measure_height: float between 0 and 1
-            wind_measure_height: float
+                average_obstacle_height: float
+                vegetation_coverage: float between 0 and 1
+                temp_measure_height: float between 0 and 1
+                wind_measure_height: float
             }
         """
 
@@ -130,10 +130,10 @@ class RefEPWSitePar(DFParameter):
         """Create a reference epw parameter dictionary
         Results:
             {
-            average_obstacle_height: float
-            vegetation_coverage: float between 0 and 1
-            temp_measure_height: float between 0 and 1
-            wind_measure_height: float
+                average_obstacle_height: float
+                vegetation_coverage: float between 0 and 1
+                temp_measure_height: float between 0 and 1
+                wind_measure_height: float
             }
         """
         return {
@@ -202,11 +202,11 @@ class BoundaryLayerPar(DFParameter):
         """Create a boundary layer parameter object from a dictionary
         Args:
             data: {
-            day_boundary_layer_height: float positive
-            night_boundary_layer_height: float positive
-            inversion_height: float positive
-            circulation_coefficient: float positive
-            exchange_coefficient: float positive
+                day_boundary_layer_height: float positive
+                night_boundary_layer_height: float positive
+                inversion_height: float positive
+                circulation_coefficient: float positive
+                exchange_coefficient: float positive
             }
         """
 
@@ -309,11 +309,11 @@ class BoundaryLayerPar(DFParameter):
         """Create a boundary layer parameter dictionary
         Results:
             {
-            day_boundary_layer_height: float positive
-            night_boundary_layer_height: float positive
-            inversion_height: float positive
-            circulation_coefficient: float positive
-            exchange_coefficient: float positive
+                day_boundary_layer_height: float positive
+                night_boundary_layer_height: float positive
+                inversion_height: float positive
+                circulation_coefficient: float positive
+                exchange_coefficient: float positive
             }
         """
         return {

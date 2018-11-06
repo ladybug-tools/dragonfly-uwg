@@ -139,7 +139,7 @@ class TypologyPar(DFParameter):
         return True
 
     def to_json(self):
-        """Create a typology parameter object from a dictionary
+        """Create a typology parameter dictionary
         Returns:
             {
                 fract_heat_to_canyon: float between 0 and 1

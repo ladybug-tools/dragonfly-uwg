@@ -546,8 +546,8 @@ class District(DFObject):
 
     def to_json(self):
         """Create a district dictionary
-        Args:
-            data: {
+        Results:
+            {
                 average_bldg_height: float
                 site_coverage_ratio: float between 0 and 1
                 facade_to_site_ratio: float between 0 and 1

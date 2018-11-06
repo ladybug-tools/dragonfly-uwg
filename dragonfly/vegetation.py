@@ -28,11 +28,11 @@ class Vegetation(DFObject):
 
     @classmethod
     def from_json(cls, data):
-        """Create a terrain object from a dictionary
+        """Create a vegetation object from a dictionary
         Args:
             data: {
-            area: float
-            is_trees: boolean
+                area: float
+                is_trees: boolean
             }
         """
 
@@ -116,8 +116,8 @@ class Vegetation(DFObject):
         """Create a vegetation dictionary
         Results:
             {
-            area: float
-            is_trees: boolean
+                area: float
+                is_trees: boolean
             }
         """
         return {

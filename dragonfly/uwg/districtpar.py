@@ -39,10 +39,10 @@ class TrafficPar(DFParameter):
         """Create a traffic parameter object from a dictionary
         Args:
             data: {
-            sensible_heat: float
-            weekday_schedule: [] list of 24 fractional values
-            saturday_schedule: [] list of 24 fractional values
-            sunday_schedule: [] list of 24 fractional values
+                sensible_heat: float
+                weekday_schedule: [] list of 24 fractional values
+                saturday_schedule: [] list of 24 fractional values
+                sunday_schedule: [] list of 24 fractional values
             }
         """
 
@@ -165,13 +165,13 @@ class TrafficPar(DFParameter):
             )
 
     def to_json(self):
-        """Create a traffic parameter object from a dictionary
+        """Create a traffic parameter dictionary
         Returns:
             {
-            sensible_heat: float
-            weekday_schedule: [] list of 24 fractional values
-            saturday_schedule: [] list of 24 fractional values
-            sunday_schedule: [] list of 24 fractional values
+                sensible_heat: float
+                weekday_schedule: [] list of 24 fractional values
+                saturday_schedule: [] list of 24 fractional values
+                sunday_schedule: [] list of 24 fractional values
             }
         """
         return {
@@ -260,11 +260,11 @@ class VegetationPar(DFParameter):
         """Create a vegetation parameter object from a dictionary
         Args:
             data: {
-            vegetation_albedo: float between 0 and 1
-            vegetation_start_month: int between 0 and 11
-            vegetation_end_month: int between 0 and 11
-            tree_latent_fraction: float between 0 and 1
-            grass_latent_fraction: float between 0 and 1
+                vegetation_albedo: float between 0 and 1
+                vegetation_start_month: int between 0 and 11
+                vegetation_end_month: int between 0 and 11
+                tree_latent_fraction: float between 0 and 1
+                grass_latent_fraction: float between 0 and 1
             }
         """
 
@@ -377,14 +377,14 @@ class VegetationPar(DFParameter):
         return True
 
     def to_json(self):
-        """Create a vegetation parameter object from a dictionary
+        """Create a vegetation parameter dictionary
         Returns:
             {
-            vegetation_albedo: float between 0 and 1
-            vegetation_start_month: int between 0 and 11
-            vegetation_end_month: int between 0 and 11
-            tree_latent_fraction: float between 0 and 1
-            grass_latent_fraction: float between 0 and 1
+                vegetation_albedo: float between 0 and 1
+                vegetation_start_month: int between 0 and 11
+                vegetation_end_month: int between 0 and 11
+                tree_latent_fraction: float between 0 and 1
+                grass_latent_fraction: float between 0 and 1
             }
         """
         return {
@@ -444,10 +444,10 @@ class PavementPar(DFParameter):
         """Create a pavement parameter object from a dictionary
         Args:
             data: {
-            albedo: float between 0 and 1
-            thickness: float positive
-            conductivity: float positive
-            volumetric_heat_capacity: float positive
+                albedo: float between 0 and 1
+                thickness: float positive
+                conductivity: float positive
+                volumetric_heat_capacity: float positive
             }
         """
 
@@ -535,10 +535,10 @@ class PavementPar(DFParameter):
         """Create a pavement parameter dictionary
         Results:
             {
-            albedo: float between 0 and 1
-            thickness: float positive
-            conductivity: float positive
-            volumetric_heat_capacity: float positive
+                albedo: float between 0 and 1
+                thickness: float positive
+                conductivity: float positive
+                volumetric_heat_capacity: float positive
             }
         """
         return {

@@ -91,7 +91,7 @@ class Typology(DFObject):
 
     @classmethod
     def from_json(cls, data):
-        """Create a terrain object from a dictionary
+        """Create a typology object from a dictionary
         Args:
             data: {
                 average_height: float
@@ -505,9 +505,9 @@ class Typology(DFObject):
         return True
 
     def to_json(self):
-        """Create a terrain object from a dictionary
-        Args:
-            data: {
+        """Create a typology dictionary
+        Results:
+            {
                 average_height: float
                 footprint_area: float
                 facade_area: float
