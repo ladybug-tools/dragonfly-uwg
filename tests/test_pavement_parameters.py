@@ -30,3 +30,15 @@ def test_default(default):
         default['conductivity']
     assert default_parameters.volumetric_heat_capacity == \
         default['volumetric_heat_capacity']
+
+
+def test_json(correct):
+    parameters = PavementPar(correct['albedo'],
+                             correct['thickness'],
+                             correct['conductivity'],
+                             correct['volumetric_heat_capacity'])
+
+    param_json = parameters.to_json()
+
+    assert param_json == correct
+    assert PavementPar.from_json(param_json).to_json() == correct

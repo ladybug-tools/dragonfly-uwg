@@ -24,7 +24,30 @@ class Vegetation(DFObject):
     def __init__(self, area, is_trees=False):
         """Initialize a dragonfly vegetation object"""
         self.area = area
-        self._s_trees = is_trees
+        self.is_trees = is_trees
+
+    @classmethod
+    def from_json(cls, data):
+        """Create a vegetation object from a dictionary
+        Args:
+            data: {
+                area: float
+                is_trees: boolean
+            }
+        """
+
+        required_keys = ("area")
+        nullable_keys = ("is_trees")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(area=data["area"],
+                   is_trees=data["is_trees"])
 
     @classmethod
     def from_geometry(cls, veg_breps, is_trees=False):
@@ -88,6 +111,19 @@ class Vegetation(DFObject):
             (self._area/terrain.area), 0, 1, 'vegetation_coverage')
 
         return coverage
+
+    def to_json(self):
+        """Create a vegetation dictionary
+        Results:
+            {
+                area: float
+                is_trees: boolean
+            }
+        """
+        return {
+            'area': self.area,
+            'is_trees': self.is_trees
+        }
 
     def ToString(self):
         """Overwrite .NET ToString method."""

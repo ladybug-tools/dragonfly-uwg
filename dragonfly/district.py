@@ -105,6 +105,57 @@ class District(DFObject):
         self.grass_coverage_ratio = grass_coverage_ratio
 
     @classmethod
+    def from_json(cls, data):
+        """Create a district object from a dictionary
+        Args:
+            data: {
+                average_bldg_height: float
+                site_coverage_ratio: float between 0 and 1
+                facade_to_site_ratio: float between 0 and 1
+                bldg_type_ratios: {
+                    'BldgProgram,BldgEra': float between 0 and 1
+                }
+                climate_zone: string
+                tree_coverage_ratio: float between 0 and 1
+                grass_coverage_ratio: float between 0 and 1
+                traffic_parameters: traffic parameter dict
+                vegetation_parameters: vegetation parameter dict
+                pavement_parameters: pavement parameter dict
+                characteristic_length: float
+            }
+        """
+
+        required_keys = ('average_bldg_height', 'site_coverage_ratio',
+                         'facade_to_site_ratio',
+                         'bldg_type_ratios',
+                         'climate_zone'
+                         )
+        nullable_keys = ('tree_coverage_ratio', 'grass_coverage_ratio',
+                         'traffic_parameters', 'vegetation_parameters',
+                         'pavement_parameters', 'characteristic_length'
+                         )
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(average_bldg_height=data['average_bldg_height'],
+                   site_coverage_ratio=data['site_coverage_ratio'],
+                   facade_to_site_ratio=data['facade_to_site_ratio'],
+                   bldg_type_ratios=data['bldg_type_ratios'],
+                   climate_zone=data['climate_zone'],
+                   tree_coverage_ratio=data['tree_coverage_ratio'],
+                   grass_coverage_ratio=data['grass_coverage_ratio'],
+                   traffic_parameters=TrafficPar.from_json(data['traffic_parameters']),
+                   vegetation_parameters=VegetationPar.from_json(data['vegetation_parameters']),
+                   pavement_parameters=PavementPar.from_json(data['pavement_parameters']),
+                   characteristic_length=data['characteristic_length']
+                   )
+
+    @classmethod
     def from_typologies(cls, typologies, terrain, climate_zone,
                         tree_coverage_ratio=None, grass_coverage_ratio=None,
                         traffic_parameters=None, vegetation_parameters=None,
@@ -492,6 +543,39 @@ class District(DFObject):
         self._building_typologies = {}
         for i, key in enumerate(full_type_names):
             self._building_typologies[key] = typology_ratios[i]
+
+    def to_json(self):
+        """Create a district dictionary
+        Results:
+            {
+                average_bldg_height: float
+                site_coverage_ratio: float between 0 and 1
+                facade_to_site_ratio: float between 0 and 1
+                bldg_type_ratios: {
+                    'BldgProgram,BldgEra': float between 0 and 1
+                }
+                climate_zone: string
+                tree_coverage_ratio: float between 0 and 1
+                grass_coverage_ratio: float between 0 and 1
+                traffic_parameters: traffic parameter dict
+                vegetation_parameters: vegetation parameter dict
+                pavement_parameters: pavement parameter dict
+                characteristic_length: float
+            }
+        """
+        return {
+            'average_bldg_height': self.average_bldg_height,
+            'site_coverage_ratio': self.site_coverage_ratio,
+            'facade_to_site_ratio': self.facade_to_site_ratio,
+            'bldg_type_ratios': self.bldg_type_ratios,
+            'climate_zone': self.climate_zone,
+            'tree_coverage_ratio': self.tree_coverage_ratio,
+            'grass_coverage_ratio': self.grass_coverage_ratio,
+            'traffic_parameters': self.traffic_parameters.to_json(),
+            'vegetation_parameters': self.vegetation_parameters.to_json(),
+            'pavement_parameters': self.pavement_parameters.to_json(),
+            'characteristic_length': self.characteristic_length
+            }
 
     def ToString(self):
         """Overwrite .NET ToString method."""

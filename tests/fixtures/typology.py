@@ -1,4 +1,5 @@
 import pytest
+from dragonfly.uwg.typologypar import TypologyPar
 
 
 @pytest.fixture
@@ -11,8 +12,7 @@ def correct():
         'bldg_era': '1980sPresent',
         'floor_to_floor': 3,
         'glz_ratio': 0.3,
-        'floor_area': 46,
-        'number_of_stories': 5
+        'floor_area': 46
     }
 
 
@@ -26,6 +26,5 @@ def default():
         'bldg_era': '1980sPresent',
         'floor_to_floor': 3.05,
         'glz_ratio': 0.1461,
-        'floor_area': 45 * 11,
-        'number_of_stories': 11
+        'floor_area': 45 * 11
     }

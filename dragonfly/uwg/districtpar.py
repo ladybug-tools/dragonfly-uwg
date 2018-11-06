@@ -34,6 +34,34 @@ class TrafficPar(DFParameter):
         self.saturday_schedule = saturday_schedule
         self.sunday_schedule = sunday_schedule
 
+    @classmethod
+    def from_json(cls, data):
+        """Create a traffic parameter object from a dictionary
+        Args:
+            data: {
+                sensible_heat: float
+                weekday_schedule: [] list of 24 fractional values
+                saturday_schedule: [] list of 24 fractional values
+                sunday_schedule: [] list of 24 fractional values
+            }
+        """
+
+        required_keys = ("sensible_heat")
+        nullable_keys = ("weekday_schedule", "saturday_schedule",
+                         "sunday_schedule")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(sensible_heat=data["sensible_heat"],
+                   weekday_schedule=data["weekday_schedule"],
+                   saturday_schedule=data["saturday_schedule"],
+                   sunday_schedule=data["sunday_schedule"])
+
     @property
     def sensible_heat(self):
         """Get or set the max sensible heat flux of the traffic."""
@@ -136,6 +164,23 @@ class TrafficPar(DFParameter):
                 ". Daily schedules must be lists of 24 values."
             )
 
+    def to_json(self):
+        """Create a traffic parameter dictionary
+        Returns:
+            {
+                sensible_heat: float
+                weekday_schedule: [] list of 24 fractional values
+                saturday_schedule: [] list of 24 fractional values
+                sunday_schedule: [] list of 24 fractional values
+            }
+        """
+        return {
+            "sensible_heat": self.sensible_heat,
+            "weekday_schedule": self.weekday_schedule,
+            "saturday_schedule": self.saturday_schedule,
+            "sunday_schedule": self.sunday_schedule
+        }
+
     def ToString(self):
         """Overwrite .NET ToString method."""
         return self.__repr__()
@@ -209,6 +254,37 @@ class VegetationPar(DFParameter):
             11: 'Nov',
             12: 'Dec'
             }
+
+    @classmethod
+    def from_json(cls, data):
+        """Create a vegetation parameter object from a dictionary
+        Args:
+            data: {
+                vegetation_albedo: float between 0 and 1
+                vegetation_start_month: int between 0 and 11
+                vegetation_end_month: int between 0 and 11
+                tree_latent_fraction: float between 0 and 1
+                grass_latent_fraction: float between 0 and 1
+            }
+        """
+
+        required_keys = ()
+        nullable_keys = ("vegetation_albedo", "vegetation_start_month",
+                         "vegetation_end_month", "tree_latent_fraction",
+                         "grass_latent_fraction")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(vegetation_albedo=data["vegetation_albedo"],
+                   vegetation_start_month=data["vegetation_start_month"],
+                   vegetation_end_month=data["vegetation_end_month"],
+                   tree_latent_fraction=data["tree_latent_fraction"],
+                   grass_latent_fraction=data["grass_latent_fraction"])
 
     @property
     def vegetation_start_month(self):
@@ -300,6 +376,25 @@ class VegetationPar(DFParameter):
         """Return True for isVegetationPar."""
         return True
 
+    def to_json(self):
+        """Create a vegetation parameter dictionary
+        Returns:
+            {
+                vegetation_albedo: float between 0 and 1
+                vegetation_start_month: int between 0 and 11
+                vegetation_end_month: int between 0 and 11
+                tree_latent_fraction: float between 0 and 1
+                grass_latent_fraction: float between 0 and 1
+            }
+        """
+        return {
+            "vegetation_albedo": self.vegetation_albedo,
+            "vegetation_start_month": self.vegetation_start_month,
+            "vegetation_end_month": self.vegetation_end_month,
+            "tree_latent_fraction": self.tree_latent_fraction,
+            "grass_latent_fraction": self.grass_latent_fraction
+        }
+
     def ToString(self):
         """Overwrite .NET ToString method."""
         return self.__repr__()
@@ -343,6 +438,34 @@ class PavementPar(DFParameter):
         self.thickness = thickness
         self.conductivity = conductivity
         self.volumetric_heat_capacity = volumetric_heat_capacity
+
+    @classmethod
+    def from_json(cls, data):
+        """Create a pavement parameter object from a dictionary
+        Args:
+            data: {
+                albedo: float between 0 and 1
+                thickness: float positive
+                conductivity: float positive
+                volumetric_heat_capacity: float positive
+            }
+        """
+
+        required_keys = ()
+        nullable_keys = ("albedo", "thickness", "conductivity",
+                         "volumetric_heat_capacity")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(albedo=data["albedo"],
+                   thickness=data["thickness"],
+                   conductivity=data["conductivity"],
+                   volumetric_heat_capacity=data["volumetric_heat_capacity"])
 
     @property
     def albedo(self):
@@ -407,6 +530,23 @@ class PavementPar(DFParameter):
     def isPavementPar(self):
         """Return True for isPavementPar."""
         return True
+
+    def to_json(self):
+        """Create a pavement parameter dictionary
+        Results:
+            {
+                albedo: float between 0 and 1
+                thickness: float positive
+                conductivity: float positive
+                volumetric_heat_capacity: float positive
+            }
+        """
+        return {
+            "albedo": self.albedo,
+            "thickness": self.thickness,
+            "conductivity": self.conductivity,
+            "volumetric_heat_capacity": self.volumetric_heat_capacity
+        }
 
     def ToString(self):
         """Overwrite .NET ToString method."""

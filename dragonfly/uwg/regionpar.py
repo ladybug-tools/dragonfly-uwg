@@ -34,6 +34,34 @@ class RefEPWSitePar(DFParameter):
         self.temp_measure_height = temp_measure_height
         self.wind_measure_height = wind_measure_height
 
+    @classmethod
+    def from_json(cls, data):
+        """Create a reference epw parameter object from a dictionary
+        Args:
+            data: {
+                average_obstacle_height: float
+                vegetation_coverage: float between 0 and 1
+                temp_measure_height: float between 0 and 1
+                wind_measure_height: float
+            }
+        """
+
+        required_keys = ()
+        nullable_keys = ("average_obstacle_height", "vegetation_coverage",
+                         "temp_measure_height", "wind_measure_height")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(average_obstacle_height=data["average_obstacle_height"],
+                   vegetation_coverage=data["vegetation_coverage"],
+                   temp_measure_height=data["temp_measure_height"],
+                   wind_measure_height=data["wind_measure_height"])
+
     @property
     def average_obstacle_height(self):
         """Get or set the average obstacle height."""
@@ -98,6 +126,23 @@ class RefEPWSitePar(DFParameter):
         """Return True for isRefEPWSitePar."""
         return True
 
+    def to_json(self):
+        """Create a reference epw parameter dictionary
+        Results:
+            {
+                average_obstacle_height: float
+                vegetation_coverage: float between 0 and 1
+                temp_measure_height: float between 0 and 1
+                wind_measure_height: float
+            }
+        """
+        return {
+            "average_obstacle_height": self.average_obstacle_height,
+            "vegetation_coverage": self.vegetation_coverage,
+            "temp_measure_height": self.temp_measure_height,
+            "wind_measure_height": self.wind_measure_height
+        }
+
     def ToString(self):
         """Overwrite .NET ToString method."""
         return self.__repr__()
@@ -151,6 +196,36 @@ class BoundaryLayerPar(DFParameter):
         self.inversion_height = inversion_height
         self.circulation_coefficient = circulation_coefficient
         self.exchange_coefficient = exchange_coefficient
+
+    @classmethod
+    def from_json(cls, data):
+        """Create a boundary layer parameter object from a dictionary
+        Args:
+            data: {
+                day_boundary_layer_height: float positive
+                night_boundary_layer_height: float positive
+                inversion_height: float positive
+                circulation_coefficient: float positive
+                exchange_coefficient: float positive
+            }
+        """
+
+        required_keys = ()
+        nullable_keys = ("day_boundary_layer_height", "night_boundary_layer_height",
+                         "inversion_height", "circulation_coefficient", "exchange_coefficient")
+
+        for key in required_keys:
+            assert(key in data.keys(), "{} is a required value".format(key))
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(day_boundary_layer_height=data["day_boundary_layer_height"],
+                   night_boundary_layer_height=data["night_boundary_layer_height"],
+                   inversion_height=data["inversion_height"],
+                   circulation_coefficient=data["circulation_coefficient"],
+                   exchange_coefficient=data["exchange_coefficient"])
 
     @property
     def day_boundary_layer_height(self):
@@ -229,6 +304,25 @@ class BoundaryLayerPar(DFParameter):
     def isBoundaryLayerPar(self):
         """Return True for isBoundaryLayerPar."""
         return True
+
+    def to_json(self):
+        """Create a boundary layer parameter dictionary
+        Results:
+            {
+                day_boundary_layer_height: float positive
+                night_boundary_layer_height: float positive
+                inversion_height: float positive
+                circulation_coefficient: float positive
+                exchange_coefficient: float positive
+            }
+        """
+        return {
+            "day_boundary_layer_height": self.day_boundary_layer_height,
+            "night_boundary_layer_height": self.night_boundary_layer_height,
+            "inversion_height": self.inversion_height,
+            "circulation_coefficient": self.circulation_coefficient,
+            "exchange_coefficient": self.exchange_coefficient
+        }
 
     def ToString(self):
         """Overwrite .NET ToString method."""

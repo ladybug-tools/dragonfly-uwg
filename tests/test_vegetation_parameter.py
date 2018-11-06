@@ -25,3 +25,16 @@ def test_default(default):
     assert default_parameters.vegetation_end_month == default['vegetation_end_month']
     assert default_parameters.tree_latent_fraction == default['tree_latent_fraction']
     assert default_parameters.grass_latent_fraction == default['grass_latent_fraction']
+
+
+def test_json(correct):
+    parameters = VegetationPar(correct['vegetation_albedo'],
+                               correct['vegetation_start_month'],
+                               correct['vegetation_end_month'],
+                               correct['tree_latent_fraction'],
+                               correct['grass_latent_fraction'])
+
+    param_json = parameters.to_json()
+
+    assert param_json == correct
+    assert VegetationPar.from_json(param_json).to_json() == correct
