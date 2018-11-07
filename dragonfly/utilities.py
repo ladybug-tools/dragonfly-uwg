@@ -18,3 +18,10 @@ def fixRange(val, low, high):
         return low
     else:
         return float(val)
+
+
+def area_from_geojson(geojson):
+    perimeter = 0
+    area = 0
+
+    return area, perimeter

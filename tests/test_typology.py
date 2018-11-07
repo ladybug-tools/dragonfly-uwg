@@ -57,3 +57,7 @@ def test_json(correct, uwg_params):
 
     assert typology_json == correct
     assert Typology.from_json(typology_json).to_json() == correct
+
+
+def test_from_geo_json():
+    pass
