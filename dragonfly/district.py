@@ -12,161 +12,30 @@ class District(DFObject):
     """Represents an urban district inclluding buildings, ground cover, and traffic.
 
     Properties:
-        average_bldg_height: The average height of the buildings in meters.
-        site_coverage_ratio: A number between 0 and 1 that represents the
-            fraction of the district terrain that the building footprints
-            occupy.  It describes how close the buildings are to one
-            another in the district.
-        facade_to_site_ratio: A number that represents the ratio of vertical
-            urban surface area [walls] to the total terrain area of the district.
-            This value can be greater than 1.
-        bldg_type_ratios: A dictoinary with keys that represent the DoE
-            commercial template building programs and building ages
-            separated by a comma (eg. MidRiseApartment,1980sPresent).
-            Under each key of the dictionary, there should be a single
-            decimal number indicative of the fraction of the urban area's
-            floor area taken by the typology. The sum of all decimals
-            in the dictionary should equal 1.
-        climate_zone: A text string representing the ASHRAE climate zone.
-            (eg. 5A). This is used to set default constructions for the
-            buildings in the district.
-        tree_coverage_ratio: An number from 0 to 1 that defines the fraction
-            of the entire urban area (including both pavement and roofs)
-            that is covered by trees.  The default is set to 0.
-        grass_coverage_ratio: An number from 0 to 1 that defines the fraction
-            of the entire urban area (including both pavement and roofs)
-            that is covered by grass/vegetation.  The default is set to 0.
-        traffic_parameters: A dragonfly TrafficPar object that defines the
-            traffic within an urban area.
-        vegetation_parameters: A dragonfly VegetationPar object that defines
-            the behaviour of vegetation within an urban area.
-        pavement_parameters: A dragonfly PavementPar object that defines
-            the makeup of pavement within the urban area.
-        characteristic_length: A number representing the linear dimension
-            of the side of a square that encompasses the neighborhood in meters.
-            The default is set to 500 m, which was found to be the recomendation
-            for a typical mid-density urban area.
-            Street, Michael A. (2013). Comparison of simplified models of urban
-            climate for improved prediction of building energy use in cities.
-            Thesis (S.M. in Building Technology)--Massachusetts Institute of
-            Technology, Dept. of Architecture, http://hdl.handle.net/1721.1/82284
+        typologies
+        site_area
+        climate_zone
+        tree_coverage_ratio
+        grass_coverage_ratio
+        traffic_parameters
+        vegetation_parameters
+        pavement_parameters
+        characteristic_length
+        average_bldg_height
+        site_coverage_ratio
+        facade_to_site_ratio
+        bldg_type_ratios
     """
 
-    def __init__(self, average_bldg_height, site_coverage_ratio, facade_to_site_ratio,
-                 bldg_type_ratios, climate_zone,
+    def __init__(self, building_typologies, site_area, climate_zone,
                  tree_coverage_ratio=None, grass_coverage_ratio=None,
                  traffic_parameters=None, vegetation_parameters=None,
                  pavement_parameters=None, characteristic_length=500):
-        """Initialize a dragonfly district"""
+        """Initialize a district.
 
-        # critical geometry parameters that all cities must have and are not set-able.
-        assert isinstance(average_bldg_height, (float, int)), \
-            'average_bldg_height must be a number got {}'.format(
-                type(average_bldg_height))
-        assert (average_bldg_height >= 0), \
-            "average_bldg_height must be greater than 0"
-        self._average_bldg_height = average_bldg_height
-
-        assert isinstance(site_coverage_ratio, (float, int)), \
-            'site_coverage_ratio must be a number got {}'.format(
-                type(site_coverage_ratio))
-        self._site_coverage_ratio = in_range(
-            site_coverage_ratio, 0, 1, 'site_coverage_ratio')
-
-        assert isinstance(facade_to_site_ratio, (float, int)), \
-            'facade_to_site_ratio must be a number got {}'.format(
-                type(facade_to_site_ratio))
-        assert (facade_to_site_ratio >= 0), \
-            "facade_to_site_ratio must be greater than 0"
-        self._facade_to_site_ratio = facade_to_site_ratio
-
-        assert isinstance(characteristic_length, (float, int)), \
-            'characteristic_length must be a number got {}'.format(
-                type(characteristic_length))
-        assert (characteristic_length >= 0), \
-            "characteristic_length must be greater than 0"
-        self._characteristic_length = characteristic_length
-
-        # cimate zone, which is not set-able
-        self._climate_zone = BuildingTypes.check_cimate_zone(climate_zone)
-
-        # critical program parameters that all typologies must have and are set-able.
-        self._bldg_type_ratios = bldg_type_ratios
-        self._building_typologies = None
-        self._are_typologies_loaded = False
-
-        # uwg parameter objects that define district conditions and are set-able.
-        self.traffic_parameters = traffic_parameters
-        self.vegetation_parameters = vegetation_parameters
-        self.pavement_parameters = pavement_parameters
-
-        # vegetation coverage
-        self.tree_coverage_ratio = tree_coverage_ratio
-        self.grass_coverage_ratio = grass_coverage_ratio
-
-    @classmethod
-    def from_json(cls, data):
-        """Create a district object from a dictionary
         Args:
-            data: {
-                average_bldg_height: float
-                site_coverage_ratio: float between 0 and 1
-                facade_to_site_ratio: float between 0 and 1
-                bldg_type_ratios: {
-                    'BldgProgram,BldgEra': float between 0 and 1
-                }
-                climate_zone: string
-                tree_coverage_ratio: float between 0 and 1
-                grass_coverage_ratio: float between 0 and 1
-                traffic_parameters: traffic parameter dict
-                vegetation_parameters: vegetation parameter dict
-                pavement_parameters: pavement parameter dict
-                characteristic_length: float
-            }
-        """
-
-        required_keys = ('average_bldg_height', 'site_coverage_ratio',
-                         'facade_to_site_ratio',
-                         'bldg_type_ratios',
-                         'climate_zone'
-                         )
-        nullable_keys = ('tree_coverage_ratio', 'grass_coverage_ratio',
-                         'traffic_parameters', 'vegetation_parameters',
-                         'pavement_parameters', 'characteristic_length'
-                         )
-
-        for key in required_keys:
-            assert key in data.keys(), "{} is a required value".format(key)
-
-        for key in nullable_keys:
-            if key not in data:
-                data[key] = None
-
-        return cls(average_bldg_height=data['average_bldg_height'],
-                   site_coverage_ratio=data['site_coverage_ratio'],
-                   facade_to_site_ratio=data['facade_to_site_ratio'],
-                   bldg_type_ratios=data['bldg_type_ratios'],
-                   climate_zone=data['climate_zone'],
-                   tree_coverage_ratio=data['tree_coverage_ratio'],
-                   grass_coverage_ratio=data['grass_coverage_ratio'],
-                   traffic_parameters=TrafficPar.from_json(
-                       data['traffic_parameters']),
-                   vegetation_parameters=VegetationPar.from_json(
-                       data['vegetation_parameters']),
-                   pavement_parameters=PavementPar.from_json(
-                       data['pavement_parameters']),
-                   characteristic_length=data['characteristic_length']
-                   )
-
-    @classmethod
-    def from_typologies(cls, typologies, terrain, climate_zone,
-                        tree_coverage_ratio=None, grass_coverage_ratio=None,
-                        traffic_parameters=None, vegetation_parameters=None,
-                        pavement_parameters=None):
-        """Initialize a district from a list of building typologies
-        Args:
-            typologies: A list of dragonfly Typology objects.
-            terrain: A dragonfly Terrain object.
+            building_typologies: A list of dragonfly Typology objects.
+            site_area: A float value representing the site area in square meters.
             climate_zone: A text string representing the ASHRAE climate zone.
                 (eg. 5A). This is used to set default constructions for
                 the buildings in the district.
@@ -182,15 +51,27 @@ class District(DFObject):
                 defines the behaviour of vegetation within an urban area.
             pavement_parameters: A dragonfly PavementPar object that defines
                 the makeup of pavement within the urban area.
+            characteristic_length: A number representing the linear dimension
+                of the side of a square that encompasses the neighborhood in meters.
+                The default is set to 500 m, which was found to be the recomendation
+                for a typical mid-density urban area.
+                Street, Michael A. (2013). Comparison of simplified models of urban
+                climate for improved prediction of building energy use in cities.
+                Thesis (S.M. in Building Technology)--Massachusetts Institute of
+                Technology, Dept. of Architecture, http://hdl.handle.net/1721.1/82284
 
         Returns:
             district: The dragonfly district object
         """
+        # Set the climate zone
+        self._climate_zone = BuildingTypes.check_cimate_zone(climate_zone)
+        self.site_area = site_area
+
         # merge any typologies that are of the same DoE template.
         bldg_types = {}
         merged_types = []
         unique_count = 0
-        for b_type in typologies:
+        for b_type in building_typologies:
             assert hasattr(b_type, 'isTypology'), \
                 'typology is not a dragonfly typolgy object. Got {}'.format(
                     type(b_type))
@@ -204,43 +85,207 @@ class District(DFObject):
                 mergedType = Typology.create_merged_typology(b_type, type_to_merge)
                 merged_types[bldg_types[b_type_name]] = mergedType
 
-        # process the terrain surface.
-        assert hasattr(terrain, 'isTerrain'), \
-            'terrain is not a dragonfly terrain object. Got {}'.format(
-                type(terrain))
-
         # compute the critical geometry variables for the district
-        params = cls._calculate_geo_from_typologies(terrain.area, merged_types)
-        avg_bldg_height = params[0]
-        bldg_coverage = params[1]
-        facade_to_site = params[2]
+        params = self._calculate_geo_from_typologies(site_area, merged_types)
+        self._average_bldg_height = params[0]
+        self._site_coverage_ratio = params[1]
+        self._facade_to_site_ratio = params[2]
         floor_areas, full_type_names = params[3], params[4]
 
         # build the dictionary of typology ratios
         total_weight = sum(floor_areas)
         typology_ratios = [x / total_weight for x in floor_areas]
-        bldg_type_dict = {}
+        self._bldg_type_ratios = {}
         for i, key in enumerate(full_type_names):
-            bldg_type_dict[key] = typology_ratios[i]
-
-        # create the district object.
-        df_district = cls(avg_bldg_height, bldg_coverage, facade_to_site,
-                          bldg_type_dict, climate_zone,
-                          tree_coverage_ratio, grass_coverage_ratio,
-                          traffic_parameters, vegetation_parameters,
-                          pavement_parameters, terrain.characteristic_length)
+            self._bldg_type_ratios[key] = typology_ratios[i]
 
         # link the typologies to the district object
         for b_typ in merged_types:
             b_typ._has_parent_district = True
-            b_typ._parent_district = df_district
+            b_typ._parent_district = self
             if b_typ.uwg_parameters.shgc is None:
                 b_typ._uwg_parameters._shgc = TypologyDefaults.shgc_by_era_zone(
-                    b_typ.bldg_era, df_district._climate_zone)
-        df_district._building_typologies = merged_types
-        df_district._are_typologies_loaded = True
+                    b_typ.bldg_era, self._climate_zone)
+        self._building_typologies = merged_types
 
-        return df_district
+        # set vegetation coverage
+        self.tree_coverage_ratio = tree_coverage_ratio
+        self.grass_coverage_ratio = grass_coverage_ratio
+
+        # uwg parameter objects that define district conditions and are set-able.
+        self.traffic_parameters = traffic_parameters
+        self.vegetation_parameters = vegetation_parameters
+        self.pavement_parameters = pavement_parameters
+
+        # set the cahracteristic length
+        assert isinstance(characteristic_length, (float, int)), \
+            'characteristic_length must be a number got {}'.format(
+                type(characteristic_length))
+        assert (characteristic_length >= 0), \
+            "characteristic_length must be greater than 0"
+        self._characteristic_length = characteristic_length
+
+    @classmethod
+    def from_json(cls, data):
+        """Create a district object from a dictionary
+        Args:
+            data: {
+                building_typologies: list of Typology objects.
+                site_area: float in square meters
+                climate_zone: string
+                tree_coverage_ratio: float between 0 and 1
+                grass_coverage_ratio: float between 0 and 1
+                traffic_parameters: traffic parameter dict
+                vegetation_parameters: vegetation parameter dict
+                pavement_parameters: pavement parameter dict
+                characteristic_length: float
+            }
+        """
+
+        required_keys = ('building_typologies', 'site_area'
+                         'climate_zone'
+                         )
+        nullable_keys = ('tree_coverage_ratio', 'grass_coverage_ratio',
+                         'traffic_parameters', 'vegetation_parameters',
+                         'pavement_parameters', 'characteristic_length'
+                         )
+
+        for key in required_keys:
+            assert key in data.keys(), "{} is a required value".format(key)
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(building_typologies=[Typology.from_json(t)
+                                        for t in data['building_typologies']],
+                   site_area=data['site_area'],
+                   climate_zone=data['climate_zone'],
+                   tree_coverage_ratio=data['tree_coverage_ratio'],
+                   grass_coverage_ratio=data['grass_coverage_ratio'],
+                   traffic_parameters=TrafficPar.from_json(
+                       data['traffic_parameters']),
+                   vegetation_parameters=VegetationPar.from_json(
+                       data['vegetation_parameters']),
+                   pavement_parameters=PavementPar.from_json(
+                       data['pavement_parameters']),
+                   characteristic_length=data['characteristic_length']
+                   )
+
+    @classmethod
+    def from_geo_params(cls, average_bldg_height, site_coverage_ratio,
+                        facade_to_site_ratio, bldg_type_ratios, climate_zone,
+                        tree_coverage_ratio=None, grass_coverage_ratio=None,
+                        traffic_parameters=None, vegetation_parameters=None,
+                        pavement_parameters=None, characteristic_length=500):
+        """Initialize a District from a list of urban geometry parameters.
+
+        Args:
+            average_bldg_height: The average height of the buildings in meters.
+            site_coverage_ratio: A number between 0 and 1 that represents the
+                fraction of the district terrain that the building footprints
+                occupy.  It describes how close the buildings are to one
+                another in the district.
+            facade_to_site_ratio: A number that represents the ratio of vertical
+                urban surface area [walls] to the total terrain area of the district.
+                This value can be greater than 1.
+            bldg_type_ratios: A dictoinary with keys that represent the DoE
+                commercial template building programs and building ages
+                separated by a comma (eg. MidRiseApartment,1980sPresent).
+                Under each key of the dictionary, there should be a single
+                decimal number indicative of the fraction of the urban area's
+                floor area taken by the typology. The sum of all decimals
+                in the dictionary should equal 1.
+            climate_zone: A text string representing the ASHRAE climate zone.
+                (eg. 5A). This is used to set default constructions for
+                the buildings in the district.
+            tree_coverage_ratio: An number from 0 to 1 that defines the
+                fraction of the urban area (including both pavement
+                and roofs) that is covered by trees.  The default is set to 0.
+            grass_coverage_ratio: An number from 0 to 1 that defines the
+                fraction of the urban area (including both pavement and roofs)
+                that is covered by grass/vegetation.  The default is set to 0.
+            traffic_parameters: A dragonfly TrafficPar object that defines
+                the traffic within an urban area.
+            vegetation_parameters: A dragonfly VegetationPar object that
+                defines the behaviour of vegetation within an urban area.
+            pavement_parameters: A dragonfly PavementPar object that defines
+                the makeup of pavement within the urban area.
+            characteristic_length: A number representing the linear dimension
+                of the side of a square that encompasses the neighborhood in meters.
+                The default is set to 500 m, which was found to be the recomendation
+                for a typical mid-density urban area.
+                Street, Michael A. (2013). Comparison of simplified models of urban
+                climate for improved prediction of building energy use in cities.
+                Thesis (S.M. in Building Technology)--Massachusetts Institute of
+                Technology, Dept. of Architecture, http://hdl.handle.net/1721.1/82284
+        """
+
+        # check geometry parameters that all districts must have and are not set-able.
+        assert isinstance(average_bldg_height, (float, int)), \
+            'average_bldg_height must be a number. Got {}'.format(
+                type(average_bldg_height))
+        assert (average_bldg_height >= 0), \
+            "average_bldg_height must be greater than 0"
+
+        assert isinstance(site_coverage_ratio, (float, int)), \
+            'site_coverage_ratio must be a number. Got {}'.format(
+                type(site_coverage_ratio))
+        in_range(site_coverage_ratio, 0, 1, 'site_coverage_ratio')
+
+        assert isinstance(facade_to_site_ratio, (float, int)), \
+            'facade_to_site_ratio must be a number. Got {}'.format(
+                type(facade_to_site_ratio))
+        assert (facade_to_site_ratio >= 0), \
+            "facade_to_site_ratio must be greater than 0"
+
+        # check the dictionary of building type ratios
+        assert isinstance(bldg_type_ratios, dict), \
+            'bldg_type_ratios must be a dictionary. Got {}'.format(
+                type(facade_to_site_ratio))
+        totalRatios = 0
+        for typ in bldg_type_ratios.keys():
+            assert isinstance(typ, str), \
+                'building_type must be a string got {}'.format(
+                    type(typ))
+            assert isinstance(bldg_type_ratios[typ], (float, int)), \
+                'building_type_ratio must be a number got {}'.format(
+                    type(bldg_type_ratios[typ]))
+            totalRatios += bldg_type_ratios[typ]
+            try:
+                bldg_program, bldg_era = typ.split(',')
+                bldg_program = BuildingTypes.check_program(bldg_program)
+                bldg_era = BuildingTypes.check_era(bldg_era)
+            except Exception:
+                raise Exception(
+                    'building_type "{}" is not in the correct format'
+                    ' of BldgProgram,BldgEra.'.format(typ)
+                )
+        assert (totalRatios == 1), \
+            "Total building ratios do not sum to 1. Got {}".format(totalRatios)
+
+        # create typology objects from the dictionary of building type ratios.
+        site_area = characteristic_length**2
+        _building_typologies = []
+        for b_type in bldg_type_ratios.keys():
+            bldg_program, bldg_era = b_type.split(',')
+            district_fract = bldg_type_ratios[b_type]
+            footprint_area = site_area * site_coverage_ratio * district_fract
+            facade_area = site_area * facade_to_site_ratio * district_fract
+            new_type = Typology(
+                average_bldg_height, footprint_area, facade_area,
+                bldg_program, bldg_era)
+            _building_typologies.append(new_type)
+
+        return cls(_building_typologies, site_area, climate_zone,
+                   tree_coverage_ratio, grass_coverage_ratio,
+                   traffic_parameters, vegetation_parameters,
+                   pavement_parameters, characteristic_length)
+
+    @property
+    def building_typologies(self):
+        """Return a list of building typology objects for the urban area."""
+        return self._building_typologies
 
     @property
     def average_bldg_height(self):
@@ -263,11 +308,6 @@ class District(DFObject):
         return self._characteristic_length
 
     @property
-    def bldg_types(self):
-        """Return a list of the building types in the district."""
-        return self._bldg_type_ratios.keys()
-
-    @property
     def bldg_type_ratios(self):
         """Get or set the building types and corresponding ratios as a dictionary.
 
@@ -276,60 +316,27 @@ class District(DFObject):
         """
         return self._bldg_type_ratios
 
-    @bldg_type_ratios.setter
-    def bldg_type_ratios(self, bldg_type_dict):
-        totalRatios = 0
-        for typ in bldg_type_dict.keys():
-            assert isinstance(typ, str), \
-                'building_type must be a string got {}'.format(
-                    type(typ))
-            assert isinstance(bldg_type_dict[typ], (float, int)), \
-                'building_type_ratio must be a number got {}'.format(
-                    type(bldg_type_dict[typ]))
-            totalRatios += bldg_type_dict[typ]
-            try:
-                bldg_program, bldg_era = typ.split(',')
-                bldg_program = BuildingTypes.check_program(bldg_program)
-                bldg_era = BuildingTypes.check_era(bldg_era)
-            except Exception:
-                raise Exception(
-                    'building_type "{}" is not in the correct format'
-                    ' of BldgProgram,BldgEra.'.format(typ)
-                )
-        assert (totalRatios == 1), \
-            "Total building ratios do not sum to 1. Got {}".format(totalRatios)
-        self._bldg_type_ratios = bldg_type_dict
-        self._are_typologies_loaded = False
-
     @property
-    def building_typologies(self):
-        """Return a list of building typology objects for the urban area."""
-        if self.are_typologies_loaded is True:
-            return self._building_typologies
-        else:
-            # build typology objects from the dictionary of building type ratios.
-            self._building_typologies = []
-            for b_type in self.bldg_type_ratios.keys():
-                bldg_program, bldg_era = b_type.split(',')
-                district_fract = self.bldg_type_ratios[b_type]
-                site_area = self.characteristic_length**2
-                footprint_area = site_area * self.site_coverage_ratio * district_fract
-                facade_area = site_area * self.facade_to_site_ratio * district_fract
-                new_type = Typology(
-                    self.average_bldg_height, footprint_area, facade_area,
-                    bldg_program, bldg_era)
-                new_type._parent_district = self
-                new_type._has_parent_district = True
-                new_type._uwg_parameters._shgc = TypologyDefaults.shgc_by_era_zone(
-                    new_type.bldg_era, self._climate_zone)
-                self._building_typologies.append(new_type)
-            self._are_typologies_loaded = True
-            return self._building_typologies
+    def bldg_types(self):
+        """Return a list of the building types in the district."""
+        return self._bldg_type_ratios.keys()
 
     @property
     def climate_zone(self):
         """Get the ASHRAE climate zone, whisch sets building constructions."""
         return BuildingTypes.get_readable_zone(self._climate_zone)
+
+    @property
+    def site_area(self):
+        """Get or set the site area of the district."""
+        return self._site_area
+
+    @site_area.setter
+    def site_area(self, a):
+        isinstance(a, (float, int)), \
+            'site_area must be a number. Got {}'.format(type(a))
+        assert a > 0, 'site_area must be greater than 0. Got {}.'.format(a)
+        self._site_area = a
 
     @property
     def traffic_parameters(self):
@@ -489,11 +496,6 @@ class District(DFObject):
         return weighted_sum / total_roof_area
 
     @property
-    def are_typologies_loaded(self):
-        """Return True when typologies need to be created or re-generated."""
-        return self._are_typologies_loaded
-
-    @property
     def isDistrict(self):
         """Return True for District."""
         return True
@@ -551,12 +553,8 @@ class District(DFObject):
         """Create a district dictionary
         Results:
             {
-                average_bldg_height: float
-                site_coverage_ratio: float between 0 and 1
-                facade_to_site_ratio: float between 0 and 1
-                bldg_type_ratios: {
-                    'BldgProgram,BldgEra': float between 0 and 1
-                }
+                building_typologies: list of Typology objects.
+                site_area: float in square meters
                 climate_zone: string
                 tree_coverage_ratio: float between 0 and 1
                 grass_coverage_ratio: float between 0 and 1
@@ -567,10 +565,8 @@ class District(DFObject):
             }
         """
         return {
-            'average_bldg_height': self.average_bldg_height,
-            'site_coverage_ratio': self.site_coverage_ratio,
-            'facade_to_site_ratio': self.facade_to_site_ratio,
-            'bldg_type_ratios': self.bldg_type_ratios,
+            'building_typologies': [typ.to_json() for typ in self.building_typologies],
+            'site_area': self.site_area,
             'climate_zone': self.climate_zone,
             'tree_coverage_ratio': self.tree_coverage_ratio,
             'grass_coverage_ratio': self.grass_coverage_ratio,
