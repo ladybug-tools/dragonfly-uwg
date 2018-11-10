@@ -142,7 +142,7 @@ class District(DFObject):
             }
         """
 
-        required_keys = ('building_typologies', 'site_area'
+        required_keys = ('building_typologies', 'site_area',
                          'climate_zone'
                          )
         nullable_keys = ('tree_coverage_ratio', 'grass_coverage_ratio',
