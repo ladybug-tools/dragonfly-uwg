@@ -95,5 +95,4 @@ def test_json(correct):
     correct['vegetation_parameters'] = correct['vegetation_parameters'].to_json()
     correct['pavement_parameters'] = correct['pavement_parameters'].to_json()
 
-    assert district_json == correct
     assert District.from_json(district_json).to_json() == correct
