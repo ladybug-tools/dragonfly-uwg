@@ -30,6 +30,7 @@ def correct():
         'traffic_parameters': TrafficPar(4.0),
         'vegetation_parameters': VegetationPar(),
         'pavement_parameters': PavementPar(),
+        'characteristic_length': 300.0
     }
 
 
