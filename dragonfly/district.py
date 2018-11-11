@@ -66,8 +66,8 @@ class District(DFObject):
         # Set the climate zone
         self._climate_zone = BuildingTypes.check_cimate_zone(climate_zone)
 
-        # set the site
-        assert site_area.isinstance(site_area, (float, int)), \
+        # set the site_area
+        assert isinstance(site_area, (float, int)), \
             'site_area must be a number. Got {}'.format(type(site_area))
         assert site_area > 0, 'site_area must be greater than 0. Got {}.'.format(
             site_area)
