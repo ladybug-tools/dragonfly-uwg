@@ -17,10 +17,10 @@ def test_initialize(correct):
                         correct['characteristic_length'])
 
     assert district.average_bldg_height == 35
-    assert district.site_coverage_ratio == (45 * 2) / 90000
-    assert district.facade_to_site_ratio == (33 * 2) / 90000
-    assert district.bldg_type_ratios == {'Hospital,1980sPresent': 0.5,
-                                         'SmallOffice,NewConstruction': 0.5}
+    assert district.site_coverage_ratio == (20000.0 + 5000.0) / 90000
+    assert district.facade_to_site_ratio == (45000.0 + 15000.0) / 90000
+    assert district.bldg_type_ratios == {'Hospital,1980sPresent': 0.8,
+                                         'SmallOffice,NewConstruction': 0.2}
     assert district.climate_zone == correct['climate_zone']
     assert district.tree_coverage_ratio == correct['tree_coverage_ratio']
     assert district.grass_coverage_ratio == correct['grass_coverage_ratio']
@@ -90,9 +90,4 @@ def test_json(correct):
                         correct['characteristic_length'])
 
     district_json = district.to_json()
-
-    correct['traffic_parameters'] = correct['traffic_parameters'].to_json()
-    correct['vegetation_parameters'] = correct['vegetation_parameters'].to_json()
-    correct['pavement_parameters'] = correct['pavement_parameters'].to_json()
-
-    District.from_json(district_json)
+    assert District.from_json(district_json).to_json() == district_json

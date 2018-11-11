@@ -65,7 +65,13 @@ class District(DFObject):
         """
         # Set the climate zone
         self._climate_zone = BuildingTypes.check_cimate_zone(climate_zone)
-        self.site_area = site_area
+
+        # set the site_area
+        assert isinstance(site_area, (float, int)), \
+            'site_area must be a number. Got {}'.format(type(site_area))
+        assert site_area > 0, 'site_area must be greater than 0. Got {}.'.format(
+            site_area)
+        self._site_area = site_area
 
         # merge any typologies that are of the same DoE template.
         bldg_types = {}
@@ -330,13 +336,6 @@ class District(DFObject):
     def site_area(self):
         """Get or set the site area of the district."""
         return self._site_area
-
-    @site_area.setter
-    def site_area(self, a):
-        isinstance(a, (float, int)), \
-            'site_area must be a number. Got {}'.format(type(a))
-        assert a > 0, 'site_area must be greater than 0. Got {}.'.format(a)
-        self._site_area = a
 
     @property
     def traffic_parameters(self):
