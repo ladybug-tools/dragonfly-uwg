@@ -17,10 +17,10 @@ def test_initialize(correct):
                         correct['characteristic_length'])
 
     assert district.average_bldg_height == 35
-    assert district.site_coverage_ratio == (10000.0 + 5000.0) / 90000
+    assert district.site_coverage_ratio == (20000.0 + 5000.0) / 90000
     assert district.facade_to_site_ratio == (45000.0 + 15000.0) / 90000
-    assert district.bldg_type_ratios == {'Hospital,1980sPresent': 0.5,
-                                         'SmallOffice,NewConstruction': 0.5}
+    assert district.bldg_type_ratios == {'Hospital,1980sPresent': 0.8,
+                                         'SmallOffice,NewConstruction': 0.2}
     assert district.climate_zone == correct['climate_zone']
     assert district.tree_coverage_ratio == correct['tree_coverage_ratio']
     assert district.grass_coverage_ratio == correct['grass_coverage_ratio']

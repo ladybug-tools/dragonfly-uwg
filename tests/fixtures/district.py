@@ -6,7 +6,7 @@ from dragonfly.uwg.districtpar import VegetationPar, PavementPar, TrafficPar
 @pytest.fixture
 def correct():
     typology1 = Typology(average_height=35.0,
-                         footprint_area=10000.0,
+                         footprint_area=20000.0,
                          facade_area=45000.0,
                          bldg_program='Hospital',
                          bldg_era='1980sPresent',
