@@ -90,9 +90,4 @@ def test_json(correct):
                         correct['characteristic_length'])
 
     district_json = district.to_json()
-
-    correct['traffic_parameters'] = correct['traffic_parameters'].to_json()
-    correct['vegetation_parameters'] = correct['vegetation_parameters'].to_json()
-    correct['pavement_parameters'] = correct['pavement_parameters'].to_json()
-
-    District.from_json(district_json)
+    assert District.from_json(district_json).to_json() == district_json
