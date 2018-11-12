@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/ladybug-tools/dragonfly.svg?branch=master)](https://travis-ci.org/ladybug-tools/dragonfly)
 
 # Dragonfly
-========================================
 ![Screenshot](https://github.com/chriswmackey/Dragonfly/blob/master/dragonfly.png)
 
 Dragonfly is a library to model, visualize, and analyze urban climate and energy energy use.
@@ -10,13 +9,14 @@ Dragonfly uses the [Urban Weather Generator (uwg)](https://github.com/ladybug-to
 
 ## UWG
 To use the Urban Weather Generator (UWG) capabiites in dragonfly, you must install the following dependencies:
-ladybug - `pip install lbt-ladybug`
-uwg - `pip install uwg`
+* ladybug - `pip install lbt-ladybug`
+* uwg - `pip install uwg`
 
 ### Example
 This example shows how to define building typologies and use them to morph a rural EPW to account for the urban conditions:
 
-`from dragonfly.typology import Typology
+```
+from dragonfly.typology import Typology
 from dragonfly.district import District
 from dragonfly.uwg.run import RunManager
 
@@ -38,4 +38,5 @@ typology2 = Typology(average_height=35.0,
 district = District([typology1, typology2], 90000.0, '5A')
 
 rm = RunManager(epw_path, district)
-rm.run()`
+rm.run()
+```
