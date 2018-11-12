@@ -132,8 +132,9 @@ class Typology(DFObject):
         )
 
     @classmethod
-    def from_geometry(cls, bldg_breps, bldg_program, bldg_era,
-                      floor_to_floor=None, glz_ratio=None, uwg_parameters=None):
+    def from_solid_geometry(cls, bldg_breps, bldg_program, bldg_era,
+                            floor_to_floor=None, glz_ratio=None,
+                            uwg_parameters=None):
         """Initialize a building typology from closed building brep geometry
 
         Args:
@@ -171,9 +172,9 @@ class Typology(DFObject):
         return typology, footprint_breps, floor_breps, facade_breps
 
     @classmethod
-    def from_footprints(cls, bldg_footprint_breps, avg_num_stories,
-                        bldg_program, bldg_era, floor_to_floor=None,
-                        glz_ratio=None, uwg_parameters=None):
+    def from_footprint_geometry(cls, bldg_footprint_breps, avg_num_stories,
+                                bldg_program, bldg_era, floor_to_floor=None,
+                                glz_ratio=None, uwg_parameters=None):
         """Initialize typology from building footprints and an average number of stories.
 
         Args:
@@ -222,9 +223,9 @@ class Typology(DFObject):
         return typology, perimeter_curves
 
     @classmethod
-    def from_footprints_and_stories(cls, bldg_footprint_breps, num_stories,
-                                    bldg_program, bldg_era, floor_to_floor=None,
-                                    glz_ratio=None, uwg_parameters=None):
+    def from_footprint_geo_and_stories(cls, bldg_footprint_breps, num_stories,
+                                       bldg_program, bldg_era, floor_to_floor=None,
+                                       glz_ratio=None, uwg_parameters=None):
         """Initialize typology from building footprints and list of building stories.
 
         Args:

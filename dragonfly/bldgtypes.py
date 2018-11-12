@@ -220,6 +220,10 @@ class BuildingTypes(object):
         return cls.BUILT_ERA[era]
 
     @classmethod
+    def get_uwg_era_index(cls, era):
+        return cls.UWG_BUILT_ERA[era]
+
+    @classmethod
     def get_readable_zone(cls, climate_zone):
         return cls.ZONE_TYPE[climate_zone]
 

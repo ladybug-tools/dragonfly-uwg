@@ -591,7 +591,7 @@ class District(DFObject):
                '\n  Tree Coverage Ratio: {}' \
                '\n  Grass Coverage Ratio: {}' \
                '\n  ------------------------' \
-               '\n  Building Typologies: {}'.format(
+               '\n  Building Typologies:\n     {}'.format(
                    int(self._average_bldg_height),
                    round(self._site_coverage_ratio, 2),
                    round(self._facade_to_site_ratio, 2),
