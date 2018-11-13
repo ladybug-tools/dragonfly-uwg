@@ -4,11 +4,13 @@ import os
 # import dragonfly dependencies
 from ..bldgtypes import BuildingTypes
 from .regionpar import RefEPWSitePar, BoundaryLayerPar
+from ..district import District
 
 # import ladybug dependency
 try:
     from ladybug.analysisperiod import AnalysisPeriod
     from ladybug.epw import EPW
+    from ladybug.futil import write_to_file_by_name
 except ImportError as e:
     raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
 
@@ -39,7 +41,7 @@ class RunManager(object):
     Methods:
         run: Directly run the UWG to generate a morphed EPW.
             This method will only work if you have the uwg Python library installed.
-        save: Save all of the properties of the RunManager to a .uwg file.
+        save_uwg_file: Save all of the properties of the RunManager to a .uwg file.
             These .uwg files can be parsed by the UWG engine.
     """
     def __init__(self, epw_file, district, epw_site_par=None, boundary_layer_par=None,
@@ -51,6 +53,43 @@ class RunManager(object):
         self.boundary_layer_par = boundary_layer_par
         self.analysis_period = analysis_period
         self.sim_timestep = sim_timestep
+
+    @classmethod
+    def from_json(cls, data):
+        """Create a RunManager object from a dictionary
+        Args:
+            data: {
+                epw_file: list of Typology objects
+                district: dragonfly district disct
+                epw_site_par: epw site parameter dict
+                boundary_layer_par: boundary layer parameter dict
+                analysis_period: ladybug analysis period dict
+                sim_timestep: simulation timestep in seconds
+            }
+        """
+
+        required_keys = ('epw_file', 'district')
+        nullable_keys = ('epw_site_par', 'boundary_layer_par',
+                         'analysis_period', 'sim_timestep')
+
+        for key in required_keys:
+            assert key in data.keys(), "{} is a required value".format(key)
+
+        for key in nullable_keys:
+            if key not in data:
+                data[key] = None
+
+        return cls(epw_file=data['epw_file'],
+                   district=District.from_json(
+                       data['district']),
+                   epw_site_par=RefEPWSitePar.from_json(
+                       data['epw_site_par']),
+                   boundary_layer_par=BoundaryLayerPar.from_json(
+                       data['boundary_layer_par']),
+                   analysis_period=AnalysisPeriod.from_json(
+                       data['analysis_period']),
+                   sim_timestep=data['sim_timestep']
+                   )
 
     @property
     def epw_file(self):
@@ -139,20 +178,158 @@ class RunManager(object):
         else:
             self._sim_timestep = 300
 
-    def run(self, morphed_epw_path=None):
+    @property
+    def uwg_file_string(self):
+        """Return a string that can be written to a .uwg file."""
+        # extract certain values from the obects
+        veg_start, veg_end = self._get_start_end_vegetation()
+        traffic_matrix = self._district.traffic_parameters.get_uwg_matrix()
+        month, day, n_day = self._parse_ladybug_analysis_period()
+
+        # get a commented matrix showing the ratios of building types
+        programs = BuildingTypes.get_program_list()
+        bldg_type_str_list = [str(typ).replace('[', '').replace(']', '')
+                              + '  #' + programs[i]
+                              for i, typ in enumerate(self._district.get_uwg_matrix())]
+        bldg_type_mtx = '\n'.join(bldg_type_str_list)
+
+        # build the text string
+        return '# ================================================='\
+            '\n# UWG INPUT PARAMETERS'\
+            '\n# =================================================\n'\
+            '\n# Urban characteristics'\
+            '\nbldHeight,{},     # average building height (m)'\
+            '\nbldDensity,{},   # urban area building plan density (0-1)'\
+            '\nverToHor,{},     # urban area vertical to horizontal ratio'\
+            '\nh_mix,{},       # fraction of building HVAC heat output to street canyon'\
+            '\ncharLength,{}, # dimension of a square that encompasses the district (m)'\
+            '\nalbRoad,{},      # road albedo (0 - 1)'\
+            '\ndRoad,{},        # road pavement thickness (m)'\
+            '\nkRoad,{},          # road pavement conductivity (W/m K)'\
+            '\ncRoad,{},    # road volumetric heat capacity (J/m^3 K)'\
+            '\nsensAnth,{},  # non-building sensible heat at street level (W/m^2)'\
+            '\nlatAnth,0,   # non-building latent heat (W/m^2) (not used)\n'\
+            '\nzone,{},    # Climate zone index (ie. 4=3A, 11=5A, 16=8)\n'\
+            '\n# Vegetation parameters'\
+            '\nvegCover,{},     # Fraction of the district covered in grass/shrub (0-1)'\
+            '\ntreeCoverage,{}, # Fraction of the district covered in trees (0-1)'\
+            '\nvegStart,{},    # The month in which vegetation starts to evapotranspire'\
+            '\nvegEnd,{},        # The month in which vegetation stops evapotranspiring'\
+            '\nalbVeg,{},      # Vegetation albedo'\
+            '\nrurVegCover,{},  # Fraction of the rural ground covered by vegetation'\
+            '\nlatGrss,{},    # Fraction of the heat absorbed by grass as latent'\
+            '\nlatTree,{},    # Fraction of the heat absorbed by trees as latent\n'\
+            '\n# Traffic schedule [1 to 24 hour]'\
+            '\nSchTraffic,'\
+            '\n{}, # weekday'\
+            '\n{}, # saturday'\
+            '\n{}, # sunday\n'\
+            '\n# Fraction of building stock for each era (Pre80, Pst80, new)'\
+            '\n# Note that sum(bld) must be equal to 1'\
+            '\n{}\n'\
+            '\n# Simulation parameters,'\
+            '\nMonth,{},        # starting month (1-12)'\
+            '\nDay,{},          # starting day (1-31)'\
+            '\nnDay,{},        # number of days to run simultion'\
+            '\ndtSim,{},      # simulation time step (s)'\
+            '\ndtWeather,3600.0, # weather time step (s)\n'\
+            '\n# HVAC system and internal loads'\
+            '\nautosize,0,     # autosize HVAC (1 for yes; 0 for no)'\
+            '\nsensOcc,100.0,    # Sensible heat per occupant (W)'\
+            '\nLatFOcc,0.3,    # Latent heat fraction from occupant (normally 0.3)'\
+            '\nRadFOcc,0.2,    # Radiant heat fraction from occupant (normally 0.2)'\
+            '\nRadFEquip,0.5,  # Radiant heat fraction from equipment (normally 0.5)'\
+            '\nRadFLight,0.7,  # Radiant heat fraction from light (normally 0.7)\n'\
+            '\n#Urban climate parameters'\
+            '\nh_ubl1,{},    # ubl height - day (m)'\
+            '\nh_ubl2,{},      # ubl height - night (m)'\
+            '\nh_ref,{},      # inversion height (m)'\
+            '\nh_temp,{},       # temperature height (m)'\
+            '\nh_wind,{},      # wind height (m)'\
+            '\nc_circ,{},     # circulation coefficient (default = 1.2; Bruno (2012))'\
+            '\nc_exch,{},       # exchange coefficient (default = 1; Bruno (2014))'\
+            '\nmaxDay,150,     # max day threshold (W/m^2)'\
+            '\nmaxNight,20,    # max night threshold (W/m^2)'\
+            '\nwindMin,1,      # min wind speed (m/s)'\
+            '\nh_obs,{},      # rural average obstacle height (m)'\
+            .format(
+                self._district.average_bldg_height,
+                self._district.site_coverage_ratio,
+                self._district.facade_to_site_ratio,
+                self._district.fract_heat_to_canyon,
+                self._district.characteristic_length,
+                self._district.pavement_parameters.albedo,
+                self._district.pavement_parameters.thickness,
+                self._district.pavement_parameters.conductivity,
+                self._district.pavement_parameters.volumetric_heat_capacity,
+                self._district.traffic_parameters.sensible_heat,
+                self._district._climate_zone + 1,
+                self._district.grass_coverage_ratio,
+                self._district.tree_coverage_ratio,
+                veg_start,
+                veg_end,
+                self._district.vegetation_parameters.vegetation_albedo,
+                self._epw_site_par.vegetation_coverage,
+                self._district.vegetation_parameters.grass_latent_fraction,
+                self._district.vegetation_parameters.tree_latent_fraction,
+                str(traffic_matrix[0]).replace('[', '').replace(']', ''),
+                str(traffic_matrix[1]).replace('[', '').replace(']', ''),
+                str(traffic_matrix[2]).replace('[', '').replace(']', ''),
+                bldg_type_mtx,
+                month,
+                day,
+                n_day,
+                self._sim_timestep,
+                self._boundary_layer_par.day_boundary_layer_height,
+                self._boundary_layer_par.night_boundary_layer_height,
+                self._boundary_layer_par.inversion_height,
+                self._epw_site_par.temp_measure_height,
+                self._epw_site_par.wind_measure_height,
+                self._boundary_layer_par.circulation_coefficient,
+                self._boundary_layer_par.exchange_coefficient,
+                self._epw_site_par.average_obstacle_height
+            )
+
+    def save_uwg_file(self, uwg_file_path=None):
+        """Write the properties of the RunManager to a .uwg file.
+
+        Args:
+            uwg_file_path: Full file path to the .uwg file that you want to write.
+                The default is set to go to an URBAN folder in the same
+                directory as the existing rural EPW.
+
+        Returns:
+            uwg_file_path: The file path to the .uwg file.
+        """
+        start_folder, epw_name = os.path.split(self._epw_file)
+        epw_name = epw_name.replace('.epw', '')
+        if uwg_file_path is None:
+            end_folder = '{}\\URBAN\\'.format(start_folder)
+            name = '{}_URBAN.uwg'.format(epw_name)
+        else:
+            end_folder, name = os.path.split(uwg_file_path)
+            if not name.lower().endswith('.uwg'):
+                name = name + '.uwg'
+        write_to_file_by_name(end_folder, name, self.uwg_file_string, True)
+
+    def run(self, urban_epw_path=None):
         """Run the UWG using the inputs to the RunManager.
 
         Args:
-            morhed_epw_path: Full file path to the morphed epw.
+            urban_epw_path: Full file path to the morphed epw.
                 The default is set to go to an URBAN folder in the same
                 directory as the existing rural EPW.
+
+        Returns:
+            urban_epw_path: The file path to the morphed epw.
         """
         # check to see if UWG is installed
         assert uwg_installed is True, \
-            'uwg must be installed to use the run() method.'
+            'UWG must be installed to use the uwg.Runmanager.run() method. '\
+            'Use "pip install uwg" to install.'
 
         # create a uwg_object from the dragonfly objects.
-        uwg_object, new_epw_path = self._create_uwg(morphed_epw_path)
+        uwg_object, urban_epw_path = self._create_uwg(urban_epw_path)
         uwg_object = self._set_uwg_input(uwg_object)
         uwg_object.init_BEM_obj()
         uwg_object = self._set_individual_typologies(uwg_object)
@@ -166,6 +343,8 @@ class RunManager(object):
         # run the UWG object.
         uwg_object.simulate()
         uwg_object.write_epw()
+
+        return urban_epw_path
 
     def _create_uwg(self, end_file_path):
         """Create a UWG object using the urban weather generator."""
@@ -234,21 +413,9 @@ class RunManager(object):
             uwg_obj.latTree = self._district.vegetation_parameters.tree_latent_fraction
             uwg_obj.latGrss = self._district.vegetation_parameters.grass_latent_fraction
             uwg_obj.rurVegCover = self._epw_site_par.vegetation_coverage
-
-            if self._district.vegetation_parameters.vegetation_start_month == 0 \
-                    or self._district.vegetation_parameters.vegetation_end_month == 0:
-                        veg_start, veg_end = self._autocalc_start_end_vegetation(
-                            self._epw_file)
-            if self._district.vegetation_parameters.vegetation_start_month == 0:
-                uwg_obj.veg_start = veg_start
-            else:
-                uwg_obj.veg_start = \
-                    self._district.vegetation_parameters.vegetation_start_month
-            if self._district.vegetation_parameters.vegetation_end_month == 0:
-                uwg_obj.veg_end = veg_end
-            else:
-                uwg_obj.veg_end = \
-                    self._district.vegetation_parameters.vegetation_end_month
+            veg_start, veg_end = self._get_start_end_vegetation()
+            uwg_obj.veg_start = veg_start
+            uwg_obj.veg_end = veg_end
 
             # Define road
             uwg_obj.alb_road = self._district.pavement_parameters.albedo
@@ -306,14 +473,23 @@ class RunManager(object):
         simDuration = end_doy - start_doy + 1
         return st_month, st_day, simDuration
 
-    def _autocalc_start_end_vegetation(self, epw_file, threshold_temp=10):
-        epw_obj = EPW(epw_file)
+    def _get_start_end_vegetation(self):
+        if self._district.vegetation_parameters.vegetation_start_month == 0 \
+                or self._district.vegetation_parameters.vegetation_end_month == 0:
+                    veg_start, veg_end = self._autocalc_start_end_vegetation()
+        if self._district.vegetation_parameters.vegetation_start_month != 0:
+            veg_start = self._district.vegetation_parameters.vegetation_start_month
+        if self._district.vegetation_parameters.vegetation_end_month != 0:
+            veg_end = self._district.vegetation_parameters.vegetation_end_month
+        return veg_start, veg_end
+
+    def _autocalc_start_end_vegetation(self, threshold_temp=10):
+        epw_obj = EPW(self._epw_file)
         temperature_data = epw_obj.dry_bulb_temperature.group_by_month()
         month_temps = []
         for month in range(1, 13):
             month_temps.append(sum(temperature_data[month]) /
                                len(temperature_data[month]))
-
         veg_end = 12
         veg_start = 1
         veg_start_set = False
@@ -326,6 +502,27 @@ class RunManager(object):
                 veg_start_set = False
 
         return veg_start, veg_end
+
+    def to_json(self):
+        """Create a UWG RunManager dictionary
+        Results:
+            {
+                epw_file: list of Typology objects
+                district: dragonfly district disct
+                epw_site_par: epw site parameter dict
+                boundary_layer_par: boundary layer parameter dict
+                analysis_period: ladybug analysis period dict
+                sim_timestep: simulation timestep in seconds
+            }
+        """
+        return {
+            'epw_file': self.epw_file,
+            'district': self.district.to_json(),
+            'epw_site_par': self.epw_site_par.to_json(),
+            'boundary_layer_par': self.boundary_layer_par.to_json(),
+            'analysis_period': self.analysis_period.to_json(),
+            'sim_timestep': self.sim_timestep
+            }
 
     def ToString(self):
         """Overwrite .NET ToString method."""

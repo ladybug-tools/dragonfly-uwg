@@ -1,4 +1,5 @@
 from __future__ import division
+import math
 
 from .dfobject import DFObject
 from .bldgtypes import BuildingTypes
@@ -30,7 +31,7 @@ class District(DFObject):
     def __init__(self, building_typologies, site_area, climate_zone,
                  tree_coverage_ratio=None, grass_coverage_ratio=None,
                  traffic_parameters=None, vegetation_parameters=None,
-                 pavement_parameters=None, characteristic_length=500):
+                 pavement_parameters=None, characteristic_length=None):
         """Initialize a district.
 
         Args:
@@ -53,12 +54,7 @@ class District(DFObject):
                 the makeup of pavement within the urban area.
             characteristic_length: A number representing the linear dimension
                 of the side of a square that encompasses the neighborhood in meters.
-                The default is set to 500 m, which was found to be the recomendation
-                for a typical mid-density urban area.
-                Street, Michael A. (2013). Comparison of simplified models of urban
-                climate for improved prediction of building energy use in cities.
-                Thesis (S.M. in Building Technology)--Massachusetts Institute of
-                Technology, Dept. of Architecture, http://hdl.handle.net/1721.1/82284
+                The default will take the square root of the input site_area.
 
         Returns:
             district: The dragonfly district object
@@ -72,6 +68,17 @@ class District(DFObject):
         assert site_area > 0, 'site_area must be greater than 0. Got {}.'.format(
             site_area)
         self._site_area = site_area
+
+        # set the characteristic length
+        if characteristic_length is not None:
+            assert isinstance(characteristic_length, (float, int)), \
+                'characteristic_length must be a number got {}'.format(
+                    type(characteristic_length))
+            assert (characteristic_length >= 0), \
+                "characteristic_length must be greater than 0"
+            self._characteristic_length = characteristic_length
+        else:
+            self._characteristic_length = math.sqrt(self._site_area)
 
         # merge any typologies that are of the same DoE template.
         bldg_types = {}
@@ -122,14 +129,6 @@ class District(DFObject):
         self.traffic_parameters = traffic_parameters
         self.vegetation_parameters = vegetation_parameters
         self.pavement_parameters = pavement_parameters
-
-        # set the cahracteristic length
-        assert isinstance(characteristic_length, (float, int)), \
-            'characteristic_length must be a number got {}'.format(
-                type(characteristic_length))
-        assert (characteristic_length >= 0), \
-            "characteristic_length must be greater than 0"
-        self._characteristic_length = characteristic_length
 
     @classmethod
     def from_json(cls, data):
@@ -183,7 +182,7 @@ class District(DFObject):
                         facade_to_site_ratio, bldg_type_ratios, climate_zone,
                         tree_coverage_ratio=None, grass_coverage_ratio=None,
                         traffic_parameters=None, vegetation_parameters=None,
-                        pavement_parameters=None, characteristic_length=500):
+                        pavement_parameters=None, characteristic_length=None):
         """Initialize a District from a list of urban geometry parameters.
 
         Args:
@@ -244,6 +243,15 @@ class District(DFObject):
                 type(facade_to_site_ratio))
         assert (facade_to_site_ratio >= 0), \
             "facade_to_site_ratio must be greater than 0"
+
+        if characteristic_length is not None:
+            assert isinstance(characteristic_length, (float, int)), \
+                'characteristic_length must be a number got {}'.format(
+                    type(characteristic_length))
+            assert (characteristic_length >= 0), \
+                "characteristic_length must be greater than 0"
+        else:
+            characteristic_length = 500.0
 
         # check the dictionary of building type ratios
         assert isinstance(bldg_type_ratios, dict), \

@@ -231,6 +231,15 @@ class BuildingTypes(object):
     def default_glazing_ratio(cls, bldg_program):
         return cls.GLZ_RATIO[bldg_program]
 
+    @classmethod
+    def get_program_list(cls):
+        dict = cls.BLDG_PROGRAM
+        keys, vals = [], []
+        for key, value in dict.iteritems():
+            keys.append(key)
+            vals.append(value)
+        return [x for _, x in sorted(zip(vals, keys))]
+
     def __repr__(self):
         """BuildingTypes representation."""
         _programs = '\n  '.join(self.BLDG_PROGRAM.keys())
