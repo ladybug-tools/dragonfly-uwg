@@ -313,6 +313,10 @@ class RunManager(object):
                 name = name + '.uwg'
         write_to_file_by_name(end_folder, name, self.uwg_file_string, True)
 
+        uwg_file_path = os.path.join(end_folder, name)
+        print '.uwg file successfully written to: {}'.format(uwg_file_path)
+        return uwg_file_path
+
     def run(self, urban_epw_path=None):
         """Run the UWG using the inputs to the RunManager.
 
