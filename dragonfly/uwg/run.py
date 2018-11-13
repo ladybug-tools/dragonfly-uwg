@@ -419,8 +419,8 @@ class RunManager(object):
             uwg_obj.latGrss = self._district.vegetation_parameters.grass_latent_fraction
             uwg_obj.rurVegCover = self._epw_site_par.vegetation_coverage
             veg_start, veg_end = self._get_start_end_vegetation()
-            uwg_obj.veg_start = veg_start
-            uwg_obj.veg_end = veg_end
+            uwg_obj.vegStart = veg_start
+            uwg_obj.vegEnd = veg_end
 
             # Define road
             uwg_obj.alb_road = self._district.pavement_parameters.albedo
