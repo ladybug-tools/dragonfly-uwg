@@ -1,4 +1,5 @@
-# import core modules
+# coding=utf-8
+from __future__ import division
 import os
 
 # import dragonfly dependencies

@@ -5,7 +5,8 @@ python:
   - "3.6"
 
 install:
-  - pip install https://github.com/ladybug-tools/uwg/archive/master.zip
+  - pip install lbt-ladybug
+  - pip install uwg
   - pip install pytest pytest-cov
 
 script:

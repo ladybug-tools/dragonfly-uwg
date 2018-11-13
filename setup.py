@@ -7,7 +7,7 @@ setuptools.setup(
     name="dragonfly",
     version="0.2.0",
     author="ladybug-tools",
-    description="Dragonfly is a utility API to work with UWG",
+    description="Dragonfly is a python library for urban climate + urban energy modeling.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ladybug-tools/dragonfly",
