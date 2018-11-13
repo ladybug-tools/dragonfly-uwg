@@ -241,7 +241,7 @@ class BuildingTypes(object):
                 keys.append(key)
                 vals.append(value)
         else:
-            for key, value in dict.iteritems():
+            for key, value in dict.items():
                 keys.append(key)
                 vals.append(value)
         return [x for _, x in sorted(zip(vals, keys))]
