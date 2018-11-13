@@ -22,21 +22,26 @@ from dragonfly.uwg.run import RunManager
 
 epw_path = 'C:\\ladybug\\USA_MA_Boston-Logan.Intl.AP.725090_TMY3\\USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw'
 
-typology1 = Typology(average_height=35.0,
-                     footprint_area=20000.0,
-                     facade_area=45000.0,
-                     bldg_program='Hospital',
+typology1 = Typology(average_height=50.0,
+                     footprint_area=50000.0,
+                     facade_area=200000.0,
+                     bldg_program='LargeOffice',
                      bldg_era='1980sPresent',
+                     floor_to_floor=4.0)
+                     
+typology2 = Typology(average_height=20.0,
+                     footprint_area=20000.0,
+                     facade_area=150000.0,
+                     bldg_program='MidRiseApartment',
+                     bldg_era='Pre1980s',
                      floor_to_floor=3.0)
+                     
+traffic = TrafficPar(10)
 
-typology2 = Typology(average_height=35.0,
-                     footprint_area=5000.0,
-                     facade_area=15000.0,
-                     bldg_program='SmallOffice',
-                     bldg_era='NewConstruction',
-                     floor_to_floor=3.0)
-
-district = District([typology1, typology2], 90000.0, '5A')
+district = District(building_typologies=[typology1, typology2],
+                    site_area=150000.0,
+                    climate_zone='5A',
+                    traffic_parameters=traffic)
 
 rm = RunManager(epw_path, district)
 rm.run()
