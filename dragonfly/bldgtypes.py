@@ -1,4 +1,5 @@
 # coding=utf-8
+import sys
 
 
 class BuildingTypes(object):
@@ -235,9 +236,14 @@ class BuildingTypes(object):
     def get_program_list(cls):
         dict = cls.BLDG_PROGRAM
         keys, vals = [], []
-        for key, value in dict.iteritems():
-            keys.append(key)
-            vals.append(value)
+        if (sys.version_info < (3, 0)):
+            for key, value in dict.iteritems():
+                keys.append(key)
+                vals.append(value)
+        else:
+            for key, value in dict.iteritems():
+                keys.append(key)
+                vals.append(value)
         return [x for _, x in sorted(zip(vals, keys))]
 
     def __repr__(self):
