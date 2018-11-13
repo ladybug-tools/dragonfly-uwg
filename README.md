@@ -17,6 +17,7 @@ This example shows how to define building typologies and use them to morph a rur
 
 ```
 from dragonfly.typology import Typology
+from dragonfly.uwg.districtpar import TrafficPar
 from dragonfly.district import District
 from dragonfly.uwg.run import RunManager
 
