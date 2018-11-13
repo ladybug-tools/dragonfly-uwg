@@ -313,6 +313,10 @@ class RunManager(object):
                 name = name + '.uwg'
         write_to_file_by_name(end_folder, name, self.uwg_file_string, True)
 
+        uwg_file_path = os.path.join(end_folder, name)
+        print ('.uwg file successfully written to: {}'.format(uwg_file_path))
+        return uwg_file_path
+
     def run(self, urban_epw_path=None):
         """Run the UWG using the inputs to the RunManager.
 
@@ -415,8 +419,8 @@ class RunManager(object):
             uwg_obj.latGrss = self._district.vegetation_parameters.grass_latent_fraction
             uwg_obj.rurVegCover = self._epw_site_par.vegetation_coverage
             veg_start, veg_end = self._get_start_end_vegetation()
-            uwg_obj.veg_start = veg_start
-            uwg_obj.veg_end = veg_end
+            uwg_obj.vegStart = veg_start
+            uwg_obj.vegEnd = veg_end
 
             # Define road
             uwg_obj.alb_road = self._district.pavement_parameters.albedo
