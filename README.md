@@ -11,6 +11,8 @@ Dragonfly is a library to model, visualize, and analyze urban climate and energy
 
 Dragonfly uses the [Urban Weather Generator (uwg)](https://github.com/ladybug-tools/urbanWeatherGen) and the [Ladybug core](https://github.com/ladybug-tools/ladybug)
 
+## [API Documentation](http://www.ladybug.tools/apidoc/dragonfly/)
+
 ## UWG
 To use the Urban Weather Generator (UWG) capabiites in dragonfly, you must install the following dependencies:
 * ladybug - `pip install lbt-ladybug`
