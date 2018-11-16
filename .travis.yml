@@ -10,4 +10,16 @@ install:
   - pip install pytest pytest-cov
 
 script:
-  - python -m pytest --cov=dragonfly
+  - python -m pytest
+
+jobs:
+  include:
+    - stage: deploy
+      python: "3.6"
+      env: TRAVIS=true
+      if: branch = master
+      script:
+        - git config --global user.name "ladybugbot"
+        - git config --global user.email "release@ladybug.tools"
+        - pip install python-semantic-release
+        - semantic-release publish
