@@ -442,7 +442,7 @@ class RunManager(object):
             df_typology = typology_dict[','.join(
                 [uwg_typology.building.Type,
                  BuildingTypes.get_uwg_era_index(uwg_typology.building.Era)])]
-            uwg_typology.floorHeight = df_typology.floor_to_floor
+            uwg_typology.building.floorHeight = df_typology.floor_to_floor
             uwg_typology.building.glazingRatio = df_typology.glz_ratio
             uwg_typology.building.canyon_fraction = \
                 df_typology.uwg_parameters.fract_heat_to_canyon
