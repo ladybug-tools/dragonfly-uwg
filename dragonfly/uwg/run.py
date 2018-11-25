@@ -177,7 +177,7 @@ class RunManager(object):
                 'sim_timestep must be greater than 0. Got {}'.format(timestep)
             self._sim_timestep = timestep
         else:
-            self._sim_timestep = 300
+            self._sim_timestep = 200
 
     @property
     def uwg_file_string(self):
