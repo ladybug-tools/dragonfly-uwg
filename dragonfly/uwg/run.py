@@ -336,6 +336,7 @@ class RunManager(object):
         # create a uwg_object from the dragonfly objects.
         uwg_object, urban_epw_path = self._create_uwg(urban_epw_path)
         uwg_object = self._set_uwg_input(uwg_object)
+        uwg_object.check_required_inputs()
         uwg_object.init_BEM_obj()
         uwg_object = self._set_individual_typologies(uwg_object)
         uwg_object = self._set_global_facade_props(uwg_object)
@@ -372,7 +373,7 @@ class RunManager(object):
             uwg_obj.Month = month
             uwg_obj.Day = day
             uwg_obj.nDay = n_day
-            uwg_obj.dtSim = self._sim_timestep
+            uwg_obj.dtSim = float(self._sim_timestep)
             uwg_obj.dtWeather = 3600.0
 
             # HVAC system and internal laod (not currently exposed in API)
@@ -384,25 +385,25 @@ class RunManager(object):
             uwg_obj.RadFLight = 0.7
 
             # define urban microclimate parameters
-            uwg_obj.h_ubl1 = self._boundary_layer_par.day_boundary_layer_height
-            uwg_obj.h_ubl2 = self._boundary_layer_par.night_boundary_layer_height
-            uwg_obj.h_ref = self._boundary_layer_par.inversion_height
+            uwg_obj.h_ubl1 = float(self._boundary_layer_par.day_boundary_layer_height)
+            uwg_obj.h_ubl2 = float(self._boundary_layer_par.night_boundary_layer_height)
+            uwg_obj.h_ref = float(self._boundary_layer_par.inversion_height)
             uwg_obj.c_circ = self._boundary_layer_par.circulation_coefficient
             uwg_obj.c_exch = self._boundary_layer_par.exchange_coefficient
-            uwg_obj.h_temp = self._epw_site_par.temp_measure_height
-            uwg_obj.h_wind = self._epw_site_par.wind_measure_height
+            uwg_obj.h_temp = float(self._epw_site_par.temp_measure_height)
+            uwg_obj.h_wind = float(self._epw_site_par.wind_measure_height)
             uwg_obj.maxDay = 150.
             uwg_obj.maxNight = 20.
             uwg_obj.windMin = 1.
-            uwg_obj.h_obs = self._epw_site_par.average_obstacle_height
+            uwg_obj.h_obs = float(self._epw_site_par.average_obstacle_height)
 
             # Urban characteristics
-            uwg_obj.bldHeight = self._district.average_bldg_height
-            uwg_obj.h_mix = self._district.fract_heat_to_canyon
-            uwg_obj.bldDensity = self._district.site_coverage_ratio
-            uwg_obj.verToHor = self._district.facade_to_site_ratio
-            uwg_obj.charLength = self._district.characteristic_length
-            uwg_obj.sensAnth = self._district.traffic_parameters.sensible_heat
+            uwg_obj.bldHeight = float(self._district.average_bldg_height)
+            uwg_obj.h_mix = float(self._district.fract_heat_to_canyon)
+            uwg_obj.bldDensity = float(self._district.site_coverage_ratio)
+            uwg_obj.verToHor = float(self._district.facade_to_site_ratio)
+            uwg_obj.charLength = float(self._district.characteristic_length)
+            uwg_obj.sensAnth = float(self._district.traffic_parameters.sensible_heat)
             uwg_obj.SchTraffic = self._district.traffic_parameters.get_uwg_matrix()
 
             # Define optional Building characteristics
@@ -412,21 +413,21 @@ class RunManager(object):
             uwg_obj.zone = self._district._climate_zone
 
             # Vegetation parameters
-            uwg_obj.vegCover = self._district.grass_coverage_ratio
-            uwg_obj.treeCoverage = self._district.tree_coverage_ratio
-            uwg_obj.albVeg = self._district.vegetation_parameters.vegetation_albedo
-            uwg_obj.latTree = self._district.vegetation_parameters.tree_latent_fraction
-            uwg_obj.latGrss = self._district.vegetation_parameters.grass_latent_fraction
-            uwg_obj.rurVegCover = self._epw_site_par.vegetation_coverage
+            uwg_obj.vegCover = float(self._district.grass_coverage_ratio)
+            uwg_obj.treeCoverage = float(self._district.tree_coverage_ratio)
+            uwg_obj.albVeg = float(self._district.vegetation_parameters.vegetation_albedo)
+            uwg_obj.latTree = float(self._district.vegetation_parameters.tree_latent_fraction)
+            uwg_obj.latGrss = float(self._district.vegetation_parameters.grass_latent_fraction)
+            uwg_obj.rurVegCover = float(self._epw_site_par.vegetation_coverage)
             veg_start, veg_end = self._get_start_end_vegetation()
             uwg_obj.vegStart = veg_start
             uwg_obj.vegEnd = veg_end
 
             # Define road
-            uwg_obj.alb_road = self._district.pavement_parameters.albedo
-            uwg_obj.d_road = self._district.pavement_parameters.thickness
-            uwg_obj.kRoad = self._district.pavement_parameters.conductivity
-            uwg_obj.cRoad = self._district.pavement_parameters.volumetric_heat_capacity
+            uwg_obj.alb_road = float(self._district.pavement_parameters.albedo)
+            uwg_obj.d_road = float(self._district.pavement_parameters.thickness)
+            uwg_obj.kRoad = float(self._district.pavement_parameters.conductivity)
+            uwg_obj.cRoad = float(self._district.pavement_parameters.volumetric_heat_capacity)
 
             return uwg_obj
 
