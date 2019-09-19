@@ -1,14 +1,11 @@
-[![Build Status](https://travis-ci.org/ladybug-tools/dragonfly.svg?branch=master)](https://travis-ci.org/ladybug-tools/dragonfly)
-
 [![Python 2.7](https://img.shields.io/badge/python-2.7-green.svg)](https://www.python.org/downloads/release/python-270/) [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/) [![IronPython](https://img.shields.io/badge/ironpython-2.7-red.svg)](https://github.com/IronLanguages/ironpython2/releases/tag/ipy-2.7.8/)
 
 
-# Dragonfly
-![Screenshot](https://github.com/chriswmackey/Dragonfly/blob/master/dragonfly.png)
+# dragonfly-uwg
 
-Dragonfly is a library to model, visualize, and analyze urban climate and energy energy use.
+Dragonfly extension for urban heat island modeling.
 
-Dragonfly uses the [Urban Weather Generator (uwg)](https://github.com/ladybug-tools/urbanWeatherGen) and the [Ladybug core](https://github.com/ladybug-tools/ladybug)
+Dragonfly-uwg uses the [Urban Weather Generator (uwg)](https://github.com/ladybug-tools/urbanWeatherGen) to morph EPW files to account for the [urban heat island effect](https://en.wikipedia.org/wiki/Urban_heat_island).
 
 ## [API Documentation](http://www.ladybug.tools/apidoc/dragonfly/)
 
