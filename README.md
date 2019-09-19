@@ -7,8 +7,6 @@ Dragonfly extension for urban heat island modeling.
 
 Dragonfly-uwg uses the [Urban Weather Generator (uwg)](https://github.com/ladybug-tools/urbanWeatherGen) to morph EPW files to account for the [urban heat island effect](https://en.wikipedia.org/wiki/Urban_heat_island).
 
-## [API Documentation](http://www.ladybug.tools/apidoc/dragonfly/)
-
 ## UWG
 To use the Urban Weather Generator (UWG) capabiites in dragonfly, you must install the following dependencies:
 * ladybug - `pip install lbt-ladybug`
