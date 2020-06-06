@@ -1,6 +1,6 @@
 from __future__ import division
 
-from dragonfly.district import District
+from dragonfly_uwg.district import District
 import pytest
 from tests.fixtures.district import correct, default, from_geo_params
 

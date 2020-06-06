@@ -1,6 +1,6 @@
 import pytest
-from dragonfly.typology import Typology
-from dragonfly.uwg.districtpar import VegetationPar, PavementPar, TrafficPar
+from dragonfly_uwg.typology import Typology
+from dragonfly_uwg.uwg.districtpar import VegetationPar, PavementPar, TrafficPar
 
 
 @pytest.fixture

@@ -1,4 +1,4 @@
-from dragonfly.uwg.districtpar import PavementPar
+from dragonfly_uwg.uwg.districtpar import PavementPar
 import pytest
 from tests.fixtures.pavement_parameter import correct, default
 

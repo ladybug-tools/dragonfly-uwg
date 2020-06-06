@@ -1,4 +1,4 @@
-from dragonfly.vegetation import Vegetation
+from dragonfly_uwg.vegetation import Vegetation
 import pytest
 from tests.fixtures.vegetation import correct, default
 
