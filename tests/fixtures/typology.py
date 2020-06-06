@@ -1,5 +1,5 @@
 import pytest
-from dragonfly.uwg.typologypar import TypologyPar
+from dragonfly_uwg.uwg.typologypar import TypologyPar
 
 
 @pytest.fixture

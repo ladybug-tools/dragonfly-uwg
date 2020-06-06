@@ -1,2 +1,2 @@
-lbt-ladybug==0.*
-uwg==5.*
+ladybug-core>=0.25.0
+uwg>=5.1.0

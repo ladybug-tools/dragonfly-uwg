@@ -1,4 +1,4 @@
-from dragonfly.uwg.typologypar import TypologyPar
+from dragonfly_uwg.uwg.typologypar import TypologyPar
 from tests.fixtures.typology_parameters import default, correct
 import pytest
 

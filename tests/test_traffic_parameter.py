@@ -1,4 +1,4 @@
-from dragonfly.uwg.districtpar import TrafficPar
+from dragonfly_uwg.uwg.districtpar import TrafficPar
 import pytest
 from tests.fixtures.traffic_parameter import correct, incorrect, default
 

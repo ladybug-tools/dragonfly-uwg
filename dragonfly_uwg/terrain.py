@@ -1,11 +1,5 @@
 # coding=utf-8
 from .dfobject import DFObject
-import dragonfly
-try:
-    import plus
-except ImportError as e:
-    if dragonfly.isplus:
-        raise ImportError(e)
 
 import math
 

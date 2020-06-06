@@ -7,13 +7,6 @@ from .bldgtypes import BuildingTypes
 from .uwg.typologypar import TypologyPar, TypologyDefaults
 from .utilities import in_range
 
-import dragonfly
-try:
-    import plus
-except ImportError as e:
-    if dragonfly.isplus:
-        raise ImportError(e)
-
 
 class Typology(DFObject):
     """Represents a group of buildings of the same typology in an urban area.

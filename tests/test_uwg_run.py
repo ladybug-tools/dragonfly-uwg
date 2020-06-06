@@ -1,8 +1,8 @@
 from __future__ import division
 import os
 
-from dragonfly.uwg.run import RunManager
-from dragonfly.district import District
+from dragonfly_uwg.uwg.run import RunManager
+from dragonfly_uwg.district import District
 
 from ladybug.analysisperiod import AnalysisPeriod
 

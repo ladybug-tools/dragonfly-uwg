@@ -3,12 +3,6 @@ from __future__ import division
 
 from .dfobject import DFObject
 from .utilities import in_range
-import dragonfly
-try:
-    import plus
-except ImportError as e:
-    if dragonfly.isplus:
-        raise ImportError(e)
 
 
 class Vegetation(DFObject):

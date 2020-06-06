@@ -1,4 +1,4 @@
-from dragonfly.terrain import Terrain
+from dragonfly_uwg.terrain import Terrain
 import pytest
 from tests.fixtures.terrain import correct
 
