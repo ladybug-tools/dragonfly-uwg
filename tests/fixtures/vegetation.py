@@ -1,17 +1,10 @@
-import pytest
+# coding=utf-8
+from dragonfly_uwg.simulation.vegetation import VegetationParameter
 
 
-@pytest.fixture
-def default():
-    return {
-        'area': 25,
-        'is_trees': False
-    }
+def default_vegetation():
+    return VegetationParameter()
 
 
-@pytest.fixture
-def correct():
-    return {
-        'area': 35,
-        'is_trees': True
-    }
+def custom_vegetation():
+    return VegetationParameter(0.4, 3, 11, 0.8, 0.6)

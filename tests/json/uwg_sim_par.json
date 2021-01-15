@@ -1,0 +1,36 @@
+{
+    "type": "UWGSimulationParameter",
+    "run_period": {
+        "type": "UWGRunPeriod",      
+        "start_date": [
+            1,
+            1
+        ],
+        "end_date": [
+            1,
+            7
+        ]
+    },
+    "timestep": 12,
+    "vegetation_parameter": {
+        "type": "VegetationParameter",
+        "vegetation_albedo": 0.25,
+        "tree_latent_fraction": 0.7,
+        "grass_latent_fraction": 0.5
+    },
+    "reference_epw_site": {
+        "type": "ReferenceEPWSite",
+        "average_obstacle_height": 0.1,
+        "vegetation_coverage": 0.9,
+        "temp_measure_height": 10.0,
+        "wind_measure_height": 10.0
+    },
+    "boundary_layer_parameter": {
+        "type": "BoundaryLayerParameter",
+        "day_boundary_layer_height": 1000.0,
+        "night_boundary_layer_height": 80.0,
+        "inversion_height": 150.0,
+        "circulation_coefficient": 1.2,
+        "exchange_coefficient": 1.0
+    }
+}
