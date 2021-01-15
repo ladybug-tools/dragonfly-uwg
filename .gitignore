@@ -1,10 +1,14 @@
-# virtual environment
-venv
-
-# compiled code
 *.pyc
-
-# builds
-build/
-dist/
-dragonfly.egg-info
+test.py
+.pytest_cache
+*__pycache__
+.coverage
+*.ipynb
+.ipynb_checkpoints
+.tox
+*.egg-info
+tox.ini
+/.cache
+/.vscode
+.eggs
+*.code-workspace

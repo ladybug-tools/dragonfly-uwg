@@ -1,6 +1,7 @@
 ![Dragonfly](https://www.ladybug.tools/assets/img/dragonfly.png)
 
-[![Build Status](https://travis-ci.org/ladybug-tools/dragonfly-uwg.svg?branch=master)](https://travis-ci.org/ladybug-tools/dragonfly-uwg)
+[![Build Status](https://github.com/ladybug-tools/dragonfly-uwg/workflows/CI/badge.svg)](https://github.com/ladybug-tools/dragonfly-uwg/actions)
+[![Coverage Status](https://coveralls.io/repos/github/ladybug-tools/dragonfly-uwg/badge.svg?branch=master)](https://coveralls.io/github/ladybug-tools/dragonfly-uwg)
 
 [![Python 2.7](https://img.shields.io/badge/python-2.7-green.svg)](https://www.python.org/downloads/release/python-270/) [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/) [![IronPython](https://img.shields.io/badge/ironpython-2.7-red.svg)](https://github.com/IronLanguages/ironpython2/releases/tag/ipy-2.7.8/)
 
@@ -12,43 +13,44 @@ Dragonfly-uwg uses the [Urban Weather Generator (uwg)](https://github.com/ladybu
 
 ## Installation
 
-To install the core library try:
-
 `pip install -U dragonfly-uwg`
 
-### Example
+If you want to also include the command line interface try:
 
-This example shows how to define building typologies and use them to morph a rural EPW to account for the urban conditions:
+`pip install -U dragonfly-uwg[cli]`
 
-```python
-from dragonfly_uwg.typology import Typology
-from dragonfly_uwg.uwg.districtpar import TrafficPar
-from dragonfly_uwg.district import District
-from dragonfly_uwg.uwg.run import RunManager
+## QuickStart
 
-epw_path = 'C:\\ladybug\\USA_MA_Boston-Logan.Intl.AP.725090_TMY3\\USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw'
+```
+import dragonfly_uwg
+```
 
-typology1 = Typology(average_height=50.0,
-                     footprint_area=50000.0,
-                     facade_area=200000.0,
-                     bldg_program='LargeOffice',
-                     bldg_era='1980sPresent',
-                     floor_to_floor=4.0)
+## [API Documentation](http://ladybug-tools.github.io/dragonfly-uwg/docs)
 
-typology2 = Typology(average_height=20.0,
-                     footprint_area=20000.0,
-                     facade_area=150000.0,
-                     bldg_program='MidRiseApartment',
-                     bldg_era='Pre1980s',
-                     floor_to_floor=3.0)
+## Local Development
 
-traffic = TrafficPar(10)
+1. Clone this repo locally
+```
+git clone git@github.com:ladybug-tools/dragonfly-uwg
 
-district = District(building_typologies=[typology1, typology2],
-                    site_area=150000.0,
-                    climate_zone='5A',
-                    traffic_parameters=traffic)
+# or
 
-rm = RunManager(epw_path, district)
-rm.run()
+git clone https://github.com/ladybug-tools/dragonfly-uwg
+```
+2. Install dependencies:
+```
+cd dragonfly-uwg
+pip install -r dev-requirements.txt
+pip install -r requirements.txt
+```
+
+3. Run Tests:
+```
+python -m pytest tests/
+```
+
+4. Generate Documentation:
+```
+sphinx-apidoc -f -e -d 4 -o ./docs ./dragonfly_uwg
+sphinx-build -b html ./docs ./docs/_build/docs
 ```

@@ -1,6 +1,9 @@
-import sys
+"""dragonfly-uwg library."""
+from honeybee.logutil import get_logger
 
-__version__ = '0.3.2'
 
-# This is a variable to check if the library is a [+] library.
-setattr(sys.modules[__name__], 'isplus', False)
+# load all functions that extends dragonfly core library
+import dragonfly_uwg._extend_dragonfly
+
+
+logger = get_logger(__name__, filename='dragonfly-uwg.log')
