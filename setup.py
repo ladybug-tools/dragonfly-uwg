@@ -19,9 +19,6 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests"]),
     include_package_data=True,
     install_requires=requirements,
-    extras_require={
-        'cli': ['click==7.1.2', 'dragonfly-core[cli]==1.28.4']
-    },
     entry_points={
         "console_scripts": ["dragonfly-uwg = dragonfly_uwg.cli:uwg"]
     },

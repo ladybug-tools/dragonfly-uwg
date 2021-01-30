@@ -1,19 +1,12 @@
 """Commands for simulating Dragonfly JSON models in the UWG."""
-
-try:
-    import click
-except ImportError:
-    raise ImportError(
-        'click is not installed. Try `pip install . [cli]` command.'
-    )
+import click
+import sys
+import logging
+import json
 
 from dragonfly_uwg.run import run_uwg
 from dragonfly_uwg.simulation.parameter import UWGSimulationParameter
 from dragonfly.model import Model
-
-import sys
-import logging
-import json
 
 _logger = logging.getLogger(__name__)
 
