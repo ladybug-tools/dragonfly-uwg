@@ -15,10 +15,6 @@ Dragonfly-uwg uses the [Urban Weather Generator (uwg)](https://github.com/ladybu
 
 `pip install -U dragonfly-uwg`
 
-If you want to also include the command line interface try:
-
-`pip install -U dragonfly-uwg[cli]`
-
 ## QuickStart
 
 ```console
