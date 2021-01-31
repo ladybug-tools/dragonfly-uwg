@@ -13,12 +13,7 @@ Installation
 
 ``pip install -U dragonfly-uwg``.
 
-If you want to also include the command line interface use:
-
-``pip install -U dragonfly-uwg[cli]``.
-
 To check if the command line is installed correctly use ``dragonfly-uwg --help``
-or ``dragonfly uwg --help``
 
 
 CLI Docs
