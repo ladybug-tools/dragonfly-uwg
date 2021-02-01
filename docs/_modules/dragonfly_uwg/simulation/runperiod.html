@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dragonfly_uwg.simulation.runperiod &#8212; dragonfly-uwg  documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          dragonfly-uwg</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.cli.simulate.html">dragonfly_uwg.cli.simulate module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.cli.html#module-dragonfly_uwg.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.properties.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.run.html">dragonfly_uwg.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.terrain.html">dragonfly_uwg.terrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.traffic.html">dragonfly_uwg.traffic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.writer.html">dragonfly_uwg.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a></li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-8 content" role="main">
+      
+  <h1>Source code for dragonfly_uwg.simulation.runperiod</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding=utf-8</span>
+<span class="sd">&quot;&quot;&quot;UWG Simulation Run Period.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">ladybug.analysisperiod</span> <span class="kn">import</span> <span class="n">AnalysisPeriod</span>
+<span class="kn">from</span> <span class="nn">ladybug.dt</span> <span class="kn">import</span> <span class="n">Date</span>
+
+
+<div class="viewcode-block" id="UWGRunPeriod"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod">[docs]</a><span class="k">class</span> <span class="nc">UWGRunPeriod</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;UWG Simulation Run Period.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        start_date: A ladybug Date object for the start of the simulation.</span>
+<span class="sd">            Must be before the end date and have a leap_year property matching the</span>
+<span class="sd">            end_date. (Default: 1 Jan).</span>
+<span class="sd">        end_date: A ladybug Date object for the end of the simulation.</span>
+<span class="sd">            Must be after the start date and have a leap_year property matching the</span>
+<span class="sd">            start_date. (Default: 31 Dec).</span>
+
+<span class="sd">    Properties:</span>
+<span class="sd">        * start_date</span>
+<span class="sd">        * end_date</span>
+<span class="sd">        * day_count</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;_start_date&#39;</span><span class="p">,</span> <span class="s1">&#39;_end_date&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">end_date</span><span class="o">=</span><span class="n">Date</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize UWGRunPeriod.&quot;&quot;&quot;</span>
+        <span class="c1"># process the dates</span>
+        <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_date</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s1">&#39;start_date&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_date</span> <span class="o">=</span> <span class="n">start_date</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_date</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">end_date</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start_date</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a ladybug Date object for the start of the simulation period.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_date</span>
+
+    <span class="nd">@start_date</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">start_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_date</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;start_date&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_date</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_date</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_start_before_end</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">end_date</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a ladybug Date object for the end of the simulation period.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_date</span>
+
+    <span class="nd">@end_date</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">end_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_date</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;end_date&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_end_date</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_end_date</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_start_before_end</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">day_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get an integer for the number of days in the run period.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">doy</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">doy</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<div class="viewcode-block" id="UWGRunPeriod.from_analysis_period"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.from_analysis_period">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_analysis_period</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">analysis_period</span><span class="o">=</span><span class="n">AnalysisPeriod</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">23</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a UWGRunPeriod object from a ladybug AnalysisPeriod.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            analysis_period: A ladybug AnalysisPeriod object that has the start</span>
+<span class="sd">                and end dates for daylight savings time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">analysis_period</span><span class="p">,</span> <span class="n">AnalysisPeriod</span><span class="p">),</span> <span class="s1">&#39;Expected AnalysisPeriod &#39;</span> \
+            <span class="s1">&#39;for UWGRunPeriod.from_analysis_period. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">type</span><span class="p">(</span><span class="n">analysis_period</span><span class="p">))</span>
+        <span class="n">st_date</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="n">analysis_period</span><span class="o">.</span><span class="n">st_month</span><span class="p">,</span> <span class="n">analysis_period</span><span class="o">.</span><span class="n">st_day</span><span class="p">,</span>
+                       <span class="n">analysis_period</span><span class="o">.</span><span class="n">is_leap_year</span><span class="p">)</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="n">analysis_period</span><span class="o">.</span><span class="n">end_month</span><span class="p">,</span> <span class="n">analysis_period</span><span class="o">.</span><span class="n">end_day</span><span class="p">,</span>
+                        <span class="n">analysis_period</span><span class="o">.</span><span class="n">is_leap_year</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">st_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UWGRunPeriod.from_dict"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a UWGRunPeriod object from a dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data: A UWGRunPeriod dictionary in following the format below.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">            &quot;type&quot;: &quot;UWGRunPeriod&quot;,</span>
+<span class="sd">            &quot;start_date&quot;: [3, 12],</span>
+<span class="sd">            &quot;end_date&quot;: [11, 5]</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;UWGRunPeriod&#39;</span><span class="p">,</span> \
+            <span class="s1">&#39;Expected UWGRunPeriod dictionary. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">])</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">Date</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;start_date&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;start_date&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> \
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;start_date&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">Date</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;end_date&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> \
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Date</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UWGRunPeriod.to_dict"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;UWGRunPeriod dictionary representation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;UWGRunPeriod&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">to_array</span><span class="p">(),</span>
+            <span class="s1">&#39;end_date&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="UWGRunPeriod.duplicate"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.duplicate">[docs]</a>    <span class="k">def</span> <span class="nf">duplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a copy of this object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__copy__</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_check_start_before_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that the start_date is before the end_date.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">leap_year</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">leap_year</span><span class="p">,</span> \
+            <span class="s1">&#39;UWGRunPeriod start_date.leap_year must match the end_date.leap_year&#39;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_date</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_date</span><span class="p">,</span> <span class="s1">&#39;UWGRunPeriod start_date must &#39;</span> \
+            <span class="s1">&#39;be before end_date. </span><span class="si">{}</span><span class="s1"> is after </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_check_date</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">date_name</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">Date</span><span class="p">),</span> <span class="s1">&#39;Expected ladybug Date for &#39;</span> \
+            <span class="s1">&#39;UWGRunPeriod </span><span class="si">{}</span><span class="s1">. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">date_name</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">date</span><span class="p">))</span>
+
+<div class="viewcode-block" id="UWGRunPeriod.ToString"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.ToString">[docs]</a>    <span class="k">def</span> <span class="nf">ToString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Overwrite .NET ToString.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">UWGRunPeriod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;UWGRunPeriod: [</span><span class="si">{}</span><span class="s1"> - </span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

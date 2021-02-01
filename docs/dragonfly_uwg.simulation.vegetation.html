@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dragonfly_uwg.simulation.vegetation module &#8212; dragonfly-uwg  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dragonfly_uwg.run module" href="dragonfly_uwg.run.html" />
+    <link rel="prev" title="dragonfly_uwg.simulation.runperiod module" href="dragonfly_uwg.simulation.runperiod.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          dragonfly-uwg</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.cli.simulate.html">dragonfly_uwg.cli.simulate module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html#module-dragonfly_uwg.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.run.html">dragonfly_uwg.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.terrain.html">dragonfly_uwg.terrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.traffic.html">dragonfly_uwg.traffic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.writer.html">dragonfly_uwg.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="dragonfly_uwg.simulation.runperiod.html" title="Previous Chapter: dragonfly_uwg.simulation.runperiod module"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; dragonfly_uwg...</span>
+    </a>
+  </li>
+  <li>
+    <a href="dragonfly_uwg.run.html" title="Next Chapter: dragonfly_uwg.run module"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">dragonfly_uwg... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/dragonfly_uwg.simulation.vegetation.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-8 content" role="main">
+      
+  <div class="section" id="module-dragonfly_uwg.simulation.vegetation">
+<span id="dragonfly-uwg-simulation-vegetation-module"></span><h1>dragonfly_uwg.simulation.vegetation module<a class="headerlink" href="#module-dragonfly_uwg.simulation.vegetation" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter">
+<em class="property">class </em><code class="sig-prename descclassname">dragonfly_uwg.simulation.vegetation.</code><code class="sig-name descname">VegetationParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vegetation_albedo</span><span class="o">=</span><span class="default_value">0.25</span></em>, <em class="sig-param"><span class="n">start_month</span><span class="o">=</span><span class="default_value">Autocalculate</span></em>, <em class="sig-param"><span class="n">end_month</span><span class="o">=</span><span class="default_value">Autocalculate</span></em>, <em class="sig-param"><span class="n">tree_latent_fraction</span><span class="o">=</span><span class="default_value">0.7</span></em>, <em class="sig-param"><span class="n">grass_latent_fraction</span><span class="o">=</span><span class="default_value">0.5</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/vegetation.html#VegetationParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents the behavior of vegetation within an urban area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vegetation_albedo</strong> – A number between 0 and 1 that represents
+the ratio of reflected radiation from vegetated surfaces
+to incident radiation upon them. (Default: 0.25)</p></li>
+<li><p><strong>start_month</strong> – An integer from 1 to 12 that represents the month
+at which vegetation evapostranspiration begins (leaves come out).
+If Autocalculate, the month will be automatically determined by analyzing
+the epw to see which months have an average monthly temperature
+above 10C. (Default: autocalculate).</p></li>
+<li><p><strong>end_month</strong> – An integer from 1 to 12 that represents the month
+at which vegetation evapostranspiration ends (leaves fall off).
+If Autocalculate, the month will be automatically determined by analyzing
+the epw to see which months have an average monthly temperature
+above 10C. (Default: autocalculate).</p></li>
+<li><p><strong>tree_latent_fraction</strong> – A number between 0 and 1 that represents
+the the fraction of absorbed solar energy by trees that
+is given off as latent heat (evapotranspiration). Currently,
+this does not affect the moisture balance in the uwg but
+it will affect the temperature. (Default: 0.7).</p></li>
+<li><p><strong>grass_latent_fraction</strong> – A number between 0 and 1 that represents
+the the fraction of absorbed solar energy by grass that is
+given off as latent heat (evapotranspiration). Currently,
+this does not affect the moisture balance in the uwg but
+it will affect the temperature. (Default: 0.5).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.ToString">
+<code class="sig-name descname">ToString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/vegetation.html#VegetationParameter.ToString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.ToString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrite .NET ToString method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.duplicate">
+<code class="sig-name descname">duplicate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/vegetation.html#VegetationParameter.duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a copy of this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.from_dict">
+<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/vegetation.html#VegetationParameter.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a VegetationParameter object from a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – A dictionary representation of an VegetationParameter object
+in the format below.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;VegetationParameter&#39;</span><span class="p">,</span>
+<span class="s1">&#39;vegetation_albedo&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># float between 0 and 1</span>
+<span class="s1">&#39;start_month&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="c1"># int between 1 and 12</span>
+<span class="s1">&#39;end_month&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># int between 1 and 12</span>
+<span class="s1">&#39;tree_latent_fraction&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="c1"># float between 0 and 1</span>
+<span class="s1">&#39;grass_latent_fraction&#39;</span><span class="p">:</span> <span class="mf">0.45</span>  <span class="c1"># float between 0 and 1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/vegetation.html#VegetationParameter.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get VegetationParameter dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.end_month">
+<em class="property">property </em><code class="sig-name descname">end_month</code><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.end_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set an integer (or Autocalculate) for the vegetation end month.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.grass_latent_fraction">
+<em class="property">property </em><code class="sig-name descname">grass_latent_fraction</code><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.grass_latent_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a number for the grass latent fraction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.start_month">
+<em class="property">property </em><code class="sig-name descname">start_month</code><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.start_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set an integer (or Autocalculate) for the vegetation start month.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.tree_latent_fraction">
+<em class="property">property </em><code class="sig-name descname">tree_latent_fraction</code><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.tree_latent_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a number for the tree latent fraction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.vegetation.VegetationParameter.vegetation_albedo">
+<em class="property">property </em><code class="sig-name descname">vegetation_albedo</code><a class="headerlink" href="#dragonfly_uwg.simulation.vegetation.VegetationParameter.vegetation_albedo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a fractional number for the vegetation albedo.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

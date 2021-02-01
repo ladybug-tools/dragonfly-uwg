@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dragonfly_uwg.simulation.parameter module &#8212; dragonfly-uwg  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dragonfly_uwg.simulation.refsite module" href="dragonfly_uwg.simulation.refsite.html" />
+    <link rel="prev" title="dragonfly_uwg.simulation.boundary module" href="dragonfly_uwg.simulation.boundary.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          dragonfly-uwg</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.cli.simulate.html">dragonfly_uwg.cli.simulate module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html#module-dragonfly_uwg.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.run.html">dragonfly_uwg.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.terrain.html">dragonfly_uwg.terrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.traffic.html">dragonfly_uwg.traffic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.writer.html">dragonfly_uwg.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="dragonfly_uwg.simulation.boundary.html" title="Previous Chapter: dragonfly_uwg.simulation.boundary module"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; dragonfly_uwg...</span>
+    </a>
+  </li>
+  <li>
+    <a href="dragonfly_uwg.simulation.refsite.html" title="Next Chapter: dragonfly_uwg.simulation.refsite module"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">dragonfly_uwg... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/dragonfly_uwg.simulation.parameter.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-8 content" role="main">
+      
+  <div class="section" id="module-dragonfly_uwg.simulation.parameter">
+<span id="dragonfly-uwg-simulation-parameter-module"></span><h1>dragonfly_uwg.simulation.parameter module<a class="headerlink" href="#module-dragonfly_uwg.simulation.parameter" title="Permalink to this headline">¶</a></h1>
+<p>Complete set of UWG Simulation Settings.</p>
+<dl class="py class">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter">
+<em class="property">class </em><code class="sig-prename descclassname">dragonfly_uwg.simulation.parameter.</code><code class="sig-name descname">UWGSimulationParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">climate_zone</span><span class="o">=</span><span class="default_value">Autocalculate</span></em>, <em class="sig-param"><span class="n">run_period</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timestep</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">vegetation_parameter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">reference_epw_site</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">boundary_layer_parameter</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/parameter.html#UWGSimulationParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Complete set of UWG Simulation Settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>climate_zone</strong> – Text for the ASHRAE climate zone, including the letter for
+humidity classification (eg. “4A”). This is used to set default
+constructions for various buildings. If set to autocalculate,
+the climate zone will be estimated from analysis of the epw to be
+morphed for simulation. (Default: autocalculate).</p></li>
+<li><p><strong>run_period</strong> – A UWGRunPeriod object to describe the time period over which to
+run the simulation. If None, the simulation will be run for the whole
+year. (Default: None).</p></li>
+<li><p><strong>timestep</strong> – An integer for the number of timesteps per hour at which the
+calculation will be run. (Default: 12).</p></li>
+<li><p><strong>vegetation_parameter</strong> – A VegetationParameter to specify the behavior of
+vegetation in the urban area. If None, generic vegetation parameters
+will be generated. (Default: None).</p></li>
+<li><p><strong>reference_epw_site</strong> – A ReferenceEPWSite to specify the properties of the
+reference site where the input rural EPW was recorded. If None, generic
+airport properties will be generated. (Default: None).</p></li>
+<li><p><strong>boundary_layer_parameter</strong> – A BoundaryLayerParameter to specify the properties
+of the urban boundary layer. If None, generic boundary layer parameters
+will be generated. (Default: None).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.ToString">
+<code class="sig-name descname">ToString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/parameter.html#UWGSimulationParameter.ToString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.ToString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrite .NET ToString method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.duplicate">
+<code class="sig-name descname">duplicate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/parameter.html#UWGSimulationParameter.duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a copy of this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.from_dict">
+<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/parameter.html#UWGSimulationParameter.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a UWGSimulationParameter object from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – A UWGSimulationParameter dictionary in following the format below.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;UWGSimulationParameter&quot;</span><span class="p">,</span>
+<span class="s2">&quot;climate_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;5A&quot;</span><span class="p">,</span>  <span class="c1"># Text for ASHRAE climate zone</span>
+<span class="s2">&quot;run_period&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># Dragonfly UWGRunPeriod dictionary</span>
+<span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="c1"># Integer for the simulation timestep</span>
+<span class="s2">&quot;vegetation_parameter&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># Dragonfly VegetationParameter dictionary</span>
+<span class="s2">&quot;reference_epw_site&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># Dragonfly ReferenceEPWSite dictionary</span>
+<span class="s2">&quot;boundary_layer_parameter&quot;</span><span class="p">:</span> <span class="p">{}</span> <span class="c1"># Dragonfly BoundaryLayerParameter dictionary</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/parameter.html#UWGSimulationParameter.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>UWGSimulationParameter dictionary representation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_uwg_dict">
+<code class="sig-name descname">to_uwg_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">epw_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/simulation/parameter.html#UWGSimulationParameter.to_uwg_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_uwg_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dictionary following the input schema of the UWG.</p>
+<p>Note that this dictionary will only include the properties that the
+UWGSimulationParameter object possesses and will lack all of those provided
+by the Model object. For fully simulate-able UWG input, the Model.to.uwg
+method should be used. The keys of the dictionary output by this method
+include the following.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>zone</p></li>
+<li><p>month</p></li>
+<li><p>day</p></li>
+<li><p>nday</p></li>
+<li><p>dtsim</p></li>
+<li><p>rurvegcover</p></li>
+<li><p>vegstart</p></li>
+<li><p>vegend</p></li>
+<li><p>albveg</p></li>
+<li><p>latgrss</p></li>
+<li><p>lattree</p></li>
+<li><p>h_ubl1</p></li>
+<li><p>h_ubl2</p></li>
+<li><p>h_ref</p></li>
+<li><p>h_temp</p></li>
+<li><p>h_wind</p></li>
+<li><p>c_circ</p></li>
+<li><p>c_exch</p></li>
+<li><p>h_obs</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>epw_file</strong> – File path to the EPW that will be morphed by the UWG. This
+will be used to fill all autocalculated fields like the ASHRAE
+climate zone and vegetation start/end.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.VALIDTIMESTEPS">
+<code class="sig-name descname">VALIDTIMESTEPS</code><em class="property"> = (1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60)</em><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.VALIDTIMESTEPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.VALIDZONES">
+<code class="sig-name descname">VALIDZONES</code><em class="property"> = ('1A', '2A', '2B', '3A', '3B', '3C', '4A', '4B', '4C', '5A', '5B', '6A', '6B', '7', '8')</em><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.VALIDZONES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.boundary_layer_parameter">
+<em class="property">property </em><code class="sig-name descname">boundary_layer_parameter</code><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.boundary_layer_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a BoundaryLayerParameter object for the boundary layer properties.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.climate_zone">
+<em class="property">property </em><code class="sig-name descname">climate_zone</code><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.climate_zone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a text for the ASHRAE climate zone.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.reference_epw_site">
+<em class="property">property </em><code class="sig-name descname">reference_epw_site</code><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.reference_epw_site" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a ReferenceEPWSite object for the properties of the rural EPW.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.run_period">
+<em class="property">property </em><code class="sig-name descname">run_period</code><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.run_period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a UWGRunPeriod object for the time period to run the simulation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.timestep">
+<em class="property">property </em><code class="sig-name descname">timestep</code><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.timestep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a integer for the number of simulation timesteps per hour.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.simulation.parameter.UWGSimulationParameter.vegetation_parameter">
+<em class="property">property </em><code class="sig-name descname">vegetation_parameter</code><a class="headerlink" href="#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.vegetation_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a VegetationParameter object for the behavior of vegetation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

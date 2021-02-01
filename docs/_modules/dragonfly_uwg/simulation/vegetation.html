@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dragonfly_uwg.simulation.vegetation &#8212; dragonfly-uwg  documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          dragonfly-uwg</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.cli.simulate.html">dragonfly_uwg.cli.simulate module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.cli.html#module-dragonfly_uwg.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.properties.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.run.html">dragonfly_uwg.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.terrain.html">dragonfly_uwg.terrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.traffic.html">dragonfly_uwg.traffic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.writer.html">dragonfly_uwg.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a></li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-8 content" role="main">
+      
+  <h1>Source code for dragonfly_uwg.simulation.vegetation</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding=utf-8</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">honeybee.typing</span> <span class="kn">import</span> <span class="n">float_in_range</span><span class="p">,</span> <span class="n">int_in_range</span>
+<span class="kn">from</span> <span class="nn">honeybee.altnumber</span> <span class="kn">import</span> <span class="n">autocalculate</span>
+
+
+<div class="viewcode-block" id="VegetationParameter"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter">[docs]</a><span class="k">class</span> <span class="nc">VegetationParameter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents the behavior of vegetation within an urban area.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vegetation_albedo: A number between 0 and 1 that represents</span>
+<span class="sd">            the ratio of reflected radiation from vegetated surfaces</span>
+<span class="sd">            to incident radiation upon them. (Default: 0.25)</span>
+<span class="sd">        start_month: An integer from 1 to 12 that represents the month</span>
+<span class="sd">            at which vegetation evapostranspiration begins (leaves come out).</span>
+<span class="sd">            If Autocalculate, the month will be automatically determined by analyzing</span>
+<span class="sd">            the epw to see which months have an average monthly temperature</span>
+<span class="sd">            above 10C. (Default: autocalculate).</span>
+<span class="sd">        end_month: An integer from 1 to 12 that represents the month</span>
+<span class="sd">            at which vegetation evapostranspiration ends (leaves fall off).</span>
+<span class="sd">            If Autocalculate, the month will be automatically determined by analyzing</span>
+<span class="sd">            the epw to see which months have an average monthly temperature</span>
+<span class="sd">            above 10C. (Default: autocalculate).</span>
+<span class="sd">        tree_latent_fraction: A number between 0 and 1 that represents</span>
+<span class="sd">            the the fraction of absorbed solar energy by trees that</span>
+<span class="sd">            is given off as latent heat (evapotranspiration). Currently,</span>
+<span class="sd">            this does not affect the moisture balance in the uwg but</span>
+<span class="sd">            it will affect the temperature. (Default: 0.7).</span>
+<span class="sd">        grass_latent_fraction: A number between 0 and 1 that represents</span>
+<span class="sd">            the the fraction of absorbed solar energy by grass that is</span>
+<span class="sd">            given off as latent heat (evapotranspiration). Currently,</span>
+<span class="sd">            this does not affect the moisture balance in the uwg but</span>
+<span class="sd">            it will affect the temperature. (Default: 0.5).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;_vegetation_albedo&#39;</span><span class="p">,</span> <span class="s1">&#39;_start_month&#39;</span><span class="p">,</span> <span class="s1">&#39;_end_month&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;_tree_latent_fraction&#39;</span><span class="p">,</span> <span class="s1">&#39;_grass_latent_fraction&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vegetation_albedo</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">start_month</span><span class="o">=</span><span class="n">autocalculate</span><span class="p">,</span>
+                 <span class="n">end_month</span><span class="o">=</span><span class="n">autocalculate</span><span class="p">,</span>
+                 <span class="n">tree_latent_fraction</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">grass_latent_fraction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize dragonfly vegetation parameters&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_albedo</span> <span class="o">=</span> <span class="n">vegetation_albedo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_month</span> <span class="o">=</span> <span class="n">start_month</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_month</span> <span class="o">=</span> <span class="n">end_month</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_latent_fraction</span> <span class="o">=</span> <span class="n">tree_latent_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grass_latent_fraction</span> <span class="o">=</span> <span class="n">grass_latent_fraction</span>
+
+<div class="viewcode-block" id="VegetationParameter.from_dict"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a VegetationParameter object from a dictionary</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data: A dictionary representation of an VegetationParameter object</span>
+<span class="sd">                in the format below.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">            &#39;type&#39;: &#39;VegetationParameter&#39;,</span>
+<span class="sd">            &#39;vegetation_albedo&#39;: 0.3,  # float between 0 and 1</span>
+<span class="sd">            &#39;start_month&#39;: 5,  # int between 1 and 12</span>
+<span class="sd">            &#39;end_month&#39;: 10,  # int between 1 and 12</span>
+<span class="sd">            &#39;tree_latent_fraction&#39;: 0.75, # float between 0 and 1</span>
+<span class="sd">            &#39;grass_latent_fraction&#39;: 0.45  # float between 0 and 1</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">alb</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;vegetation_albedo&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;vegetation_albedo&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="mf">0.25</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">autocalculate</span> <span class="k">if</span> <span class="s1">&#39;start_month&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> \
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;start_month&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">autocalculate</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">else</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;start_month&#39;</span><span class="p">]</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">autocalculate</span> <span class="k">if</span> <span class="s1">&#39;end_month&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> \
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;end_month&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">autocalculate</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">else</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;end_month&#39;</span><span class="p">]</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;tree_latent_fraction&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;tree_latent_fraction&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="mf">0.7</span>
+        <span class="n">grass</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;grass_latent_fraction&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;grass_latent_fraction&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="mf">0.5</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">alb</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">grass</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vegetation_albedo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a fractional number for the vegetation albedo.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vegetation_albedo</span>
+
+    <span class="nd">@vegetation_albedo</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">vegetation_albedo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vegetation_albedo</span> <span class="o">=</span> <span class="n">float_in_range</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;vegetation_albedo&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start_month</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set an integer (or Autocalculate) for the vegetation start month.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_month</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_month</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">autocalculate</span>
+
+    <span class="nd">@start_month</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">start_month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">autocalculate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_month</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_month</span> <span class="o">=</span> \
+                <span class="n">int_in_range</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;start_month&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">end_month</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set an integer (or Autocalculate) for the vegetation end month.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_month</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_month</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> \
+            <span class="k">else</span> <span class="n">autocalculate</span>
+
+    <span class="nd">@end_month</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">end_month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">autocalculate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_end_month</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_end_month</span> <span class="o">=</span> \
+                <span class="n">int_in_range</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;end_month&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tree_latent_fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a number for the tree latent fraction.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_latent_fraction</span>
+
+    <span class="nd">@tree_latent_fraction</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">tree_latent_fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tree_latent_fraction</span> <span class="o">=</span> <span class="n">float_in_range</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;tree_latent_fraction&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">grass_latent_fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a number for the grass latent fraction.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grass_latent_fraction</span>
+
+    <span class="nd">@grass_latent_fraction</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">grass_latent_fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_grass_latent_fraction</span> <span class="o">=</span> \
+            <span class="n">float_in_range</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;grass_latent_fraction&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="VegetationParameter.to_dict"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get VegetationParameter dictionary.&quot;&quot;&quot;</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;VegetationParameter&#39;</span><span class="p">}</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;vegetation_albedo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_albedo</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;tree_latent_fraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_latent_fraction</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;grass_latent_fraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grass_latent_fraction</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_month</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">[</span><span class="s1">&#39;start_month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_month</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_month</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">[</span><span class="s1">&#39;end_month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_month</span>
+        <span class="k">return</span> <span class="n">base</span></div>
+
+<div class="viewcode-block" id="VegetationParameter.duplicate"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.duplicate">[docs]</a>    <span class="k">def</span> <span class="nf">duplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a copy of this object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__copy__</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">new_obj</span> <span class="o">=</span> <span class="n">VegetationParameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vegetation_albedo</span><span class="p">)</span>
+        <span class="n">new_obj</span><span class="o">.</span><span class="n">_tree_latent_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_latent_fraction</span>
+        <span class="n">new_obj</span><span class="o">.</span><span class="n">_grass_latent_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grass_latent_fraction</span>
+        <span class="n">new_obj</span><span class="o">.</span><span class="n">_start_month</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_month</span>
+        <span class="n">new_obj</span><span class="o">.</span><span class="n">_end_month</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_month</span>
+        <span class="k">return</span> <span class="n">new_obj</span>
+
+<div class="viewcode-block" id="VegetationParameter.ToString"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.ToString">[docs]</a>    <span class="k">def</span> <span class="nf">ToString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Overwrite .NET ToString method.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Represent Dragonfly vegetation parameters.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;VegetationParameter: [albedo: </span><span class="si">{}</span><span class="s1">]  [tree latent: </span><span class="si">{}</span><span class="s1">] [grass latent:&#39;</span> \
+            <span class="s1">&#39; </span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vegetation_albedo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_latent_fraction</span><span class="p">,</span>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">_grass_latent_fraction</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

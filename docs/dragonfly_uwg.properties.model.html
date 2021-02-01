@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dragonfly_uwg.properties.model module &#8212; dragonfly-uwg  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dragonfly_uwg.properties.room2d module" href="dragonfly_uwg.properties.room2d.html" />
+    <link rel="prev" title="dragonfly_uwg.properties.context module" href="dragonfly_uwg.properties.context.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          dragonfly-uwg</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.cli.simulate.html">dragonfly_uwg.cli.simulate module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html#module-dragonfly_uwg.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.run.html">dragonfly_uwg.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.terrain.html">dragonfly_uwg.terrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.traffic.html">dragonfly_uwg.traffic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.writer.html">dragonfly_uwg.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="dragonfly_uwg.properties.context.html" title="Previous Chapter: dragonfly_uwg.properties.context module"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; dragonfly_uwg...</span>
+    </a>
+  </li>
+  <li>
+    <a href="dragonfly_uwg.properties.room2d.html" title="Next Chapter: dragonfly_uwg.properties.room2d module"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">dragonfly_uwg... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/dragonfly_uwg.properties.model.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-8 content" role="main">
+      
+  <div class="section" id="module-dragonfly_uwg.properties.model">
+<span id="dragonfly-uwg-properties-model-module"></span><h1>dragonfly_uwg.properties.model module<a class="headerlink" href="#module-dragonfly_uwg.properties.model" title="Permalink to this headline">¶</a></h1>
+<p>Model UWG Properties.</p>
+<dl class="py class">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties">
+<em class="property">class </em><code class="sig-prename descclassname">dragonfly_uwg.properties.model.</code><code class="sig-name descname">ModelUWGProperties</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span></em>, <em class="sig-param"><span class="n">terrain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">traffic</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tree_coverage_fraction</span><span class="o">=</span><span class="default_value">Autocalculate</span></em>, <em class="sig-param"><span class="n">grass_coverage_fraction</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>UWG Properties for Dragonfly Model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host</strong> – A dragonfly_core Model object that hosts these properties.</p></li>
+<li><p><strong>terrain</strong> – A Terrain object that dictates the properties of the street and
+ground beneath the buildings. If None, a default terrain object will be
+generated by analysing all of the buildings in the Model and drawing
+a bounding rectangle in the XY plane around them. (Default: None).</p></li>
+<li><p><strong>traffic</strong> – A TrafficPararameter object that defines the activity and
+intensity of traffic within the urban street canyons. If None,
+traffic intensity will be approximated using the average building
+story count along with a generic traffic schedule. (Default: None).</p></li>
+<li><p><strong>tree_coverage_fraction</strong> – A number from 0 to 1 that defines the fraction of the
+exposed terrain covered by trees. If Autocalculate, it will be determined
+by evaluating the horizontal area of all ContextShade geometry that has
+a true is_vegetation property. (Default: autocalculate).</p></li>
+<li><p><strong>grass_coverage_fraction</strong> – A number from 0 to 1 that defines the fraction
+of the exposed terrain that is covered by grass or shrubs.
+Anything not covered in grass is assumed to be pavement. (Default: 0).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>host</p></li>
+<li><p>terrain</p></li>
+<li><p>traffic</p></li>
+<li><p>tree_coverage_fraction</p></li>
+<li><p>grass_coverage_fraction</p></li>
+<li><p>footprint_density</p></li>
+<li><p>facade_to_site</p></li>
+<li><p>exposed_ground_area</p></li>
+<li><p>is_tree_coverage_autocalcualted</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.ToString">
+<code class="sig-name descname">ToString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.ToString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.ToString" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.apply_properties_from_dict">
+<code class="sig-name descname">apply_properties_from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.apply_properties_from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.apply_properties_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the uwg properties of a dictionary to the host Model of this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – A dictionary representation of an entire dragonfly-core Model.
+Note that this dictionary must have ModelUWGProperties in order
+for this method to successfully apply the uwg properties.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.average_shgc">
+<code class="sig-name descname">average_shgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">climate_zone</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.average_shgc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.average_shgc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the average SHGC across all buildings in the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>climate_zone</strong> – Text for the ASHRAE climate zone, which must include
+the humidity letter (eg. “4A”) unless it is climate zone 7 or 8.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.compute_horizontal_area">
+<em class="property">static </em><code class="sig-name descname">compute_horizontal_area</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">face3ds</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.compute_horizontal_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.compute_horizontal_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the area of a list of Face3D in the XY Plane.</p>
+<p>This is useful for taking geometry representing grass or pavement and
+turning it into a number for grass_coverage_fraction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.duplicate">
+<code class="sig-name descname">duplicate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_host</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a copy of this Model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_host</strong> – A new Model object that hosts these properties.
+If None, the properties will be duplicated with the same host.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.grass_coverage_from_geometry">
+<code class="sig-name descname">grass_coverage_from_geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grass_geometry</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.grass_coverage_from_geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.grass_coverage_from_geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set this object’s grass_coverage_fraction using an array of Face3Ds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>grass_geometry</strong> – An array of Face3Ds that represent grass surfaces.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">moving_vec</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move these properties along a vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>moving_vec</strong> – A ladybug_geometry Vector3D with the direction and distance
+to move the object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.reflect">
+<code class="sig-name descname">reflect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">plane</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.reflect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.reflect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reflect this Terrain across a plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>plane</strong> – A ladybug_geometry Plane across which the object will be reflected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.rotate_xy">
+<code class="sig-name descname">rotate_xy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">angle</span></em>, <em class="sig-param"><span class="n">origin</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.rotate_xy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.rotate_xy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate this Terrain counterclockwise in the XY plane by a certain angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> – An angle in degrees.</p></li>
+<li><p><strong>origin</strong> – A ladybug_geometry Point3D for the origin around which the
+object will be rotated.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.scale">
+<code class="sig-name descname">scale</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">factor</span></em>, <em class="sig-param"><span class="n">origin</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.scale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scale this Terrain by a factor from an origin point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>factor</strong> – A number representing how much the object should be scaled.</p></li>
+<li><p><strong>origin</strong> – A ladybug_geometry Point3D representing the origin from which
+to scale. If None, it will be scaled from the World origin (0, 0, 0).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Model UWG properties as a dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.to_uwg_dict">
+<code class="sig-name descname">to_uwg_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/model.html#ModelUWGProperties.to_uwg_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.to_uwg_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dictionary following the input schema of the UWG.</p>
+<p>This dictionary can be serialized into a JSON in order to be run through
+the UWG. Note that this dictionary will only include the properties that
+the dragonfly Model object possesses and will lack all of those provided
+by the UWGSimulationParameter object. For fully simulate-able UWG
+input, the Model.to.uwg method should be used. The keys of the dictionary
+output by this method include the following.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bldheight</p></li>
+<li><p>blddensity</p></li>
+<li><p>vertohor</p></li>
+<li><p>grasscover</p></li>
+<li><p>treecover</p></li>
+<li><p>bld</p></li>
+<li><p>h_mix</p></li>
+<li><p>albroof</p></li>
+<li><p>vegroof</p></li>
+<li><p>glzr</p></li>
+<li><p>albwall</p></li>
+<li><p>flr_h</p></li>
+<li><p>charlength</p></li>
+<li><p>albroad</p></li>
+<li><p>droad</p></li>
+<li><p>kroad</p></li>
+<li><p>croad</p></li>
+<li><p>sensanth</p></li>
+<li><p>schtraffic</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.exposed_ground_area">
+<em class="property">property </em><code class="sig-name descname">exposed_ground_area</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.exposed_ground_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the area of the terrain exposed to the outdoor air.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.facade_to_site">
+<em class="property">property </em><code class="sig-name descname">facade_to_site</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.facade_to_site" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a fractional number for the ratio between the facade are and site area.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.footprint_density">
+<em class="property">property </em><code class="sig-name descname">footprint_density</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.footprint_density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a fractional number for the footprint density of the model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.grass_coverage_fraction">
+<em class="property">property </em><code class="sig-name descname">grass_coverage_fraction</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.grass_coverage_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the fraction of the exposed site area covered in grass or shrubs.</p>
+<p>Anything not covered in grass is assumed to be pavement.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.host">
+<em class="property">property </em><code class="sig-name descname">host</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.host" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Model object hosting these properties.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.is_tree_coverage_autocalcualted">
+<em class="property">property </em><code class="sig-name descname">is_tree_coverage_autocalcualted</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.is_tree_coverage_autocalcualted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a boolean for whether tree coverage is autocalcualted from Context.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.terrain">
+<em class="property">property </em><code class="sig-name descname">terrain</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.terrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a Terrain object that dictates the properties of the ground.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.traffic">
+<em class="property">property </em><code class="sig-name descname">traffic</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.traffic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set a TrafficPararameter object that dictates the street traffic.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dragonfly_uwg.properties.model.ModelUWGProperties.tree_coverage_fraction">
+<em class="property">property </em><code class="sig-name descname">tree_coverage_fraction</code><a class="headerlink" href="#dragonfly_uwg.properties.model.ModelUWGProperties.tree_coverage_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the fraction of the exposed site area covered in trees.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

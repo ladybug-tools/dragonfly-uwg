@@ -1,0 +1,7 @@
+dragonfly\_uwg.properties.context module
+========================================
+
+.. automodule:: dragonfly_uwg.properties.context
+   :members:
+   :undoc-members:
+   :show-inheritance:

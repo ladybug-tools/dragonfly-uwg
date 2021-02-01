@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dragonfly_uwg.simulation.parameter &#8212; dragonfly-uwg  documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          dragonfly-uwg</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.cli.simulate.html">dragonfly_uwg.cli.simulate module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.cli.html#module-dragonfly_uwg.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.properties.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.building.html">dragonfly_uwg.properties.building module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.run.html">dragonfly_uwg.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.terrain.html">dragonfly_uwg.terrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.traffic.html">dragonfly_uwg.traffic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dragonfly_uwg.writer.html">dragonfly_uwg.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dragonfly_uwg.html">dragonfly_uwg package</a></li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-8 content" role="main">
+      
+  <h1>Source code for dragonfly_uwg.simulation.parameter</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding=utf-8</span>
+<span class="sd">&quot;&quot;&quot;Complete set of UWG Simulation Settings.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">.runperiod</span> <span class="kn">import</span> <span class="n">UWGRunPeriod</span>
+<span class="kn">from</span> <span class="nn">.vegetation</span> <span class="kn">import</span> <span class="n">VegetationParameter</span>
+<span class="kn">from</span> <span class="nn">.refsite</span> <span class="kn">import</span> <span class="n">ReferenceEPWSite</span>
+<span class="kn">from</span> <span class="nn">.boundary</span> <span class="kn">import</span> <span class="n">BoundaryLayerParameter</span>
+
+<span class="kn">from</span> <span class="nn">honeybee.altnumber</span> <span class="kn">import</span> <span class="n">autocalculate</span>
+<span class="kn">from</span> <span class="nn">honeybee.typing</span> <span class="kn">import</span> <span class="n">int_positive</span>
+<span class="kn">from</span> <span class="nn">ladybug.epw</span> <span class="kn">import</span> <span class="n">EPW</span>
+
+
+<div class="viewcode-block" id="UWGSimulationParameter"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter">[docs]</a><span class="k">class</span> <span class="nc">UWGSimulationParameter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Complete set of UWG Simulation Settings.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        climate_zone: Text for the ASHRAE climate zone, including the letter for</span>
+<span class="sd">            humidity classification (eg. &quot;4A&quot;). This is used to set default</span>
+<span class="sd">            constructions for various buildings. If set to autocalculate,</span>
+<span class="sd">            the climate zone will be estimated from analysis of the epw to be</span>
+<span class="sd">            morphed for simulation. (Default: autocalculate).</span>
+<span class="sd">        run_period: A UWGRunPeriod object to describe the time period over which to</span>
+<span class="sd">            run the simulation. If None, the simulation will be run for the whole</span>
+<span class="sd">            year. (Default: None).</span>
+<span class="sd">        timestep: An integer for the number of timesteps per hour at which the</span>
+<span class="sd">            calculation will be run. (Default: 12).</span>
+<span class="sd">        vegetation_parameter: A VegetationParameter to specify the behavior of</span>
+<span class="sd">            vegetation in the urban area. If None, generic vegetation parameters</span>
+<span class="sd">            will be generated. (Default: None).</span>
+<span class="sd">        reference_epw_site: A ReferenceEPWSite to specify the properties of the</span>
+<span class="sd">            reference site where the input rural EPW was recorded. If None, generic</span>
+<span class="sd">            airport properties will be generated. (Default: None).</span>
+<span class="sd">        boundary_layer_parameter: A BoundaryLayerParameter to specify the properties</span>
+<span class="sd">            of the urban boundary layer. If None, generic boundary layer parameters</span>
+<span class="sd">            will be generated. (Default: None).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;_climate_zone&#39;</span><span class="p">,</span> <span class="s1">&#39;_run_period&#39;</span><span class="p">,</span> <span class="s1">&#39;_timestep&#39;</span><span class="p">,</span> <span class="s1">&#39;_vegetation_parameter&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;_reference_epw_site&#39;</span><span class="p">,</span> <span class="s1">&#39;_boundary_layer_parameter&#39;</span><span class="p">)</span>
+
+    <span class="n">VALIDTIMESTEPS</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">VALIDZONES</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;1A&#39;</span><span class="p">,</span> <span class="s1">&#39;2A&#39;</span><span class="p">,</span> <span class="s1">&#39;2B&#39;</span><span class="p">,</span> <span class="s1">&#39;3A&#39;</span><span class="p">,</span> <span class="s1">&#39;3B&#39;</span><span class="p">,</span> <span class="s1">&#39;3C&#39;</span><span class="p">,</span> <span class="s1">&#39;4A&#39;</span><span class="p">,</span> <span class="s1">&#39;4B&#39;</span><span class="p">,</span> <span class="s1">&#39;4C&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;5A&#39;</span><span class="p">,</span> <span class="s1">&#39;5B&#39;</span><span class="p">,</span> <span class="s1">&#39;6A&#39;</span><span class="p">,</span> <span class="s1">&#39;6B&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">climate_zone</span><span class="o">=</span><span class="n">autocalculate</span><span class="p">,</span> <span class="n">run_period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                 <span class="n">vegetation_parameter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reference_epw_site</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">boundary_layer_parameter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize UWGSimulationParameter&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">climate_zone</span> <span class="o">=</span> <span class="n">climate_zone</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_period</span> <span class="o">=</span> <span class="n">run_period</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timestep</span> <span class="o">=</span> <span class="n">timestep</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span> <span class="o">=</span> <span class="n">vegetation_parameter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_epw_site</span> <span class="o">=</span> <span class="n">reference_epw_site</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span> <span class="o">=</span> <span class="n">boundary_layer_parameter</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">climate_zone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a text for the ASHRAE climate zone.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_climate_zone</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_climate_zone</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">autocalculate</span>
+
+    <span class="nd">@climate_zone</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">climate_zone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">autocalculate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_climate_zone</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">VALIDZONES</span><span class="p">,</span> <span class="s1">&#39;UWGSimulationParameter climate_zone &#39;</span> \
+                <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot; is invalid.</span><span class="se">\n</span><span class="s1">Must be one of the following:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">VALIDZONES</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_climate_zone</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">run_period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a UWGRunPeriod object for the time period to run the simulation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_period</span>
+
+    <span class="nd">@run_period</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">run_period</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">UWGRunPeriod</span><span class="p">),</span> <span class="s1">&#39;Expected UWGRunPeriod for &#39;</span> \
+                <span class="s1">&#39;UWGSimulationParameter run_period. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_run_period</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_run_period</span> <span class="o">=</span> <span class="n">UWGRunPeriod</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timestep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a integer for the number of simulation timesteps per hour.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timestep</span>
+
+    <span class="nd">@timestep</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">timestep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">int_positive</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;simulation parameter timestep&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">VALIDTIMESTEPS</span><span class="p">,</span> <span class="s1">&#39;UWGSimulationParameter timestep &quot;</span><span class="si">{}</span><span class="s1">&quot; is &#39;</span> \
+            <span class="s1">&#39;invalid. Must be one of the following:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">VALIDTIMESTEPS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timestep</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vegetation_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a VegetationParameter object for the behavior of vegetation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vegetation_parameter</span>
+
+    <span class="nd">@vegetation_parameter</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">vegetation_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">VegetationParameter</span><span class="p">),</span> <span class="s1">&#39;Expected &#39;</span> \
+                <span class="s1">&#39;VegetationParameter. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vegetation_parameter</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vegetation_parameter</span> <span class="o">=</span> <span class="n">VegetationParameter</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reference_epw_site</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a ReferenceEPWSite object for the properties of the rural EPW.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reference_epw_site</span>
+
+    <span class="nd">@reference_epw_site</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">reference_epw_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ReferenceEPWSite</span><span class="p">),</span> <span class="s1">&#39;Expected ReferenceEPWSite &#39;</span> \
+                <span class="s1">&#39;for UWGSimulationParameter. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reference_epw_site</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reference_epw_site</span> <span class="o">=</span> <span class="n">ReferenceEPWSite</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">boundary_layer_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get or set a BoundaryLayerParameter object for the boundary layer properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_boundary_layer_parameter</span>
+
+    <span class="nd">@boundary_layer_parameter</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">boundary_layer_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">BoundaryLayerParameter</span><span class="p">),</span> <span class="s1">&#39;Expected &#39;</span> \
+                <span class="s1">&#39;BoundaryLayerParameter. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_boundary_layer_parameter</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_boundary_layer_parameter</span> <span class="o">=</span> <span class="n">BoundaryLayerParameter</span><span class="p">()</span>
+
+<div class="viewcode-block" id="UWGSimulationParameter.from_dict"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a UWGSimulationParameter object from a dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data: A UWGSimulationParameter dictionary in following the format below.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">            &quot;type&quot;: &quot;UWGSimulationParameter&quot;,</span>
+<span class="sd">            &quot;climate_zone&quot;: &quot;5A&quot;,  # Text for ASHRAE climate zone</span>
+<span class="sd">            &quot;run_period&quot;: {}, # Dragonfly UWGRunPeriod dictionary</span>
+<span class="sd">            &quot;timestep&quot;: 20, # Integer for the simulation timestep</span>
+<span class="sd">            &quot;vegetation_parameter&quot;: {}, # Dragonfly VegetationParameter dictionary</span>
+<span class="sd">            &quot;reference_epw_site&quot;: {}, # Dragonfly ReferenceEPWSite dictionary</span>
+<span class="sd">            &quot;boundary_layer_parameter&quot;: {} # Dragonfly BoundaryLayerParameter dictionary</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;UWGSimulationParameter&#39;</span><span class="p">,</span> \
+            <span class="s1">&#39;Expected UWGSimulationParameter dictionary. Got </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">])</span>
+
+        <span class="n">cz</span> <span class="o">=</span> <span class="n">autocalculate</span> <span class="k">if</span> <span class="s1">&#39;climate_zone&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> \
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;climate_zone&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">autocalculate</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">else</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;climate_zone&#39;</span><span class="p">]</span>
+        <span class="n">timestep</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestep&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;timestep&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="mi">12</span>
+        <span class="n">run_period</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s1">&#39;run_period&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;run_period&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">run_period</span> <span class="o">=</span> <span class="n">UWGRunPeriod</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;run_period&#39;</span><span class="p">])</span>
+        <span class="n">veg_par</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s1">&#39;vegetation_parameter&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;vegetation_parameter&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">veg_par</span> <span class="o">=</span> <span class="n">VegetationParameter</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;vegetation_parameter&#39;</span><span class="p">])</span>
+        <span class="n">ref_site</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s1">&#39;reference_epw_site&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;reference_epw_site&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ref_site</span> <span class="o">=</span> <span class="n">ReferenceEPWSite</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;reference_epw_site&#39;</span><span class="p">])</span>
+        <span class="n">bnd_par</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s1">&#39;boundary_layer_parameter&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> \
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;boundary_layer_parameter&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">bnd_par</span> <span class="o">=</span> <span class="n">BoundaryLayerParameter</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;boundary_layer_parameter&#39;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cz</span><span class="p">,</span> <span class="n">run_period</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">veg_par</span><span class="p">,</span> <span class="n">ref_site</span><span class="p">,</span> <span class="n">bnd_par</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UWGSimulationParameter.to_dict"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;UWGSimulationParameter dictionary representation.&quot;&quot;&quot;</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;UWGSimulationParameter&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;run_period&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_period</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span>
+            <span class="s1">&#39;timestep&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span>
+            <span class="s1">&#39;vegetation_parameter&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span>
+            <span class="s1">&#39;reference_epw_site&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_epw_site</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span>
+            <span class="s1">&#39;boundary_layer_parameter&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_climate_zone</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">[</span><span class="s1">&#39;climate_zone&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">climate_zone</span>
+        <span class="k">return</span> <span class="n">base</span></div>
+
+<div class="viewcode-block" id="UWGSimulationParameter.to_uwg_dict"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_uwg_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_uwg_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epw_file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a dictionary following the input schema of the UWG.</span>
+
+<span class="sd">        Note that this dictionary will only include the properties that the</span>
+<span class="sd">        UWGSimulationParameter object possesses and will lack all of those provided</span>
+<span class="sd">        by the Model object. For fully simulate-able UWG input, the Model.to.uwg</span>
+<span class="sd">        method should be used. The keys of the dictionary output by this method</span>
+<span class="sd">        include the following.</span>
+
+<span class="sd">            * zone</span>
+<span class="sd">            * month</span>
+<span class="sd">            * day</span>
+<span class="sd">            * nday</span>
+<span class="sd">            * dtsim</span>
+<span class="sd">            * rurvegcover</span>
+<span class="sd">            * vegstart</span>
+<span class="sd">            * vegend</span>
+<span class="sd">            * albveg</span>
+<span class="sd">            * latgrss</span>
+<span class="sd">            * lattree</span>
+<span class="sd">            * h_ubl1</span>
+<span class="sd">            * h_ubl2</span>
+<span class="sd">            * h_ref</span>
+<span class="sd">            * h_temp</span>
+<span class="sd">            * h_wind</span>
+<span class="sd">            * c_circ</span>
+<span class="sd">            * c_exch</span>
+<span class="sd">            * h_obs</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            epw_file: File path to the EPW that will be morphed by the UWG. This</span>
+<span class="sd">                will be used to fill all autocalculated fields like the ASHRAE</span>
+<span class="sd">                climate zone and vegetation start/end.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># autocalculate any missing values from the epw_file</span>
+        <span class="n">climate_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_climate_zone</span>
+        <span class="n">veg_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span><span class="o">.</span><span class="n">_start_month</span>
+        <span class="n">veg_end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span><span class="o">.</span><span class="n">_end_month</span>
+        <span class="k">if</span> <span class="n">climate_zone</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">veg_start</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">veg_end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">epw_obj</span> <span class="o">=</span> <span class="n">EPW</span><span class="p">(</span><span class="n">epw_file</span><span class="p">)</span>
+            <span class="n">start_def</span><span class="p">,</span> <span class="n">end_def</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_autocalc_start_end_vegetation</span><span class="p">(</span><span class="n">epw_obj</span><span class="p">)</span>
+            <span class="n">veg_start</span> <span class="o">=</span> <span class="n">start_def</span> <span class="k">if</span> <span class="n">veg_start</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">veg_start</span>
+            <span class="n">veg_end</span> <span class="o">=</span> <span class="n">end_def</span> <span class="k">if</span> <span class="n">veg_end</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">veg_end</span>
+            <span class="n">climate_zone</span> <span class="o">=</span> <span class="n">epw_obj</span><span class="o">.</span><span class="n">ashrae_climate_zone</span> <span class="k">if</span> <span class="n">climate_zone</span> <span class="ow">is</span> <span class="kc">None</span> \
+                <span class="k">else</span> <span class="n">climate_zone</span>
+
+        <span class="c1"># create the uwg dictionary</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;zone&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">climate_zone</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_period</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">month</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_period</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">day</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;nday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_period</span><span class="o">.</span><span class="n">day_count</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;dtsim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">60</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestep</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;vegstart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">veg_start</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;vegend&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">veg_end</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;albveg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span><span class="o">.</span><span class="n">vegetation_albedo</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;latgrss&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span><span class="o">.</span><span class="n">grass_latent_fraction</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;lattree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span><span class="o">.</span><span class="n">tree_latent_fraction</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;h_ubl1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span><span class="o">.</span><span class="n">day_boundary_layer_height</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;h_ubl2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span><span class="o">.</span><span class="n">night_boundary_layer_height</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;h_ref&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span><span class="o">.</span><span class="n">inversion_height</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;c_circ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span><span class="o">.</span><span class="n">circulation_coefficient</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;c_exch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span><span class="o">.</span><span class="n">exchange_coefficient</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;rurvegcover&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_epw_site</span><span class="o">.</span><span class="n">vegetation_coverage</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;h_temp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_epw_site</span><span class="o">.</span><span class="n">temp_measure_height</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;h_wind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_epw_site</span><span class="o">.</span><span class="n">wind_measure_height</span>
+        <span class="n">base</span><span class="p">[</span><span class="s1">&#39;h_obs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_epw_site</span><span class="o">.</span><span class="n">average_obstacle_height</span>
+        <span class="k">return</span> <span class="n">base</span></div>
+
+<div class="viewcode-block" id="UWGSimulationParameter.duplicate"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.duplicate">[docs]</a>    <span class="k">def</span> <span class="nf">duplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a copy of this object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__copy__</span><span class="p">()</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_autocalc_start_end_vegetation</span><span class="p">(</span><span class="n">epw_obj</span><span class="p">,</span> <span class="n">threshold_temp</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Autocalculate the vegetation start and end month from an EPW.&quot;&quot;&quot;</span>
+        <span class="n">month_temps</span> <span class="o">=</span> <span class="n">epw_obj</span><span class="o">.</span><span class="n">dry_bulb_temperature</span><span class="o">.</span><span class="n">average_monthly</span><span class="p">()</span>
+        <span class="n">veg_start</span><span class="p">,</span> <span class="n">veg_end</span><span class="p">,</span> <span class="n">veg_start_set</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">month_temps</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">threshold_temp</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">veg_start_set</span><span class="p">:</span>
+                <span class="n">veg_start</span><span class="p">,</span> <span class="n">veg_start_set</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">threshold_temp</span> <span class="ow">and</span> <span class="n">veg_start_set</span><span class="p">:</span>
+                <span class="n">veg_end</span><span class="p">,</span> <span class="n">veg_start_set</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">veg_start</span><span class="p">,</span> <span class="n">veg_end</span>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">UWGSimulationParameter</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">climate_zone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_period</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vegetation_parameter</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_epw_site</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">boundary_layer_parameter</span><span class="o">.</span><span class="n">duplicate</span><span class="p">())</span>
+
+<div class="viewcode-block" id="UWGSimulationParameter.ToString"><a class="viewcode-back" href="../../../dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.ToString">[docs]</a>    <span class="k">def</span> <span class="nf">ToString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Overwrite .NET ToString method.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;UWG SimulationParameter:&#39;</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
