@@ -256,25 +256,25 @@ class ModelUWGProperties(object):
         input, the Model.to.uwg method should be used. The keys of the dictionary
         output by this method include the following.
 
-            * bldheight
-            * blddensity
-            * vertohor
-            * grasscover
-            * treecover
-            * bld
-            * h_mix
-            * albroof
-            * vegroof
-            * glzr
-            * albwall
-            * flr_h
-            * charlength
-            * albroad
-            * droad
-            * kroad
-            * croad
-            * sensanth
-            * schtraffic
+        * bldheight
+        * blddensity
+        * vertohor
+        * grasscover
+        * treecover
+        * bld
+        * h_mix
+        * albroof
+        * vegroof
+        * glzr
+        * albwall
+        * flr_h
+        * charlength
+        * albroad
+        * droad
+        * kroad
+        * croad
+        * sensanth
+        * schtraffic
 
         """
         # check that the model units are meters before extracting outputs

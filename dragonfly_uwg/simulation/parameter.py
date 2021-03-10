@@ -201,25 +201,25 @@ class UWGSimulationParameter(object):
         method should be used. The keys of the dictionary output by this method
         include the following.
 
-            * zone
-            * month
-            * day
-            * nday
-            * dtsim
-            * rurvegcover
-            * vegstart
-            * vegend
-            * albveg
-            * latgrss
-            * lattree
-            * h_ubl1
-            * h_ubl2
-            * h_ref
-            * h_temp
-            * h_wind
-            * c_circ
-            * c_exch
-            * h_obs
+        * zone
+        * month
+        * day
+        * nday
+        * dtsim
+        * rurvegcover
+        * vegstart
+        * vegend
+        * albveg
+        * latgrss
+        * lattree
+        * h_ubl1
+        * h_ubl2
+        * h_ref
+        * h_temp
+        * h_wind
+        * c_circ
+        * c_exch
+        * h_obs
 
         Args:
             epw_file: File path to the EPW that will be morphed by the UWG. This
