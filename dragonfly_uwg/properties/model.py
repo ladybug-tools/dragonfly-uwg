@@ -151,7 +151,10 @@ class ModelUWGProperties(object):
         """
         ext_ap_areas = [bldg.exterior_aperture_area for bldg in self.host.buildings]
         total_area = sum(ext_ap_areas)
-        ext_ap_weights = [area / total_area for area in ext_ap_areas]
+        try:
+            ext_ap_weights = [area / total_area for area in ext_ap_areas]
+        except ZeroDivisionError:  # no apertures in model; just use dummy shgc
+            return 0.4
         shgc = 0
         for bldg, weight in zip(self.host.buildings, ext_ap_weights):
             if bldg.properties.uwg._shgc is None:
@@ -371,6 +374,9 @@ class ModelUWGProperties(object):
                 bld_dict[key][2] += weight
             except KeyError:  # first time we have this program and vintage
                 bld_dict[key] = [uwg_prop.program_uwg, uwg_prop.vintage_uwg, weight]
+        # round all weight values to avoid tolerance issues
+        for val in bld_dict:
+            bld_dict[val][2] = round(bld_dict[val][2], 3)
         return tuple(bld_dict.values())
 
     def _autocalcualted_tree_coverage(self, ground_area):
