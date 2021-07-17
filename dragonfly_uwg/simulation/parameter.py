@@ -40,8 +40,8 @@ class UWGSimulationParameter(object):
                  '_reference_epw_site', '_boundary_layer_parameter')
 
     VALIDTIMESTEPS = (1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60)
-    VALIDZONES = ('1A', '2A', '2B', '3A', '3B', '3C', '4A', '4B', '4C',
-                  '5A', '5B', '6A', '6B', '7', '8')
+    VALIDZONES = ('1A', '1B', '2A', '2B', '3A', '3B', '3C', '4A', '4B', '4C',
+                  '5A', '5B', '5C', '6A', '6B', '7', '8')
 
     def __init__(self, climate_zone=autocalculate, run_period=None, timestep=12,
                  vegetation_parameter=None, reference_epw_site=None,
