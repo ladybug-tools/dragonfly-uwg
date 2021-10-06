@@ -42,7 +42,7 @@ def run_uwg(model, epw_file_path, simulation_parameter=None, directory=None,
     epw_name = '{}.epw'.format(model.identifier)
     if directory is None:
         directory = os.path.join(lb_folders.default_epw_folder, model.identifier)
-    preparedir(directory, remove_content=True)
+    preparedir(directory, remove_content=False)
 
     # write the model to a UWG dictionary
     uwg_dict = model.to.uwg(model, epw_file_path, simulation_parameter)
