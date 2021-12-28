@@ -75,23 +75,22 @@ def _run_uwg_windows(uwg_json_path, epw_file_path, epw_name, silent=False):
         File path to the morphed EPW. Will be None if the UWG failed to run.
     """
     directory = os.path.dirname(uwg_json_path)
-    if not silent:  # run the simulations using a batch file
-        working_drive = directory[:2]
-        # write the batch file
-        batch = '{}\ncd "{}"\n"{}" -m uwg simulate model "{}" "{}" --new-epw-dir "{}" ' \
+    if not silent:  # run the simulations with shell=False
+        command = '"{}" -m uwg simulate model "{}" "{}" --new-epw-dir "{}" ' \
             '--new-epw-name "{}"'.format(
-                working_drive, directory, hb_folders.python_exe_path, uwg_json_path,
+                hb_folders.python_exe_path, uwg_json_path,
                 epw_file_path, directory, epw_name)
-        batch_file = os.path.join(directory, 'in.bat')
-        write_to_file(batch_file, batch, True)
-        os.system('"{}"'.format(batch_file))  # run the batch file
-    else:  # run the simulation using subprocess
+        process = subprocess.Popen(
+            command, stderr=subprocess.PIPE, shell=False)
+    else:  # run the simulation using subprocess with shell=True
         cmds = [hb_folders.python_exe_path, '-m', 'uwg', 'simulate', 'model',
                 uwg_json_path, epw_file_path, '--new-epw-dir', directory,
                 '--new-epw-name', epw_name]
-        process = subprocess.Popen(cmds, stdout=subprocess.PIPE, shell=True)
-        process.communicate()  # prevents the script from running before command is done
-
+        process = subprocess.Popen(cmds, stderr=subprocess.PIPE, shell=True)
+    _, stderr = process.communicate()
+    rc = process.returncode
+    if isinstance(rc, int) and rc != 0:
+        raise RuntimeError('The UWG failed to run:\n{}'.format(stderr))
     epw_file = os.path.join(directory, epw_name)
     return epw_file if os.path.isfile(epw_file) else None
 
