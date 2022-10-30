@@ -4,7 +4,7 @@ import math
 
 from dragonfly_uwg.properties.model import ModelUWGProperties
 from dragonfly_uwg.terrain import Terrain
-from dragonfly_uwg.traffic import TrafficPararameter
+from dragonfly_uwg.traffic import TrafficParameter
 
 from dragonfly.model import Model
 from ladybug_geometry.geometry3d.pointvector import Vector3D, Point3D
@@ -22,7 +22,7 @@ def test_uwg_properties():
     str(model.properties.uwg)  # test the string representation
     assert isinstance(model.properties.host, Model)
     assert isinstance(model.properties.uwg.terrain, Terrain)
-    assert isinstance(model.properties.uwg.traffic, TrafficPararameter)
+    assert isinstance(model.properties.uwg.traffic, TrafficParameter)
     assert model.properties.uwg.tree_coverage_fraction == 0
     assert model.properties.uwg.grass_coverage_fraction == 0
 
