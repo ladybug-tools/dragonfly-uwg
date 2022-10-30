@@ -1,5 +1,5 @@
 # coding=utf-8
-from dragonfly_uwg.traffic import TrafficPararameter
+from dragonfly_uwg.traffic import TrafficParameter
 
 from honeybee.altnumber import autocalculate
 
@@ -12,9 +12,9 @@ def test_traffic():
 
     str(traffic)  # test the string representation
     assert traffic.watts_per_area == autocalculate
-    assert traffic.weekday_schedule == TrafficPararameter.WEEKDAY_DEFAULT
-    assert traffic.saturday_schedule == TrafficPararameter.SATURDAY_DEFAULT
-    assert traffic.sunday_schedule == TrafficPararameter.SUNDAY_DEFAULT
+    assert traffic.weekday_schedule == TrafficParameter.WEEKDAY_DEFAULT
+    assert traffic.saturday_schedule == TrafficParameter.SATURDAY_DEFAULT
+    assert traffic.sunday_schedule == TrafficParameter.SUNDAY_DEFAULT
 
 
 def test_duplicate():
@@ -30,10 +30,10 @@ def test_duplicate():
 
 
 def test_to_from_dict():
-    """Test the TrafficPararameter to_dict and from_dict methods."""
+    """Test the TrafficParameter to_dict and from_dict methods."""
     traffic = custom_traffic()
     traffic_dict = traffic.to_dict()
-    new_traffic = TrafficPararameter.from_dict(traffic_dict)
+    new_traffic = TrafficParameter.from_dict(traffic_dict)
 
     assert new_traffic.watts_per_area == traffic.watts_per_area
     assert new_traffic.weekday_schedule == traffic.weekday_schedule

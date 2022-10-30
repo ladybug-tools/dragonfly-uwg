@@ -5,7 +5,7 @@ from honeybee.typing import float_in_range, float_positive
 from honeybee.altnumber import autocalculate
 
 
-class TrafficPararameter(object):
+class TrafficParameter(object):
     """Object representing the traffic within an urban area.
 
     Note:
@@ -15,7 +15,7 @@ class TrafficPararameter(object):
 
     Args:
         watts_per_area: A number representing the maximum sensible anthropogenic heat
-            flux of the urban area in watts per square meter. This is specifcally the
+            flux of the urban area in watts per square meter. This is specifically the
             heat that DOES NOT originate from buildings and mostly includes heat
             from automobiles, street lighting, and human metabolism. If autocalculate,
             it will be estimated frm the average building story count of the model
@@ -64,16 +64,16 @@ class TrafficPararameter(object):
 
     @classmethod
     def from_dict(cls, data):
-        """Initialize an TrafficPararameter from a dictionary.
+        """Initialize an TrafficParameter from a dictionary.
 
         Args:
-            data: A dictionary representation of an TrafficPararameter object
+            data: A dictionary representation of an TrafficParameter object
                 in the format below.
 
         .. code-block:: python
 
             {
-            "type": 'TrafficPararameter',
+            "type": 'TrafficParameter',
             "watts_per_area": 10,  # number for heat in W/m2
             "weekday_schedule": [],  # list of 24 fractional values for a schedule
             "saturday_schedule": [],  # list of 24 fractional values for a schedule
@@ -138,8 +138,8 @@ class TrafficPararameter(object):
         return self.__copy__()
 
     def to_dict(self):
-        """Get TrafficPararameter as a dictionary."""
-        base = {'type': 'TrafficPararameter'}
+        """Get TrafficParameter as a dictionary."""
+        base = {'type': 'TrafficParameter'}
         if self._watts_per_area is not None:
             base['watts_per_area'] = self._watts_per_area
         if self._weekday_schedule is not None:
@@ -159,7 +159,7 @@ class TrafficPararameter(object):
                 'has length ({})'.format(len(schedule)))
 
     def __copy__(self):
-        new_obj = TrafficPararameter()
+        new_obj = TrafficParameter()
         new_obj._watts_per_area = self._watts_per_area
         new_obj._weekday_schedule = self._weekday_schedule
         new_obj._saturday_schedule = self._saturday_schedule
