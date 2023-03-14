@@ -20,7 +20,7 @@ class Terrain(object):
 
     Args:
         geometry: An array of ladybug_geometry Face3D objects that together
-            represent the terrian. This should include the entire area of the
+            represent the terrain. This should include the entire area of the
             site, including that beneath building footprints.
         pavement_albedo: A number between 0 and 1 that represents the albedo
             (reflectivity) of the pavement. (Default: 0.1, typical of fresh asphalt).
