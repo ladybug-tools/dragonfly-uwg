@@ -109,7 +109,11 @@ class BuildingUWGProperties(object):
     @property
     def program_uwg(self):
         """Get text for the building program in a format that the UWG likes."""
-        return self._program.lower() if self._program != 'Retail' else 'standaloneretail'
+        if self._program == 'Retail':
+            return 'standaloneretail'
+        elif self._program == 'MediumOffice':
+            return 'medoffice'
+        return self._program.lower() 
 
     @property
     def vintage(self):
