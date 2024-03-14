@@ -75,18 +75,21 @@ def _run_uwg_windows(uwg_json_path, epw_file_path, epw_name, silent=False):
         File path to the morphed EPW. Will be None if the UWG failed to run.
     """
     directory = os.path.dirname(uwg_json_path)
+    custom_env = os.environ.copy()
+    custom_env['PYTHONHOME'] = ''
     if not silent:  # run the simulations with shell=False
         command = '"{}" -m uwg simulate model "{}" "{}" --new-epw-dir "{}" ' \
             '--new-epw-name "{}"'.format(
                 hb_folders.python_exe_path, uwg_json_path,
                 epw_file_path, directory, epw_name)
         process = subprocess.Popen(
-            command, stderr=subprocess.PIPE, shell=False)
+            command, stderr=subprocess.PIPE, shell=False, env=custom_env)
     else:  # run the simulation using subprocess with shell=True
         cmds = [hb_folders.python_exe_path, '-m', 'uwg', 'simulate', 'model',
                 uwg_json_path, epw_file_path, '--new-epw-dir', directory,
                 '--new-epw-name', epw_name]
-        process = subprocess.Popen(cmds, stderr=subprocess.PIPE, shell=True)
+        process = subprocess.Popen(
+            cmds, stderr=subprocess.PIPE, shell=True, env=custom_env)
     _, stderr = process.communicate()
     rc = process.returncode
     if isinstance(rc, int) and rc != 0:
