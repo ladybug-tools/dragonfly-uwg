@@ -7,7 +7,7 @@
 
 # dragonfly-uwg
 
-Dragonfly extension for urban heat island modeling with the UWG.
+Dragonfly extension for urban heat island modeling.
 
 Dragonfly-uwg uses the [Urban Weather Generator (uwg)](https://github.com/ladybug-tools/uwg) to morph EPW files to account for the [urban heat island effect](https://en.wikipedia.org/wiki/Urban_heat_island).
 
