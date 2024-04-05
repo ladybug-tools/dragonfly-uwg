@@ -1,11 +1,12 @@
 # coding=utf-8
 """Model UWG Properties."""
-from ..terrain import Terrain
-from ..traffic import TrafficParameter
-
-from dragonfly.extensionutil import model_extension_dicts
+from ladybug_geometry.geometry3d import Face3D
 from honeybee.typing import float_in_range
 from honeybee.altnumber import autocalculate
+from dragonfly.extensionutil import model_extension_dicts
+
+from ..terrain import Terrain
+from ..traffic import TrafficParameter
 
 
 class ModelUWGProperties(object):
@@ -381,11 +382,14 @@ class ModelUWGProperties(object):
 
     def _autocalcualted_tree_coverage(self, ground_area):
         """Autocalculate the tree coverage from the model context shades."""
-        veg_shds = []
+        veg_shds, mesh_area = [], 0
         for shd in self.host.context_shades:
             if shd.properties.uwg.is_vegetation:
-                veg_shds.extend(shd.geometry)
-        tree_area = self.compute_horizontal_area(veg_shds)
+                if isinstance(shd.geometry, Face3D):
+                    veg_shds.extend(shd.geometry)
+                else:
+                    mesh_area += shd.geometry.area
+        tree_area = self.compute_horizontal_area(veg_shds) + mesh_area
         if ground_area <= 0:
             return 0
         return tree_area / ground_area if tree_area / ground_area <= 1 else 1
