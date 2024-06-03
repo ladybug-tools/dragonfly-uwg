@@ -1,2 +1,2 @@
-dragonfly-core==1.47.3
+dragonfly-core==1.47.4
 uwg==5.8.13
