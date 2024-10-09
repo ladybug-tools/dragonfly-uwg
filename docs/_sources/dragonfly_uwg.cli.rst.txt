@@ -1,0 +1,18 @@
+dragonfly\_uwg.cli package
+==========================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   dragonfly_uwg.cli.simulate
+
+Module contents
+---------------
+
+.. automodule:: dragonfly_uwg.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:
