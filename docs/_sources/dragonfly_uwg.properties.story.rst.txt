@@ -1,0 +1,7 @@
+dragonfly\_uwg.properties.story module
+======================================
+
+.. automodule:: dragonfly_uwg.properties.story
+   :members:
+   :undoc-members:
+   :show-inheritance:
