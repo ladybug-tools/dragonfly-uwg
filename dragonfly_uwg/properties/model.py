@@ -385,10 +385,11 @@ class ModelUWGProperties(object):
         veg_shds, mesh_area = [], 0
         for shd in self.host.context_shades:
             if shd.properties.uwg.is_vegetation:
-                if isinstance(shd.geometry, Face3D):
-                    veg_shds.extend(shd.geometry)
-                else:
-                    mesh_area += shd.geometry.area
+                for shd_geo in shd.geometry:
+                    if isinstance(shd_geo, Face3D):
+                        veg_shds.append(shd_geo)
+                    else:
+                        mesh_area += shd_geo.area
         tree_area = self.compute_horizontal_area(veg_shds) + mesh_area
         if ground_area <= 0:
             return 0
