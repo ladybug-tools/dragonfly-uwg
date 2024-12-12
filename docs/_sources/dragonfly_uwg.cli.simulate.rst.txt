@@ -1,0 +1,7 @@
+dragonfly\_uwg.cli.simulate module
+==================================
+
+.. automodule:: dragonfly_uwg.cli.simulate
+   :members:
+   :undoc-members:
+   :show-inheritance:
