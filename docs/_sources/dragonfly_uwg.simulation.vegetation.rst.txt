@@ -1,0 +1,7 @@
+dragonfly\_uwg.simulation.vegetation module
+===========================================
+
+.. automodule:: dragonfly_uwg.simulation.vegetation
+   :members:
+   :undoc-members:
+   :show-inheritance:
