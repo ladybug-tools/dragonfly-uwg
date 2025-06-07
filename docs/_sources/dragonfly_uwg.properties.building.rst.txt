@@ -1,0 +1,7 @@
+dragonfly\_uwg.properties.building module
+=========================================
+
+.. automodule:: dragonfly_uwg.properties.building
+   :members:
+   :undoc-members:
+   :show-inheritance:
