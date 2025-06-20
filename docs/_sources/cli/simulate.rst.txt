@@ -1,0 +1,6 @@
+simulate
+========
+
+.. click:: dragonfly_uwg.cli.simulate:simulate
+   :prog: dragonfly-uwg simulate
+   :show-nested:
