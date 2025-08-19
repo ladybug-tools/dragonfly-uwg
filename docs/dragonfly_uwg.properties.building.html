@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dragonfly_uwg.properties.building module &#8212; dragonfly-uwg  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=0bf093e7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=0b9525ea" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dragonfly_uwg.properties.context module" href="dragonfly_uwg.properties.context.html" />
+    <link rel="prev" title="dragonfly_uwg.properties package" href="dragonfly_uwg.properties.html" />
+<link rel="icon" type="image/x-icon" href="https://github.com/ladybug-tools/artwork/raw/refs/heads/master/icons_bugs/ico/dragonfly.ico">
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          dragonfly-uwg</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="cli/index.html">CLI Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli/index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/index.html#commands">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cli/simulate.html">simulate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cli/simulate.html#dragonfly-uwg-simulate">dragonfly-uwg simulate</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="cli/simulate.html#dragonfly-uwg-simulate-model">model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">dragonfly_uwg</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.cli.simulate.html">dragonfly_uwg.cli.simulate module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.cli.html#module-dragonfly_uwg.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l6 current"><a class="current reference internal" href="#">dragonfly_uwg.properties.building module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties"><code class="docutils literal notranslate"><span class="pre">BuildingUWGProperties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.apply_properties_from_dict"><code class="docutils literal notranslate"><span class="pre">apply_properties_from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.default_shgc"><code class="docutils literal notranslate"><span class="pre">default_shgc()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.infer_program_from_energy_program"><code class="docutils literal notranslate"><span class="pre">infer_program_from_energy_program()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.PROGRAMS"><code class="docutils literal notranslate"><span class="pre">PROGRAMS</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.VINTAGES"><code class="docutils literal notranslate"><span class="pre">VINTAGES</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.fract_heat_to_canyon"><code class="docutils literal notranslate"><span class="pre">fract_heat_to_canyon</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program"><code class="docutils literal notranslate"><span class="pre">program</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program_uwg"><code class="docutils literal notranslate"><span class="pre">program_uwg</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_albedo"><code class="docutils literal notranslate"><span class="pre">roof_albedo</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_veg_fraction"><code class="docutils literal notranslate"><span class="pre">roof_veg_fraction</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.shgc"><code class="docutils literal notranslate"><span class="pre">shgc</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage"><code class="docutils literal notranslate"><span class="pre">vintage</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage_uwg"><code class="docutils literal notranslate"><span class="pre">vintage_uwg</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.wall_albedo"><code class="docutils literal notranslate"><span class="pre">wall_albedo</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties"><code class="docutils literal notranslate"><span class="pre">ContextShadeUWGProperties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties.apply_properties_from_dict"><code class="docutils literal notranslate"><span class="pre">apply_properties_from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties.host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.context.html#dragonfly_uwg.properties.context.ContextShadeUWGProperties.is_vegetation"><code class="docutils literal notranslate"><span class="pre">is_vegetation</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties"><code class="docutils literal notranslate"><span class="pre">ModelUWGProperties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.apply_properties_from_dict"><code class="docutils literal notranslate"><span class="pre">apply_properties_from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.average_shgc"><code class="docutils literal notranslate"><span class="pre">average_shgc()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.compute_horizontal_area"><code class="docutils literal notranslate"><span class="pre">compute_horizontal_area()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.grass_coverage_from_geometry"><code class="docutils literal notranslate"><span class="pre">grass_coverage_from_geometry()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.move"><code class="docutils literal notranslate"><span class="pre">move()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.reflect"><code class="docutils literal notranslate"><span class="pre">reflect()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.rotate_xy"><code class="docutils literal notranslate"><span class="pre">rotate_xy()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.scale"><code class="docutils literal notranslate"><span class="pre">scale()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.to_uwg_dict"><code class="docutils literal notranslate"><span class="pre">to_uwg_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.exposed_ground_area"><code class="docutils literal notranslate"><span class="pre">exposed_ground_area</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.facade_to_site"><code class="docutils literal notranslate"><span class="pre">facade_to_site</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.footprint_density"><code class="docutils literal notranslate"><span class="pre">footprint_density</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.grass_coverage_fraction"><code class="docutils literal notranslate"><span class="pre">grass_coverage_fraction</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.is_tree_coverage_autocalcualted"><code class="docutils literal notranslate"><span class="pre">is_tree_coverage_autocalcualted</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.terrain"><code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.traffic"><code class="docutils literal notranslate"><span class="pre">traffic</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.model.html#dragonfly_uwg.properties.model.ModelUWGProperties.tree_coverage_fraction"><code class="docutils literal notranslate"><span class="pre">tree_coverage_fraction</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html#dragonfly_uwg.properties.room2d.Room2DUWGProperties"><code class="docutils literal notranslate"><span class="pre">Room2DUWGProperties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html#dragonfly_uwg.properties.room2d.Room2DUWGProperties.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html#dragonfly_uwg.properties.room2d.Room2DUWGProperties.apply_properties_from_dict"><code class="docutils literal notranslate"><span class="pre">apply_properties_from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html#dragonfly_uwg.properties.room2d.Room2DUWGProperties.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html#dragonfly_uwg.properties.room2d.Room2DUWGProperties.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html#dragonfly_uwg.properties.room2d.Room2DUWGProperties.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html#dragonfly_uwg.properties.room2d.Room2DUWGProperties.host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.properties.story.html#dragonfly_uwg.properties.story.StoryUWGProperties"><code class="docutils literal notranslate"><span class="pre">StoryUWGProperties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.story.html#dragonfly_uwg.properties.story.StoryUWGProperties.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.story.html#dragonfly_uwg.properties.story.StoryUWGProperties.apply_properties_from_dict"><code class="docutils literal notranslate"><span class="pre">apply_properties_from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.story.html#dragonfly_uwg.properties.story.StoryUWGProperties.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.story.html#dragonfly_uwg.properties.story.StoryUWGProperties.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.story.html#dragonfly_uwg.properties.story.StoryUWGProperties.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.properties.story.html#dragonfly_uwg.properties.story.StoryUWGProperties.host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.html#submodules">Submodules</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html">dragonfly_uwg.simulation.boundary module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter"><code class="docutils literal notranslate"><span class="pre">BoundaryLayerParameter</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.circulation_coefficient"><code class="docutils literal notranslate"><span class="pre">circulation_coefficient</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.day_boundary_layer_height"><code class="docutils literal notranslate"><span class="pre">day_boundary_layer_height</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.exchange_coefficient"><code class="docutils literal notranslate"><span class="pre">exchange_coefficient</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.inversion_height"><code class="docutils literal notranslate"><span class="pre">inversion_height</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.boundary.html#dragonfly_uwg.simulation.boundary.BoundaryLayerParameter.night_boundary_layer_height"><code class="docutils literal notranslate"><span class="pre">night_boundary_layer_height</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html">dragonfly_uwg.simulation.parameter module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter"><code class="docutils literal notranslate"><span class="pre">UWGSimulationParameter</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.to_uwg_dict"><code class="docutils literal notranslate"><span class="pre">to_uwg_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.VALIDTIMESTEPS"><code class="docutils literal notranslate"><span class="pre">VALIDTIMESTEPS</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.VALIDZONES"><code class="docutils literal notranslate"><span class="pre">VALIDZONES</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.boundary_layer_parameter"><code class="docutils literal notranslate"><span class="pre">boundary_layer_parameter</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.climate_zone"><code class="docutils literal notranslate"><span class="pre">climate_zone</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.reference_epw_site"><code class="docutils literal notranslate"><span class="pre">reference_epw_site</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.run_period"><code class="docutils literal notranslate"><span class="pre">run_period</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.timestep"><code class="docutils literal notranslate"><span class="pre">timestep</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.parameter.html#dragonfly_uwg.simulation.parameter.UWGSimulationParameter.vegetation_parameter"><code class="docutils literal notranslate"><span class="pre">vegetation_parameter</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html">dragonfly_uwg.simulation.refsite module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite"><code class="docutils literal notranslate"><span class="pre">ReferenceEPWSite</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.average_obstacle_height"><code class="docutils literal notranslate"><span class="pre">average_obstacle_height</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.temp_measure_height"><code class="docutils literal notranslate"><span class="pre">temp_measure_height</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.vegetation_coverage"><code class="docutils literal notranslate"><span class="pre">vegetation_coverage</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.refsite.html#dragonfly_uwg.simulation.refsite.ReferenceEPWSite.wind_measure_height"><code class="docutils literal notranslate"><span class="pre">wind_measure_height</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html">dragonfly_uwg.simulation.runperiod module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod"><code class="docutils literal notranslate"><span class="pre">UWGRunPeriod</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.from_analysis_period"><code class="docutils literal notranslate"><span class="pre">from_analysis_period()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.day_count"><code class="docutils literal notranslate"><span class="pre">day_count</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.end_date"><code class="docutils literal notranslate"><span class="pre">end_date</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.runperiod.html#dragonfly_uwg.simulation.runperiod.UWGRunPeriod.start_date"><code class="docutils literal notranslate"><span class="pre">start_date</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html">dragonfly_uwg.simulation.vegetation module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter"><code class="docutils literal notranslate"><span class="pre">VegetationParameter</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.end_month"><code class="docutils literal notranslate"><span class="pre">end_month</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.grass_latent_fraction"><code class="docutils literal notranslate"><span class="pre">grass_latent_fraction</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.start_month"><code class="docutils literal notranslate"><span class="pre">start_month</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.tree_latent_fraction"><code class="docutils literal notranslate"><span class="pre">tree_latent_fraction</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="dragonfly_uwg.simulation.vegetation.html#dragonfly_uwg.simulation.vegetation.VegetationParameter.vegetation_albedo"><code class="docutils literal notranslate"><span class="pre">vegetation_albedo</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.simulation.html#module-dragonfly_uwg.simulation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.run.html">dragonfly_uwg.run module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.run.html#dragonfly_uwg.run.run_uwg"><code class="docutils literal notranslate"><span class="pre">run_uwg()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.terrain.html">dragonfly_uwg.terrain module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain"><code class="docutils literal notranslate"><span class="pre">Terrain</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.from_building_bounding_rect"><code class="docutils literal notranslate"><span class="pre">from_building_bounding_rect()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.move"><code class="docutils literal notranslate"><span class="pre">move()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.reflect"><code class="docutils literal notranslate"><span class="pre">reflect()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.rotate_xy"><code class="docutils literal notranslate"><span class="pre">rotate_xy()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.scale"><code class="docutils literal notranslate"><span class="pre">scale()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.area"><code class="docutils literal notranslate"><span class="pre">area</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.characteristic_length"><code class="docutils literal notranslate"><span class="pre">characteristic_length</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.geometry"><code class="docutils literal notranslate"><span class="pre">geometry</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.horizontal_area"><code class="docutils literal notranslate"><span class="pre">horizontal_area</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.max"><code class="docutils literal notranslate"><span class="pre">max</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.min"><code class="docutils literal notranslate"><span class="pre">min</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.pavement_albedo"><code class="docutils literal notranslate"><span class="pre">pavement_albedo</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.pavement_conductivity"><code class="docutils literal notranslate"><span class="pre">pavement_conductivity</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.pavement_heat_capacity"><code class="docutils literal notranslate"><span class="pre">pavement_heat_capacity</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.pavement_thickness"><code class="docutils literal notranslate"><span class="pre">pavement_thickness</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.terrain.html#dragonfly_uwg.terrain.Terrain.polygon2ds"><code class="docutils literal notranslate"><span class="pre">polygon2ds</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.traffic.html">dragonfly_uwg.traffic module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter"><code class="docutils literal notranslate"><span class="pre">TrafficParameter</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.SATURDAY_DEFAULT"><code class="docutils literal notranslate"><span class="pre">SATURDAY_DEFAULT</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.SUNDAY_DEFAULT"><code class="docutils literal notranslate"><span class="pre">SUNDAY_DEFAULT</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.WEEKDAY_DEFAULT"><code class="docutils literal notranslate"><span class="pre">WEEKDAY_DEFAULT</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.saturday_schedule"><code class="docutils literal notranslate"><span class="pre">saturday_schedule</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.sunday_schedule"><code class="docutils literal notranslate"><span class="pre">sunday_schedule</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.watts_per_area"><code class="docutils literal notranslate"><span class="pre">watts_per_area</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.traffic.html#dragonfly_uwg.traffic.TrafficParameter.weekday_schedule"><code class="docutils literal notranslate"><span class="pre">weekday_schedule</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.writer.html">dragonfly_uwg.writer module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.writer.html#dragonfly_uwg.writer.model_to_uwg"><code class="docutils literal notranslate"><span class="pre">model_to_uwg()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="cli/index.html">CLI Docs</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">dragonfly_uwg</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l6 current"><a class="current reference internal" href="#">dragonfly_uwg.properties.building module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties"><code class="docutils literal notranslate"><span class="pre">BuildingUWGProperties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.apply_properties_from_dict"><code class="docutils literal notranslate"><span class="pre">apply_properties_from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.default_shgc"><code class="docutils literal notranslate"><span class="pre">default_shgc()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.infer_program_from_energy_program"><code class="docutils literal notranslate"><span class="pre">infer_program_from_energy_program()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.PROGRAMS"><code class="docutils literal notranslate"><span class="pre">PROGRAMS</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.VINTAGES"><code class="docutils literal notranslate"><span class="pre">VINTAGES</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.fract_heat_to_canyon"><code class="docutils literal notranslate"><span class="pre">fract_heat_to_canyon</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program"><code class="docutils literal notranslate"><span class="pre">program</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program_uwg"><code class="docutils literal notranslate"><span class="pre">program_uwg</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_albedo"><code class="docutils literal notranslate"><span class="pre">roof_albedo</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_veg_fraction"><code class="docutils literal notranslate"><span class="pre">roof_veg_fraction</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.shgc"><code class="docutils literal notranslate"><span class="pre">shgc</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage"><code class="docutils literal notranslate"><span class="pre">vintage</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage_uwg"><code class="docutils literal notranslate"><span class="pre">vintage_uwg</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.wall_albedo"><code class="docutils literal notranslate"><span class="pre">wall_albedo</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="dragonfly_uwg.properties.html" title="Previous Chapter: dragonfly_uwg.properties package"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; dragonfly_uwg...</span>
+    </a>
+  </li>
+  <li>
+    <a href="dragonfly_uwg.properties.context.html" title="Next Chapter: dragonfly_uwg.properties.context module"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">dragonfly_uwg... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/dragonfly_uwg.properties.building.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li class="toctree-l1"><a class="reference internal" href="cli/index.html">CLI Docs</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">dragonfly_uwg</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dragonfly_uwg.html">dragonfly_uwg package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dragonfly_uwg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.cli.html">dragonfly_uwg.cli package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="dragonfly_uwg.properties.html">dragonfly_uwg.properties package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="dragonfly_uwg.properties.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l6 current"><a class="current reference internal" href="#">dragonfly_uwg.properties.building module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties"><code class="docutils literal notranslate"><span class="pre">BuildingUWGProperties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.ToString"><code class="docutils literal notranslate"><span class="pre">ToString()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.apply_properties_from_dict"><code class="docutils literal notranslate"><span class="pre">apply_properties_from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.default_shgc"><code class="docutils literal notranslate"><span class="pre">default_shgc()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.duplicate"><code class="docutils literal notranslate"><span class="pre">duplicate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.from_dict"><code class="docutils literal notranslate"><span class="pre">from_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.infer_program_from_energy_program"><code class="docutils literal notranslate"><span class="pre">infer_program_from_energy_program()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.to_dict"><code class="docutils literal notranslate"><span class="pre">to_dict()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.PROGRAMS"><code class="docutils literal notranslate"><span class="pre">PROGRAMS</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.VINTAGES"><code class="docutils literal notranslate"><span class="pre">VINTAGES</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.fract_heat_to_canyon"><code class="docutils literal notranslate"><span class="pre">fract_heat_to_canyon</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program"><code class="docutils literal notranslate"><span class="pre">program</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program_uwg"><code class="docutils literal notranslate"><span class="pre">program_uwg</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_albedo"><code class="docutils literal notranslate"><span class="pre">roof_albedo</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_veg_fraction"><code class="docutils literal notranslate"><span class="pre">roof_veg_fraction</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.shgc"><code class="docutils literal notranslate"><span class="pre">shgc</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage"><code class="docutils literal notranslate"><span class="pre">vintage</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage_uwg"><code class="docutils literal notranslate"><span class="pre">vintage_uwg</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.wall_albedo"><code class="docutils literal notranslate"><span class="pre">wall_albedo</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.context.html">dragonfly_uwg.properties.context module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.model.html">dragonfly_uwg.properties.model module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.room2d.html">dragonfly_uwg.properties.room2d module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="dragonfly_uwg.properties.story.html">dragonfly_uwg.properties.story module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="dragonfly_uwg.properties.html#module-dragonfly_uwg.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dragonfly_uwg.simulation.html">dragonfly_uwg.simulation package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dragonfly_uwg.html#module-dragonfly_uwg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-8 content" role="main">
+      
+  <section id="module-dragonfly_uwg.properties.building">
+<span id="dragonfly-uwg-properties-building-module"></span><h1>dragonfly_uwg.properties.building module<a class="headerlink" href="#module-dragonfly_uwg.properties.building" title="Link to this heading">¶</a></h1>
+<p>Building UWG Properties.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dragonfly_uwg.properties.building.</span></span><span class="sig-name descname"><span class="pre">BuildingUWGProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">program</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LargeOffice'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vintage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'New'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fract_heat_to_canyon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shgc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Autocalculate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wall_albedo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Autocalculate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roof_albedo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Autocalculate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roof_veg_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>UWG Properties for Dragonfly Building.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host</strong> – A dragonfly_core Building object that hosts these properties.</p></li>
+<li><p><strong>program</strong> – <p>Text for the name of the building program. Must be one of the
+options below. (Default: LargeOffice).</p>
+<ul>
+<li><p>LargeOffice</p></li>
+<li><p>MediumOffice</p></li>
+<li><p>SmallOffice</p></li>
+<li><p>MidriseApartment</p></li>
+<li><p>Retail</p></li>
+<li><p>StripMall</p></li>
+<li><p>PrimarySchool</p></li>
+<li><p>SecondarySchool</p></li>
+<li><p>SmallHotel</p></li>
+<li><p>LargeHotel</p></li>
+<li><p>Hospital</p></li>
+<li><p>Outpatient</p></li>
+<li><p>Warehouse</p></li>
+<li><p>SuperMarket</p></li>
+<li><p>FullServiceRestaurant</p></li>
+<li><p>QuickServiceRestaurant</p></li>
+</ul>
+</p></li>
+<li><p><strong>vintage</strong> – <p>Text for the vintage of the building. This will be used to set
+default constructions. Must be one of the options below. (Default: New).</p>
+<ul>
+<li><p>New</p></li>
+<li><p>1980_Present</p></li>
+<li><p>Pre1980</p></li>
+</ul>
+</p></li>
+<li><p><strong>fract_heat_to_canyon</strong> – A number from 0 to 1 that represents the fraction of
+the building’s waste heat from air conditioning that gets rejected
+into the urban canyon. (Default: 0.5).</p></li>
+<li><p><strong>shgc</strong> – A number from 0 to 1 that represents the SHGC of the building’s windows.
+Used to evaluate the amount of solar heat reflected into the street canyon.
+If autocalculate, it will be set by the building vintage and the Model
+climate zone. (Default: autocalculate).</p></li>
+<li><p><strong>wall_albedo</strong> – A number from 0 to 1 that represents the exterior wall albedo
+of the building. If autocalculate, it will be set by the building program
+and the DoE commercial reference buildings. (Default: autocalculate).</p></li>
+<li><p><strong>roof_albedo</strong> – A number from 0 to 1 that represents the exterior roof albedo of
+the building. If autocalculate, it will be set by the vintage, meaning 0.7
+for New and 0.2 for 1980_Present and Pre1980. (Default: autocalculate).</p></li>
+<li><p><strong>roof_veg_fraction</strong> – A number from 0 to 1 that represents the roof vegetation
+fraction of the building. (Default: 0).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>host</p></li>
+<li><p>program</p></li>
+<li><p>vintage</p></li>
+<li><p>fract_heat_to_canyon</p></li>
+<li><p>shgc</p></li>
+<li><p>wall_albedo</p></li>
+<li><p>roof_albedo</p></li>
+<li><p>roof_veg_fraction</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.ToString">
+<span class="sig-name descname"><span class="pre">ToString</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties.ToString"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.ToString" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.apply_properties_from_dict">
+<span class="sig-name descname"><span class="pre">apply_properties_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abridged_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties.apply_properties_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.apply_properties_from_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Apply properties from a BuildingUWGPropertiesAbridged dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>abridged_data</strong> – A BuildingUWGPropertiesAbridged dictionary (typically
+coming from a Model).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.default_shgc">
+<span class="sig-name descname"><span class="pre">default_shgc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">climate_zone</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties.default_shgc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.default_shgc" title="Link to this definition">¶</a></dt>
+<dd><p>Get the default DoE Reference Building SHGC for this building.</p>
+<p>This is used whenever the building’s shgc property is autocalculate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>climate_zone</strong> – Text for the ASHRAE climate zone, which must include
+the humidity letter (eg. “4A”) unless it is climate zone 7 or 8.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.duplicate">
+<span class="sig-name descname"><span class="pre">duplicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties.duplicate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.duplicate" title="Link to this definition">¶</a></dt>
+<dd><p>Get a copy of this object.</p>
+<dl class="simple">
+<dt>new_host: A new Building object that hosts these properties.</dt><dd><p>If None, the properties will be duplicated with the same host.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.from_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Create BuildingUWGProperties from a dictionary.</p>
+<p>Note that the dictionary must be a non-abridged version for this
+classmethod to work.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – A dictionary representation of BuildingUWGProperties.</p></li>
+<li><p><strong>host</strong> – A Building object that hosts these properties.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.infer_program_from_energy_program">
+<span class="sig-name descname"><span class="pre">infer_program_from_energy_program</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties.infer_program_from_energy_program"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.infer_program_from_energy_program" title="Link to this definition">¶</a></dt>
+<dd><p>Attempt to infer the UWG building program from the honeybee-energy program.</p>
+<p>The inferring will happen by first finding the most common energy ProgramType
+among the assigned Room2Ds. If the identifier of this most common program
+contains the name of an acceptable UWG building program, it will be assigned
+as this object’s building program. If no match is found or there’s no
+honeybee-energy extension installed, this object’s program will remain unchanged.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abridged</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dragonfly_uwg/properties/building.html#BuildingUWGProperties.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.to_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Return Building UWG properties as a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>abridged</strong> – Boolean for whether the full dictionary of the Building should
+be written (False) or just the identifier of the the individual
+properties (True). Default: False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.PROGRAMS">
+<span class="sig-name descname"><span class="pre">PROGRAMS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('LargeOffice',</span> <span class="pre">'MediumOffice',</span> <span class="pre">'SmallOffice',</span> <span class="pre">'MidriseApartment',</span> <span class="pre">'Retail',</span> <span class="pre">'StripMall',</span> <span class="pre">'PrimarySchool',</span> <span class="pre">'SecondarySchool',</span> <span class="pre">'SmallHotel',</span> <span class="pre">'LargeHotel',</span> <span class="pre">'Hospital',</span> <span class="pre">'Outpatient',</span> <span class="pre">'Warehouse',</span> <span class="pre">'SuperMarket',</span> <span class="pre">'FullServiceRestaurant',</span> <span class="pre">'QuickServiceRestaurant')</span></em><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.PROGRAMS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.VINTAGES">
+<span class="sig-name descname"><span class="pre">VINTAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('New',</span> <span class="pre">'1980_Present',</span> <span class="pre">'Pre1980')</span></em><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.VINTAGES" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.fract_heat_to_canyon">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fract_heat_to_canyon</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.fract_heat_to_canyon" title="Link to this definition">¶</a></dt>
+<dd><p>Get or set the fraction of the bldg heat rejected to the urban canyon.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.host">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.host" title="Link to this definition">¶</a></dt>
+<dd><p>Get the Building object hosting these properties.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.program">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">program</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program" title="Link to this definition">¶</a></dt>
+<dd><p>Get or set text for the name of the building program.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.program_uwg">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">program_uwg</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.program_uwg" title="Link to this definition">¶</a></dt>
+<dd><p>Get text for the building program in a format that the UWG likes.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.roof_albedo">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roof_albedo</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_albedo" title="Link to this definition">¶</a></dt>
+<dd><p>Get or set the exterior roof albedo of the building.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.roof_veg_fraction">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roof_veg_fraction</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.roof_veg_fraction" title="Link to this definition">¶</a></dt>
+<dd><p>Get or set the roof vegetation fraction of the building.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.shgc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shgc</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.shgc" title="Link to this definition">¶</a></dt>
+<dd><p>Get or set the SHGC of the building.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.vintage">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vintage</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage" title="Link to this definition">¶</a></dt>
+<dd><p>Get or set text for the vintage of the building.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.vintage_uwg">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vintage_uwg</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.vintage_uwg" title="Link to this definition">¶</a></dt>
+<dd><p>Get text for the building vintage in a format that the UWG likes.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dragonfly_uwg.properties.building.BuildingUWGProperties.wall_albedo">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wall_albedo</span></span><a class="headerlink" href="#dragonfly_uwg.properties.building.BuildingUWGProperties.wall_albedo" title="Link to this definition">¶</a></dt>
+<dd><p>Get or set the exterior wall albedo of the building.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2025, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.0.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

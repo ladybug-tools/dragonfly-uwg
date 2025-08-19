@@ -1,0 +1,7 @@
+dragonfly\_uwg.writer module
+============================
+
+.. automodule:: dragonfly_uwg.writer
+   :members:
+   :undoc-members:
+   :show-inheritance:

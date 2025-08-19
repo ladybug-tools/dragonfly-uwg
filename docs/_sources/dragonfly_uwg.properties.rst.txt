@@ -1,0 +1,22 @@
+dragonfly\_uwg.properties package
+=================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   dragonfly_uwg.properties.building
+   dragonfly_uwg.properties.context
+   dragonfly_uwg.properties.model
+   dragonfly_uwg.properties.room2d
+   dragonfly_uwg.properties.story
+
+Module contents
+---------------
+
+.. automodule:: dragonfly_uwg.properties
+   :members:
+   :undoc-members:
+   :show-inheritance:
